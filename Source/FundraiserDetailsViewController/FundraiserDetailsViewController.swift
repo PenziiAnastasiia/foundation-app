@@ -12,7 +12,7 @@ class FundraiserDetailsViewController: UIViewController {
         self.viewIfLoaded as? FundraiserDetailsView
     }
     
-    let fundraiser: ListElementModel
+    let fundraiser: FundraiserListElement
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class FundraiserDetailsViewController: UIViewController {
         self.rootView?.configure(title: self.fundraiser.title)
     }
     
-    init(fundraiser: ListElementModel) {
+    init(fundraiser: FundraiserListElement) {
         self.fundraiser = fundraiser
         super.init(nibName: "FundraiserDetailsViewController", bundle: nil)
     }

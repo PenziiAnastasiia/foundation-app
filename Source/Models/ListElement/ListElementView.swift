@@ -16,9 +16,9 @@ class ListElementView: UIView {
     @IBOutlet var goalLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    private var listElement: ListElementModel?
+    private var fundraiser: FundraiserListElement?
     private var action: ((Int) -> Void)?
-    private var progressValue: Float = 0.0 {
+    private var progressValue: Double = 0.0 {
         didSet {
             updateProgressLayer()
         }
@@ -32,26 +32,26 @@ class ListElementView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.progressBarView.frame = CGRect(x: 0, y: 0, width: 0, height: self.barView.frame.height)
+        self.progressBarView.frame = CGRect(x: 0, y: 0, width: 0, height: self.barView.bounds.height)
         let cornerRadius = self.barView.bounds.height / 5
         self.barView.layer.cornerRadius = cornerRadius
         self.progressBarView.layer.cornerRadius = cornerRadius
     }
     
     @IBAction func didElementTapped(sender: UIButton) {
-        self.action?(self.listElement?.id ?? 0)
+        self.action?(self.fundraiser?.id ?? 0)
     }
     
-    public func fillView(with listElement: ListElementModel, action: @escaping (Int) -> Void) {
-        self.listElement = listElement
+    public func fillView(with listElement: FundraiserListElement, action: @escaping (Int) -> Void) {
+        self.fundraiser = listElement
         self.action = action
+        self.progressValue = listElement.amount / Double(listElement.goal)
         
         self.titleLabel.text = listElement.title
-        self.progressValue = listElement.amount / listElement.goal
-        self.amountLabel.text = "\(listElement.amount)"
-        self.goalLabel.text = "\(Int(listElement.goal))"
+        self.amountLabel.text = String(listElement.amount)
+        self.goalLabel.text = String(listElement.goal)
         
-        if case let .closed(closeDate) = listElement.status {
+        if let closeDate = listElement.closeDate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none

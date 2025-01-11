@@ -25,15 +25,15 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <subviews>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNR-OE-GHM">
-                                    <rect key="frame" x="0.0" y="315" width="393" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-dB-ykt">
-                                            <rect key="frame" x="16" y="-36" width="361" height="256"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="511" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-dB-ykt">
+                                            <rect key="frame" x="16" y="0.0" width="361" height="767"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTG-g7-yO8">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5E-d9-Ac2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5E-d9-Ac2">
                                                             <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                             <nil key="textColor"/>
@@ -49,7 +49,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7QY-1Q-NFc">
-                                                    <rect key="frame" x="0.0" y="128" width="361" height="128"/>
+                                                    <rect key="frame" x="0.0" y="639" width="361" height="128"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                             </subviews>

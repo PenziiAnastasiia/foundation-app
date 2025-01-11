@@ -46,10 +46,10 @@
             </objects>
             <point key="canvasLocation" x="-847" y="701"/>
         </scene>
-        <!--Fundraisers View Controller-->
+        <!--Fundraisers List View Controller-->
         <scene sceneID="MhW-1x-5Jg">
             <objects>
-                <viewController id="DQ9-LK-Uk5" customClass="FundraisersViewController" customModule="FoundationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DQ9-LK-Uk5" customClass="FundraisersListViewController" customModule="FoundationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nxt-tu-F6I">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
