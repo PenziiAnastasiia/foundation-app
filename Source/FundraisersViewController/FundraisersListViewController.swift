@@ -11,67 +11,98 @@ import FirebaseFirestore
 class FundraisersListViewController: UIViewController {
     @IBOutlet var openFundraisersStack: UIStackView!
     @IBOutlet var closedFundraisersStack: UIStackView!
+    
+    var fundraisersList: [FundraiserListElement] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.getDocuments { documents in
-            self.createFundraiserListElements(documents: documents)
+        Task {
+            let documents = try await self.getDocuments()
+            await self.fillFundraisersList(documents: documents)
+            self.fillStacks()
         }
     }
     
-    private func createFundraiserListElements(documents: [QueryDocumentSnapshot]) {
-        documents.forEach { doc in
+    private func fillFundraisersList(documents: [QueryDocumentSnapshot]) async {
+        for doc in documents {
             guard
                 let id = Int(doc.documentID),
                 let title = doc.data()["title"] as? String,
                 let isClosed = doc.data()["isClosed"] as? Bool
             else { return }
             
-            let goal: Int
-            let amount: Double
-            var closeDate: Date? = nil
+            let closeDate = (doc.data()["closeDate"] as? Timestamp)?.dateValue()
             
-            if isClosed {
+            if let url = (doc.data()["linkAPI"] as? String).flatMap({ URL(string: $0) }) {
+                do {
+                    let (goal, amount) = try await self.getValuesFromJar(url: url)
+                    self.fundraisersList.append(FundraiserListElement(id: id, title: title, goal: goal, amount: amount, closeDate: closeDate))
+                } catch {
+                    print(error)
+                }
+            } else {
                 guard
-                    let docGoal = doc.data()["goal"] as? Int,
-                    let docAmount = doc.data()["amount"] as? Double,
-                    let timestamp = doc.data()["closeDate"] as? Timestamp
+                    let goal = doc.data()["goal"] as? Int,
+                    let amount = doc.data()["amount"] as? Double
                 else { return }
                 
-                goal = docGoal
-                amount = docAmount
-                closeDate = timestamp.dateValue()
-            } else {
-                (goal, amount) = self.getValuesFromJar()
+                self.fundraisersList.append(FundraiserListElement(id: id, title: title, goal: goal, amount: amount, closeDate: closeDate))
             }
-            
-            let fundraiserListElement = FundraiserListElement(id: id, title: title, goal: goal, amount: amount, closeDate: closeDate)
-            
-            self.addListElementIntoStack(listElement: fundraiserListElement, stack: (closeDate != nil) ? self.closedFundraisersStack : self.openFundraisersStack)
         }
     }
     
-    private func getDocuments(completion: @escaping ([QueryDocumentSnapshot]) -> Void) {
+    private func getDocuments() async throws -> [QueryDocumentSnapshot] {
         let db = Firestore.firestore()
         
-        db.collection("Fundraisers").getDocuments { (snapshot, error) in
-            if let error = error {
-               print("Error getting documents: \(error)")
-                return
+        return try await withCheckedThrowingContinuation { continuation in
+            db.collection("Fundraisers").getDocuments { snapshot, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let documents = snapshot?.documents else {
+                    continuation.resume(throwing: NSError(domain: "Firestore", code: 0, userInfo: [NSLocalizedDescriptionKey: "No documents found."]))
+                    return
+                }
+                
+                continuation.resume(returning: documents)
             }
-            
-            guard let documents = snapshot?.documents else {
-                print("No documents found.")
-                return
-            }
-            
-            completion(documents)
         }
     }
     
-    private func getValuesFromJar() -> (Int, Double) {
-        return (100000, 50239.1)
+    private func getValuesFromJar(url: URL) async throws -> (Int, Double) {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        
+        guard let goal = json?["goal"] as? Int, let amount = json?["amount"] as? Double else {
+            throw NSError(domain: "Invalid data", code: 1, userInfo: nil)
+        }
+        
+        return (goal / 100, amount / 100)
+    }
+    
+    private func fillStacks() {
+        let closedFundraisers = self.fundraisersList
+            .filter { $0.closeDate != nil }
+            .sorted { $0.closeDate! < $1.closeDate! }
+        
+        let openFundraisers = self.fundraisersList
+            .filter { $0.closeDate == nil }
+            .sorted { $0.amount / Double($0.goal) > $1.amount / Double($1.goal) }
+        
+        closedFundraisers.forEach { fundraiserListElement in
+            DispatchQueue.main.async {
+                self.addListElementIntoStack(listElement: fundraiserListElement, stack: self.closedFundraisersStack)
+            }
+        }
+        
+        openFundraisers.forEach { fundraiserListElement in
+            DispatchQueue.main.async {
+                self.addListElementIntoStack(listElement: fundraiserListElement, stack: self.openFundraisersStack)
+            }
+        }
     }
     
     private func addListElementIntoStack(listElement: FundraiserListElement, stack: UIStackView) {

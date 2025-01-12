@@ -48,14 +48,28 @@ class ListElementView: UIView {
         self.progressValue = listElement.amount / Double(listElement.goal)
         
         self.titleLabel.text = listElement.title
-        self.amountLabel.text = String(listElement.amount)
-        self.goalLabel.text = String(listElement.goal)
+        self.amountLabel.text = self.formatNumber(listElement.amount)
+        self.goalLabel.text = self.formatNumber(listElement.goal)
         
         if let closeDate = listElement.closeDate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
             self.dateLabel.text = dateFormatter.string(from: closeDate)
+        }
+    }
+    
+    private func formatNumber<T: Numeric>(_ number: T) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        
+        if let doubleValue = number as? Double {
+            return formatter.string(from: NSNumber(value: doubleValue)) ?? "\(number)"
+        } else if let intValue = number as? Int {
+            return formatter.string(from: NSNumber(value: intValue)) ?? "\(number)"
+        } else {
+            return "\(number)"
         }
     }
     
