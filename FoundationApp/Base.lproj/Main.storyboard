@@ -64,13 +64,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="592"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fy1-WL-WXD">
-                                                        <rect key="frame" x="16" y="0.0" width="361" height="592"/>
+                                                        <rect key="frame" x="8" y="0.0" width="377" height="592"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plN-DP-Cu3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="377" height="128"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Активні збори" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3Z-fQ-Mcx">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                                                                        <rect key="frame" x="8" y="0.0" width="361" height="128"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -78,17 +78,17 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="j3Z-fQ-Mcx" secondAttribute="trailing" id="6CT-sC-g2W"/>
-                                                                    <constraint firstItem="j3Z-fQ-Mcx" firstAttribute="leading" secondItem="plN-DP-Cu3" secondAttribute="leading" id="QGV-Zw-gN8"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="j3Z-fQ-Mcx" secondAttribute="trailing" constant="8" id="6CT-sC-g2W"/>
+                                                                    <constraint firstItem="j3Z-fQ-Mcx" firstAttribute="leading" secondItem="plN-DP-Cu3" secondAttribute="leading" constant="8" id="QGV-Zw-gN8"/>
                                                                     <constraint firstItem="j3Z-fQ-Mcx" firstAttribute="top" secondItem="plN-DP-Cu3" secondAttribute="top" id="UTu-Us-ajA"/>
                                                                     <constraint firstAttribute="bottom" secondItem="j3Z-fQ-Mcx" secondAttribute="bottom" id="WSe-gp-3y0"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dGi-Tn-wft">
-                                                                <rect key="frame" x="0.0" y="144" width="361" height="128"/>
+                                                                <rect key="frame" x="0.0" y="144" width="377" height="128"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-Lu-gYQ">
-                                                                        <rect key="frame" x="0.0" y="-36" width="361" height="200"/>
+                                                                        <rect key="frame" x="0.0" y="-36" width="377" height="200"/>
                                                                     </stackView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -100,17 +100,17 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kZi-co-ICS">
-                                                                <rect key="frame" x="0.0" y="288" width="361" height="16"/>
+                                                                <rect key="frame" x="0.0" y="288" width="377" height="16"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="U7M-Lq-tBB"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fcf-2s-IoL">
-                                                                <rect key="frame" x="0.0" y="320" width="361" height="128"/>
+                                                                <rect key="frame" x="0.0" y="320" width="377" height="128"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Завершені збори" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njd-gp-KTx">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                                                                        <rect key="frame" x="8" y="0.0" width="361" height="128"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -118,17 +118,17 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="njd-gp-KTx" firstAttribute="leading" secondItem="Fcf-2s-IoL" secondAttribute="leading" id="D34-r4-bTY"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="njd-gp-KTx" secondAttribute="trailing" id="IwX-qp-RGV"/>
+                                                                    <constraint firstItem="njd-gp-KTx" firstAttribute="leading" secondItem="Fcf-2s-IoL" secondAttribute="leading" constant="8" id="D34-r4-bTY"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="njd-gp-KTx" secondAttribute="trailing" constant="8" id="IwX-qp-RGV"/>
                                                                     <constraint firstAttribute="bottom" secondItem="njd-gp-KTx" secondAttribute="bottom" id="bji-KE-hp7"/>
                                                                     <constraint firstItem="njd-gp-KTx" firstAttribute="top" secondItem="Fcf-2s-IoL" secondAttribute="top" id="hqr-Rm-nR3"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CF6-QX-1y1">
-                                                                <rect key="frame" x="0.0" y="464" width="361" height="128"/>
+                                                                <rect key="frame" x="0.0" y="464" width="377" height="128"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q2Q-tg-ajC">
-                                                                        <rect key="frame" x="0.0" y="-36" width="361" height="200"/>
+                                                                        <rect key="frame" x="0.0" y="-36" width="377" height="200"/>
                                                                     </stackView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -151,9 +151,9 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="fy1-WL-WXD" secondAttribute="trailing" constant="16" id="2Mn-Fj-Yib"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fy1-WL-WXD" secondAttribute="trailing" constant="8" id="2Mn-Fj-Yib"/>
                                                     <constraint firstAttribute="bottom" secondItem="fy1-WL-WXD" secondAttribute="bottom" id="HMf-2j-GcZ"/>
-                                                    <constraint firstItem="fy1-WL-WXD" firstAttribute="leading" secondItem="Myj-QQ-JPI" secondAttribute="leading" constant="16" id="dW3-TC-cIP"/>
+                                                    <constraint firstItem="fy1-WL-WXD" firstAttribute="leading" secondItem="Myj-QQ-JPI" secondAttribute="leading" constant="8" id="dW3-TC-cIP"/>
                                                     <constraint firstItem="fy1-WL-WXD" firstAttribute="top" secondItem="Myj-QQ-JPI" secondAttribute="top" id="luC-I3-dhu"/>
                                                 </constraints>
                                             </view>

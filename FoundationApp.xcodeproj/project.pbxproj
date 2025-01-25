@@ -14,6 +14,7 @@
 		1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */; };
 		1B6933AD2D31B7F900D09C8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1B6933AC2D31B7F900D09C8F /* FirebaseFirestore */; };
 		1B6933AF2D327F6200D09C8F /* FundraiserListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserListElement.swift */; };
+		1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B9336872D3AB4F100E18231 /* ListElementView.xib */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
 		1BF6C0EE2D297C1800635A49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0ED2D297C1800635A49 /* ViewController.swift */; };
@@ -21,8 +22,6 @@
 		1BF6C0F32D297C1B00635A49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F22D297C1B00635A49 /* Assets.xcassets */; };
 		1BF6C0F62D297C1B00635A49 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F52D297C1B00635A49 /* Base */; };
 		1BF6C1092D29C79200635A49 /* ListElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C1082D29C79200635A49 /* ListElementView.swift */; };
-		1BF6C10B2D29CB2E00635A49 /* Fundraiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C10A2D29CB2E00635A49 /* Fundraiser.swift */; };
-		1BF6C10D2D29D07B00635A49 /* ListElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C10C2D29D07B00635A49 /* ListElementView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +31,7 @@
 		1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsView.swift; sourceTree = "<group>"; };
 		1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B6933AE2D327F6200D09C8F /* FundraiserListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserListElement.swift; sourceTree = "<group>"; };
+		1B9336872D3AB4F100E18231 /* ListElementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListElementView.xib; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,8 +41,6 @@
 		1BF6C0F52D297C1B00635A49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BF6C0F72D297C1B00635A49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BF6C1082D29C79200635A49 /* ListElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListElementView.swift; sourceTree = "<group>"; };
-		1BF6C10A2D29CB2E00635A49 /* Fundraiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fundraiser.swift; sourceTree = "<group>"; };
-		1BF6C10C2D29D07B00635A49 /* ListElementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListElementView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +118,6 @@
 		1BF6C0FE2D29850B00635A49 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1BF6C10A2D29CB2E00635A49 /* Fundraiser.swift */,
 				1BF6C0FF2D29852A00635A49 /* ListElement */,
 			);
 			path = Models;
@@ -129,9 +126,9 @@
 		1BF6C0FF2D29852A00635A49 /* ListElement */ = {
 			isa = PBXGroup;
 			children = (
-				1BF6C10C2D29D07B00635A49 /* ListElementView.xib */,
-				1BF6C1082D29C79200635A49 /* ListElementView.swift */,
 				1B6933AE2D327F6200D09C8F /* FundraiserListElement.swift */,
+				1BF6C1082D29C79200635A49 /* ListElementView.swift */,
+				1B9336872D3AB4F100E18231 /* ListElementView.xib */,
 			);
 			path = ListElement;
 			sourceTree = "<group>";
@@ -200,10 +197,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BF6C10D2D29D07B00635A49 /* ListElementView.xib in Resources */,
 				1B6933A62D2C222C00D09C8F /* FundraiserDetailsViewController.xib in Resources */,
 				1BF6C0F32D297C1B00635A49 /* Assets.xcassets in Resources */,
 				1BF6C0F62D297C1B00635A49 /* Base in Resources */,
+				1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */,
 				1BF6C0F12D297C1800635A49 /* Base in Resources */,
 				1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */,
 			);
@@ -221,7 +218,6 @@
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
 				1BF6C1092D29C79200635A49 /* ListElementView.swift in Sources */,
-				1BF6C10B2D29CB2E00635A49 /* Fundraiser.swift in Sources */,
 				1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */,
 				1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */,
 				1B6933AF2D327F6200D09C8F /* FundraiserListElement.swift in Sources */,

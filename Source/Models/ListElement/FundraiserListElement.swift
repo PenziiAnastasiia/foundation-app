@@ -10,7 +10,7 @@ import Foundation
 struct FundraiserListElement {
     let id: Int
     let title: String
-    let goal: Int
+    let goal: Int?
     let amount: Double
     let closeDate: Date?
 }

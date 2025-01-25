@@ -13,10 +13,8 @@ class ListElementView: UIView {
     @IBOutlet var barView: UIView!
     @IBOutlet var progressBarView: UIView!
     @IBOutlet var amountLabel: UILabel!
-    @IBOutlet var markersView: UIView!
     @IBOutlet var goalLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var collectedLabel: UILabel!
     
     private var fundraiser: FundraiserListElement?
     private var action: ((Int) -> Void)?
@@ -47,24 +45,17 @@ class ListElementView: UIView {
     public func fillView(with listElement: FundraiserListElement, action: @escaping (Int) -> Void) {
         self.fundraiser = listElement
         self.action = action
+        self.progressValue = listElement.amount / Double(listElement.goal)
         
         self.titleLabel.text = listElement.title
-        
-        if let goal = listElement.goal {
-            self.barView.isHidden = false
-            self.markersView.isHidden = false
-            self.progressValue = listElement.amount / Double(goal)
-            self.goalLabel.text = self.formatNumber(goal)
-            self.amountLabel.text = self.formatNumber(listElement.amount)
-        }
+        self.amountLabel.text = self.formatNumber(listElement.amount)
+        self.goalLabel.text = self.formatNumber(listElement.goal)
         
         if let closeDate = listElement.closeDate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
             self.dateLabel.text = dateFormatter.string(from: closeDate)
-            
-            self.collectedLabel.text = "Зібрано: \(self.formatNumber(listElement.amount))"
         }
     }
     
