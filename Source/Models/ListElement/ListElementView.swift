@@ -50,14 +50,6 @@ class ListElementView: UIView {
         
         self.titleLabel.text = listElement.title
         
-        if let goal = listElement.goal {
-            self.barView.isHidden = false
-            self.markersView.isHidden = false
-            self.progressValue = listElement.amount / Double(goal)
-            self.goalLabel.text = self.formatNumber(goal)
-            self.amountLabel.text = self.formatNumber(listElement.amount)
-        }
-        
         if let closeDate = listElement.closeDate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
@@ -65,6 +57,12 @@ class ListElementView: UIView {
             self.dateLabel.text = dateFormatter.string(from: closeDate)
             
             self.collectedLabel.text = "Зібрано: \(self.formatNumber(listElement.amount))"
+        } else {
+            self.barView.isHidden = false
+            self.markersView.isHidden = false
+            self.progressValue = listElement.amount / Double(listElement.goal)
+            self.goalLabel.text = self.formatNumber(listElement.goal)
+            self.amountLabel.text = self.formatNumber(listElement.amount)
         }
     }
     

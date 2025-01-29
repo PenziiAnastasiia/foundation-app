@@ -8,7 +8,7 @@
 import UIKit
 
 class FundraiserDetailsViewController: UIViewController {
-    var rootView: FundraiserDetailsView? {
+    private var rootView: FundraiserDetailsView? {
         self.viewIfLoaded as? FundraiserDetailsView
     }
     
