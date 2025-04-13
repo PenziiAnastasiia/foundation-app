@@ -18,8 +18,8 @@ class ListElementView: UIView {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var collectedLabel: UILabel!
     
-    private var fundraiser: FundraiserListElement?
-    private var action: ((Int) -> Void)?
+    private var fundraiser: FundraiserModel?
+    private var action: (() -> Void)?
     private var progressValue: Double = 0.0 {
         didSet {
             updateProgressLayer()
@@ -41,28 +41,28 @@ class ListElementView: UIView {
     }
     
     @IBAction func didElementTapped(sender: UIButton) {
-        self.action?(self.fundraiser?.id ?? 0)
+        self.action?()
     }
     
-    public func fillView(with listElement: FundraiserListElement, action: @escaping (Int) -> Void) {
-        self.fundraiser = listElement
+    public func fillView(with fundraiser: FundraiserModel, action: @escaping () -> Void) {
+        self.fundraiser = fundraiser
         self.action = action
         
-        self.titleLabel.text = listElement.title
+        self.titleLabel.text = fundraiser.title
         
-        if let closeDate = listElement.closeDate {
+        if let closeDate = fundraiser.closeDate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
             self.dateLabel.text = dateFormatter.string(from: closeDate)
             
-            self.collectedLabel.text = "Зібрано: \(self.formatNumber(listElement.amount))"
+            self.collectedLabel.text = "Зібрано: \(self.formatNumber(fundraiser.collected))"
         } else {
             self.barView.isHidden = false
             self.markersView.isHidden = false
-            self.progressValue = listElement.amount / Double(listElement.goal)
-            self.goalLabel.text = self.formatNumber(listElement.goal)
-            self.amountLabel.text = self.formatNumber(listElement.amount)
+            self.progressValue = fundraiser.collected / Double(fundraiser.goal)
+            self.goalLabel.text = self.formatNumber(fundraiser.goal)
+            self.amountLabel.text = self.formatNumber(fundraiser.collected)
         }
     }
     

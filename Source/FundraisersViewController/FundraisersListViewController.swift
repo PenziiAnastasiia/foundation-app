@@ -12,8 +12,7 @@ class FundraisersListViewController: UIViewController {
     @IBOutlet var openFundraisersStack: UIStackView!
     @IBOutlet var closedFundraisersStack: UIStackView!
     
-    private var jars: [[String : Any]] = []
-    private var fundraisersList: [FundraiserListElement] = []
+    private var fundraisersList: [FundraiserModel] = []
     private var updateTimer: Timer?
 
     override func viewDidLoad() {
@@ -35,7 +34,6 @@ class FundraisersListViewController: UIViewController {
     private func fillFundraisersList() async {
         do {
             self.fundraisersList = []
-            self.jars = try await getClientJarsInfo()
             let db = Firestore.firestore()
             let querySnapshot = try await db.collection("Fundraisers").getDocuments()
             
@@ -49,65 +47,20 @@ class FundraisersListViewController: UIViewController {
         }
     }
     
-    private func getClientJarsInfo() async throws -> [[String: Any]] {
-        guard let url = URL(string: "https://api.monobank.ua/personal/client-info") else { throw NSError(domain: "Invalid URL", code: 1, userInfo: nil) }
-        let XToken = ""
+    private func createFundraiser(from document: QueryDocumentSnapshot) async -> FundraiserModel? {
+        guard let title = document.data()["title"] as? String,
+              let description = document.data()["description"] as? String,
+              let openDate = (document.data()["openDate"] as? Timestamp)?.dateValue(),
+              let goal = document.data()["goal"] as? Int,
+              let collected = document.data()["collected"] as? Double
+        else { return nil }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(XToken, forHTTPHeaderField: "X-Token")
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-              let jars = json["jars"] as? [[String: Any]] else {
-            throw NSError(domain: "Invalid response", code: 2, userInfo: nil)
-        }
-        
-        return jars
-    }
-    
-    private func createFundraiser(from document: QueryDocumentSnapshot) async -> FundraiserListElement? {
-        guard let id = Int(document.documentID), let title = document.data()["title"] as? String else { return nil }
+        let id = document.documentID
         let closeDate = (document.data()["closeDate"] as? Timestamp)?.dateValue()
         
-        let fundraiser = FundraiserListElement(id: id, title: title, goal: 0, amount: 0.0, closeDate: closeDate)
+        let fundraiser = FundraiserModel(id: id, title: title, description: description, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate)
         
-        if let url = (document.data()["linkAPI"] as? String).flatMap({ URL(string: $0) }) {
-            do {
-                let (goal, amount) = try await self.getValuesFromJar(url: url)
-                return fundraiser.setAmountValue(amount).setGoalValue(goal)
-            } catch {
-                print("Error fetching jar data from API: \(error)")
-            }
-        } else if let jarLink = document.data()["jarLink"] as? String,
-                    let sendId = jarLink.components(separatedBy: "/").last {
-            let jarInfo = self.findJarInfo(for: sendId)
-
-            if let jarInfo = jarInfo, let amount = jarInfo["balance"] as? Double, let goal = jarInfo["goal"] as? Int {
-                return fundraiser.setAmountValue(amount / 100).setGoalValue(goal / 100)   // перевід копійок в гривні
-            } else if let amount = document.data()["collected"] as? Double {
-                return fundraiser.setAmountValue(amount)
-            }
-        }
-        return nil
-    }
-    
-    private func getValuesFromJar(url: URL) async throws -> (Int, Double) {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-        
-        guard let goal = json?["goal"] as? Int, let amount = json?["amount"] as? Double else {
-            throw NSError(domain: "Invalid data", code: 1, userInfo: nil)
-        }
-        
-        return (goal / 100, amount / 100)   // перевід копійок в гривні
-    }
-    
-    private func findJarInfo(for sendId: String) -> [String: Any]? {
-        return self.jars.first { jar in
-            guard let currentSendId = (jar["sendId"] as? String)?.components(separatedBy: "/").last else { return false }
-            return currentSendId == sendId
-        }
+        return fundraiser
     }
 
     private func fillStacks() {
@@ -117,7 +70,7 @@ class FundraisersListViewController: UIViewController {
         
         let openFundraisers = self.fundraisersList
             .filter { $0.closeDate == nil }
-            .sorted { $0.amount / Double($0.goal) > $1.amount / Double($1.goal) }
+            .sorted { $0.collected / Double($0.goal) > $1.collected / Double($1.goal) }
         
         self.closedFundraisersStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         closedFundraisers.forEach { self.addListElementIntoStack(listElement: $0, stack: self.closedFundraisersStack) }
@@ -126,14 +79,14 @@ class FundraisersListViewController: UIViewController {
         openFundraisers.forEach { self.addListElementIntoStack(listElement: $0, stack: self.openFundraisersStack) }
     }
     
-    private func addListElementIntoStack(listElement: FundraiserListElement, stack: UIStackView) {
+    private func addListElementIntoStack(listElement: FundraiserModel, stack: UIStackView) {
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height * 0.1
         
         if let listElementView = ListElementView.loadFromNib() {
             listElementView.frame = CGRect(x: 0, y: 0, width: width, height: height)
             listElementView.layer.cornerRadius = height / 5
-            listElementView.fillView(with: listElement, action: { [weak self] id in
+            listElementView.fillView(with: listElement, action: { [weak self] in
                 let controller = FundraiserDetailsViewController(fundraiser: listElement)
                 self?.navigationController?.pushViewController(controller, animated: true)
             })

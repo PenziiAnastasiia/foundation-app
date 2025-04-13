@@ -13,7 +13,7 @@
 		1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */; };
 		1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */; };
 		1B6933AD2D31B7F900D09C8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1B6933AC2D31B7F900D09C8F /* FirebaseFirestore */; };
-		1B6933AF2D327F6200D09C8F /* FundraiserListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserListElement.swift */; };
+		1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */; };
 		1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B9336872D3AB4F100E18231 /* ListElementView.xib */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
@@ -30,7 +30,7 @@
 		1B6933A42D2C222C00D09C8F /* FundraiserDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FundraiserDetailsViewController.xib; sourceTree = "<group>"; };
 		1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsView.swift; sourceTree = "<group>"; };
 		1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1B6933AE2D327F6200D09C8F /* FundraiserListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserListElement.swift; sourceTree = "<group>"; };
+		1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserModel.swift; sourceTree = "<group>"; };
 		1B9336872D3AB4F100E18231 /* ListElementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListElementView.xib; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +118,7 @@
 		1BF6C0FE2D29850B00635A49 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
 				1BF6C0FF2D29852A00635A49 /* ListElement */,
 			);
 			path = Models;
@@ -126,7 +127,6 @@
 		1BF6C0FF2D29852A00635A49 /* ListElement */ = {
 			isa = PBXGroup;
 			children = (
-				1B6933AE2D327F6200D09C8F /* FundraiserListElement.swift */,
 				1BF6C1082D29C79200635A49 /* ListElementView.swift */,
 				1B9336872D3AB4F100E18231 /* ListElementView.xib */,
 			);
@@ -220,7 +220,7 @@
 				1BF6C1092D29C79200635A49 /* ListElementView.swift in Sources */,
 				1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */,
 				1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */,
-				1B6933AF2D327F6200D09C8F /* FundraiserListElement.swift in Sources */,
+				1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
