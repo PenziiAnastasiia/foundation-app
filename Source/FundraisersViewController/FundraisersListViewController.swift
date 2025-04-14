@@ -80,17 +80,15 @@ class FundraisersListViewController: UIViewController {
     }
     
     private func addListElementIntoStack(listElement: FundraiserModel, stack: UIStackView) {
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height * 0.1
-        
         if let listElementView = ListElementView.loadFromNib() {
-            listElementView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-            listElementView.layer.cornerRadius = height / 5
+            stack.addArrangedSubview(listElementView)
+            listElementView.layer.cornerRadius = listElementView.bounds.height / 7
+            listElementView.addBarView()
             listElementView.fillView(with: listElement, action: { [weak self] in
                 let controller = FundraiserDetailsViewController(fundraiser: listElement)
                 self?.navigationController?.pushViewController(controller, animated: true)
             })
-            stack.addArrangedSubview(listElementView)
+            stack.layoutIfNeeded()
         }
     }
     
