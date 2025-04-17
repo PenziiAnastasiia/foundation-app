@@ -8,11 +8,11 @@
 import UIKit
 
 class BarView: UIView {
-    @IBOutlet var progressWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var progressBackgroundView: UIView!
-    @IBOutlet var progressView: UIView!
-    @IBOutlet var collectedLabel: UILabel!
-    @IBOutlet var goalLabel: UILabel!
+    @IBOutlet weak var progressWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressBackgroundView: UIView!
+    @IBOutlet weak var progressView: UIView!
+    @IBOutlet weak var collectedLabel: UILabel!
+    @IBOutlet weak var goalLabel: UILabel!
     
     class func loadFromNib() -> BarView? {
         let nib = UINib(nibName: "BarView", bundle: nil)

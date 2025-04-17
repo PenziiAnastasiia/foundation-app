@@ -8,19 +8,32 @@
 import UIKit
 
 class FundraiserDetailsView: UIView {
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var mediaCollectionContainer: UIView!
     
-    public func configure(title: String) {
-        self.titleLabel.text = title
+    public func fillView(with fundraiser: FundraiserModel, mediaNamesArray: [String]) {
+        self.titleLabel.text = fundraiser.title
+        self.descriptionLabel.text = fundraiser.description
+        self.fillMediaCollectionView(for: fundraiser.id, with: mediaNamesArray)
     }
     
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    private func fillMediaCollectionView(for fundraiserID: String, with namesArray: [String]) {
+        if namesArray.isEmpty {
+            self.mediaCollectionContainer.isHidden = true
+            return
+        }
+        
+        if let mediaCollectionView = MediaCollectionView.loadFromNib() {
+            mediaCollectionView.translatesAutoresizingMaskIntoConstraints = false
+            self.mediaCollectionContainer.addSubview(mediaCollectionView)
+            NSLayoutConstraint.activate([
+                mediaCollectionView.leadingAnchor.constraint(equalTo: self.mediaCollectionContainer.leadingAnchor, constant: 16),
+                mediaCollectionView.trailingAnchor.constraint(equalTo: self.mediaCollectionContainer.trailingAnchor, constant: -16),
+                mediaCollectionView.topAnchor.constraint(equalTo: self.mediaCollectionContainer.topAnchor, constant: 16),
+                mediaCollectionView.bottomAnchor.constraint(equalTo: self.mediaCollectionContainer.bottomAnchor, constant: -16)
+            ])
+            mediaCollectionView.loadMedia(for: fundraiserID, from: namesArray)
+        }
     }
-    */
-
 }

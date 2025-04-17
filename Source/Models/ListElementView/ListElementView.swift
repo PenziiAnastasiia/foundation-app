@@ -9,13 +9,12 @@ import Foundation
 import UIKit
 
 class ListElementView: UIView {
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var labelsContainer: UIView!
-    @IBOutlet var barContainer: UIView!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var collectedLabel: UILabel!
-    
-    private var fundraiser: FundraiserModel?
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var labelsContainer: UIView!
+    @IBOutlet weak var barContainer: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var collectedLabel: UILabel!
+
     private var action: (() -> Void)?
     private var barView: BarView?
     
@@ -46,7 +45,6 @@ class ListElementView: UIView {
     }
     
     public func fillView(with fundraiser: FundraiserModel, action: @escaping () -> Void) {
-        self.fundraiser = fundraiser
         self.action = action
         
         self.titleLabel.text = fundraiser.title

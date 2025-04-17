@@ -6,18 +6,24 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class FundraiserDetailsViewController: UIViewController {
     private var rootView: FundraiserDetailsView? {
         self.viewIfLoaded as? FundraiserDetailsView
     }
     
-    let fundraiser: FundraiserModel
+    private let fundraiser: FundraiserModel
+    private var descriptionMediaNames: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.rootView?.configure(title: self.fundraiser.title)
+        
+        Task {
+            await self.getDescriptionMediaNames()
+            
+            self.rootView?.fillView(with: self.fundraiser, mediaNamesArray: self.descriptionMediaNames)
+        }
     }
     
     init(fundraiser: FundraiserModel) {
@@ -28,6 +34,21 @@ class FundraiserDetailsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func getDescriptionMediaNames() async {
+        do {
+            let db = Firestore.firestore()
+            let document = try await db.collection("Fundraisers").document(self.fundraiser.id).getDocument()
+            if let descriptionMediaArray = document.data()?["descriptionMedia"] as? [String] {
+                self.descriptionMediaNames = descriptionMediaArray
+            }
+        } catch {
+            print("Error fetching media names data: \(error)")
+        }
+    }
+    
+
+
 
     /*
     // MARK: - Navigation

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaCell" id="gTV-IL-0wX" customClass="MediaCollectionViewCell" customModule="FoundationApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3TV-gn-L2f">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="La8-Pc-acb">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cqq-LH-RGx">
+                                <rect key="frame" x="55" y="77" width="50" height="46"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="DPd-V1-a8o"/>
+                                    <constraint firstAttribute="height" constant="50" id="P25-Fg-DrS"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Cqq-LH-RGx" firstAttribute="centerY" secondItem="3TV-gn-L2f" secondAttribute="centerY" id="LuF-QD-GtA"/>
+                            <constraint firstItem="La8-Pc-acb" firstAttribute="top" secondItem="3TV-gn-L2f" secondAttribute="top" id="cGd-X7-bSY"/>
+                            <constraint firstItem="Cqq-LH-RGx" firstAttribute="centerX" secondItem="3TV-gn-L2f" secondAttribute="centerX" id="f0i-9R-nye"/>
+                            <constraint firstAttribute="trailing" secondItem="La8-Pc-acb" secondAttribute="trailing" id="jlp-ia-msY"/>
+                            <constraint firstAttribute="bottom" secondItem="La8-Pc-acb" secondAttribute="bottom" id="qXr-aV-mSA"/>
+                            <constraint firstItem="La8-Pc-acb" firstAttribute="leading" secondItem="3TV-gn-L2f" secondAttribute="leading" id="yUd-Pv-ugZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="3TV-gn-L2f" secondAttribute="trailing" id="3eC-sD-ExY"/>
+                <constraint firstAttribute="bottom" secondItem="3TV-gn-L2f" secondAttribute="bottom" id="kiW-Vy-Ezr"/>
+                <constraint firstItem="3TV-gn-L2f" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="li0-gQ-22E"/>
+                <constraint firstItem="3TV-gn-L2f" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yE2-Oo-wCg"/>
+            </constraints>
+            <size key="customSize" width="160" height="200"/>
+            <connections>
+                <outlet property="imageView" destination="La8-Pc-acb" id="6Ot-mY-pUR"/>
+                <outlet property="playImageView" destination="Cqq-LH-RGx" id="QeJ-Ux-eWd"/>
+            </connections>
+            <point key="canvasLocation" x="1.5267175572519083" y="72.535211267605632"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

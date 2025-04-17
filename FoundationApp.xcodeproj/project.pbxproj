@@ -18,6 +18,15 @@
 		1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01282DAC22D6008BCCA4 /* BarView.swift */; };
 		1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC012C2DAC231E008BCCA4 /* BarView.xib */; };
 		1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */; };
+		1BAC01332DAE4E64008BCCA4 /* MediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01322DAE4E64008BCCA4 /* MediaCollectionView.swift */; };
+		1BAC01352DAE4E81008BCCA4 /* MediaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC01342DAE4E81008BCCA4 /* MediaCollectionView.xib */; };
+		1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01392DAE6B78008BCCA4 /* MediaCollectionViewCell.swift */; };
+		1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC013A2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib */; };
+		1BAC013F2DAED4CD008BCCA4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1BAC013E2DAED4CD008BCCA4 /* Kingfisher */; };
+		1BAC01432DB04D94008BCCA4 /* ImageFullscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01412DB04D94008BCCA4 /* ImageFullscreenViewController.swift */; };
+		1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */; };
+		1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */; };
+		1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
 		1BF6C0EE2D297C1800635A49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0ED2D297C1800635A49 /* ViewController.swift */; };
@@ -38,6 +47,14 @@
 		1BAC01282DAC22D6008BCCA4 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		1BAC012C2DAC231E008BCCA4 /* BarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarView.xib; sourceTree = "<group>"; };
 		1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+Extension.swift"; sourceTree = "<group>"; };
+		1BAC01322DAE4E64008BCCA4 /* MediaCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionView.swift; sourceTree = "<group>"; };
+		1BAC01342DAE4E81008BCCA4 /* MediaCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionView.xib; sourceTree = "<group>"; };
+		1BAC01392DAE6B78008BCCA4 /* MediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionViewCell.swift; sourceTree = "<group>"; };
+		1BAC013A2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionViewCell.xib; sourceTree = "<group>"; };
+		1BAC01412DB04D94008BCCA4 /* ImageFullscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFullscreenViewController.swift; sourceTree = "<group>"; };
+		1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFullscreenViewController.swift; sourceTree = "<group>"; };
+		1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BAC013F2DAED4CD008BCCA4 /* Kingfisher in Frameworks */,
 				1B6933AD2D31B7F900D09C8F /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,8 +110,43 @@
 			isa = PBXGroup;
 			children = (
 				1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */,
+				1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */,
 			);
 			path = Libs;
+			sourceTree = "<group>";
+		};
+		1BAC01312DAE4DD5008BCCA4 /* MediaCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				1BAC01322DAE4E64008BCCA4 /* MediaCollectionView.swift */,
+				1BAC01342DAE4E81008BCCA4 /* MediaCollectionView.xib */,
+			);
+			path = MediaCollectionView;
+			sourceTree = "<group>";
+		};
+		1BAC01382DAE6B42008BCCA4 /* MediaCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1BAC01392DAE6B78008BCCA4 /* MediaCollectionViewCell.swift */,
+				1BAC013A2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib */,
+			);
+			path = MediaCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BAC01412DB04D94008BCCA4 /* ImageFullscreenViewController.swift */,
+			);
+			path = ImageFullscreenViewController;
+			sourceTree = "<group>";
+		};
+		1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */,
+			);
+			path = VideoFullscreenViewController;
 			sourceTree = "<group>";
 		};
 		1BF6C0DD2D297C1700635A49 = {
@@ -133,8 +186,10 @@
 			children = (
 				1BF6C0FE2D29850B00635A49 /* Models */,
 				1BAC012E2DAD8475008BCCA4 /* Libs */,
-				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
 				1B6933952D29E62C00D09C8F /* FundraisersViewController */,
+				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
+				1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */,
+				1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -143,7 +198,10 @@
 			isa = PBXGroup;
 			children = (
 				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
+				1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */,
 				1BAC01272DAC2242008BCCA4 /* BarView */,
+				1BAC01312DAE4DD5008BCCA4 /* MediaCollectionView */,
+				1BAC01382DAE6B42008BCCA4 /* MediaCollectionViewCell */,
 				1BF6C0FF2D29852A00635A49 /* ListElementView */,
 			);
 			path = Models;
@@ -176,6 +234,7 @@
 			name = FoundationApp;
 			packageProductDependencies = (
 				1B6933AC2D31B7F900D09C8F /* FirebaseFirestore */,
+				1BAC013E2DAED4CD008BCCA4 /* Kingfisher */,
 			);
 			productName = FoundationApp;
 			productReference = 1BF6C0E62D297C1800635A49 /* FoundationApp.app */;
@@ -207,6 +266,7 @@
 			mainGroup = 1BF6C0DD2D297C1700635A49;
 			packageReferences = (
 				1B6933AB2D31B7F900D09C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1BAC013D2DAED4CD008BCCA4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1BF6C0E72D297C1800635A49 /* Products */;
 			projectDirPath = "";
@@ -226,6 +286,8 @@
 				1BF6C0F32D297C1B00635A49 /* Assets.xcassets in Resources */,
 				1BF6C0F62D297C1B00635A49 /* Base in Resources */,
 				1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */,
+				1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */,
+				1BAC01352DAE4E81008BCCA4 /* MediaCollectionView.xib in Resources */,
 				1BF6C0F12D297C1800635A49 /* Base in Resources */,
 				1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */,
 				1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */,
@@ -240,15 +302,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */,
+				1BAC01332DAE4E64008BCCA4 /* MediaCollectionView.swift in Sources */,
 				1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */,
+				1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */,
 				1BF6C0EE2D297C1800635A49 /* ViewController.swift in Sources */,
 				1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */,
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
+				1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */,
+				1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */,
 				1BF6C1092D29C79200635A49 /* ListElementView.swift in Sources */,
 				1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */,
+				1BAC01432DB04D94008BCCA4 /* ImageFullscreenViewController.swift in Sources */,
 				1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */,
 				1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */,
+				1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +561,14 @@
 				minimumVersion = 11.6.0;
 			};
 		};
+		1BAC013D2DAED4CD008BCCA4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -500,6 +576,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B6933AB2D31B7F900D09C8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		1BAC013E2DAED4CD008BCCA4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BAC013D2DAED4CD008BCCA4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

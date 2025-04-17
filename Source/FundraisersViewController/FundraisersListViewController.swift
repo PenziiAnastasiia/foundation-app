@@ -9,8 +9,8 @@ import UIKit
 import FirebaseFirestore
 
 class FundraisersListViewController: UIViewController {
-    @IBOutlet var openFundraisersStack: UIStackView!
-    @IBOutlet var closedFundraisersStack: UIStackView!
+    @IBOutlet weak var openFundraisersStack: UIStackView!
+    @IBOutlet weak var closedFundraisersStack: UIStackView!
     
     private var fundraisersList: [FundraiserModel] = []
     private var updateTimer: Timer?
@@ -19,6 +19,19 @@ class FundraisersListViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.isHidden = true
+
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Пошук зборів"
+        
+        let filterButton = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal.decrease"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapFilter)
+        )
+        
+        navigationItem.titleView = searchBar
+        navigationItem.rightBarButtonItem = filterButton
         
         Task {
             await self.fillFundraisersList()
@@ -29,6 +42,10 @@ class FundraisersListViewController: UIViewController {
                 self.startUpdateTimer()
             }
         }
+    }
+    
+    @objc private func didTapFilter() {
+        print("Filter button tapped")
     }
     
     private func fillFundraisersList() async {
@@ -88,7 +105,6 @@ class FundraisersListViewController: UIViewController {
                 let controller = FundraiserDetailsViewController(fundraiser: listElement)
                 self?.navigationController?.pushViewController(controller, animated: true)
             })
-            stack.layoutIfNeeded()
         }
     }
     
