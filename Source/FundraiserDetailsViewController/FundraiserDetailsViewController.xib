@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="de5-zq-uK8">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E99-qn-G2C">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
@@ -28,7 +27,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="998"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-dB-ykt">
-                                            <rect key="frame" x="16" y="0.0" width="361" height="698"/>
+                                            <rect key="frame" x="16" y="0.0" width="361" height="729"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTG-g7-yO8">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -50,7 +49,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QY-1Q-NFc">
                                                     <rect key="frame" x="0.0" y="144" width="361" height="141"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftj-1w-78u">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftj-1w-78u">
                                                             <rect key="frame" x="0.0" y="0.0" width="361" height="141"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -66,13 +65,13 @@
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3ro-NA-GX0">
-                                                    <rect key="frame" x="0.0" y="301" width="361" height="253"/>
+                                                    <rect key="frame" x="0.0" y="301" width="361" height="284"/>
                                                     <subviews>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-RV-gTt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="253"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="284"/>
                                                         </activityIndicatorView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <constraints>
                                                         <constraint firstItem="SCs-RV-gTt" firstAttribute="top" secondItem="3ro-NA-GX0" secondAttribute="top" id="0sV-HT-Muz"/>
                                                         <constraint firstAttribute="bottom" secondItem="SCs-RV-gTt" secondAttribute="bottom" id="Vy3-e6-SXe"/>
@@ -81,12 +80,12 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urB-t3-Q4E">
-                                                    <rect key="frame" x="0.0" y="570" width="361" height="128"/>
-                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <rect key="frame" x="0.0" y="601" width="361" height="128"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 </view>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt8-yG-NBn">
-                                                    <rect key="frame" x="0.0" y="698" width="361" height="0.0"/>
-                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <rect key="frame" x="0.0" y="729" width="361" height="0.0"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -127,13 +126,12 @@
                     </constraints>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="de5-zq-uK8" secondAttribute="bottom" id="2a7-fA-KwS"/>
-                <constraint firstItem="de5-zq-uK8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3HN-Ne-VAn"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="de5-zq-uK8" secondAttribute="trailing" id="FPw-lO-qu5"/>
-                <constraint firstItem="de5-zq-uK8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JrO-ha-EYp"/>
+                <constraint firstAttribute="bottom" secondItem="de5-zq-uK8" secondAttribute="bottom" id="2a7-fA-KwS"/>
+                <constraint firstItem="de5-zq-uK8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3HN-Ne-VAn"/>
+                <constraint firstAttribute="trailing" secondItem="de5-zq-uK8" secondAttribute="trailing" id="FPw-lO-qu5"/>
+                <constraint firstItem="de5-zq-uK8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JrO-ha-EYp"/>
             </constraints>
             <connections>
                 <outlet property="activityIndicatorView" destination="SCs-RV-gTt" id="Y9g-1u-c0v"/>
@@ -151,8 +149,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

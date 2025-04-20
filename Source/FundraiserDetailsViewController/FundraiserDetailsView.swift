@@ -59,9 +59,12 @@ class FundraiserDetailsView: UIView {
             ])
             barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.bounds.height / 4
             barView.progressView.layer.cornerRadius = barView.progressView.bounds.height / 4
-            self.barViewContainer.layoutIfNeeded()
             self.barViewContainer.layer.cornerRadius = self.barViewContainer.bounds.width / 20
-            barView.setProgress(collected: collected, goal: goal)
+            self.barViewContainer.layoutIfNeeded()
+            barView.layoutIfNeeded()
+            DispatchQueue.main.async {
+                barView.setProgress(collected: collected, goal: goal)
+            }
         }
     }
     
