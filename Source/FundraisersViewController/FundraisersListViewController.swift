@@ -99,7 +99,7 @@ class FundraisersListViewController: UIViewController {
     private func addListElementIntoStack(listElement: FundraiserModel, stack: UIStackView) {
         if let listElementView = ListElementView.loadFromNib() {
             stack.addArrangedSubview(listElementView)
-            listElementView.layer.cornerRadius = listElementView.bounds.height / 7
+            listElementView.layer.cornerRadius = listElementView.bounds.width / 25
             listElementView.addBarView()
             listElementView.fillView(with: listElement, action: { [weak self] in
                 let controller = FundraiserDetailsViewController(fundraiser: listElement)

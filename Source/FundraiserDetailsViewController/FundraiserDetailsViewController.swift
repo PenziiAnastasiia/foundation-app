@@ -19,11 +19,18 @@ class FundraiserDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.rootView?.fillView(with: self.fundraiser)
+        
         Task {
             await self.getDescriptionMediaNames()
-            
-            self.rootView?.fillView(with: self.fundraiser, mediaNamesArray: self.descriptionMediaNames)
+            self.rootView?.fillMediaCollectionView(for: self.fundraiser.id, with: self.descriptionMediaNames)
         }
+            
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+
     }
     
     init(fundraiser: FundraiserModel) {
@@ -46,6 +53,20 @@ class FundraiserDetailsViewController: UIViewController {
             print("Error fetching media names data: \(error)")
         }
     }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let bottomInset = keyboardFrame.height
+            self.rootView?.scrollView.contentInset.bottom = bottomInset
+            self.rootView?.scrollView.verticalScrollIndicatorInsets.bottom = bottomInset
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        self.rootView?.scrollView.contentInset.bottom = 0
+        self.rootView?.scrollView.verticalScrollIndicatorInsets.bottom = 0
+    }
+
     
 
 

@@ -11,7 +11,7 @@ import UIKit
 class ListElementView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var labelsContainer: UIView!
-    @IBOutlet weak var barContainer: UIView!
+    @IBOutlet weak var barViewContainer: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectedLabel: UILabel!
 
@@ -30,17 +30,17 @@ class ListElementView: UIView {
     public func addBarView() {
         if let barView = BarView.loadFromNib() {
             barView.translatesAutoresizingMaskIntoConstraints = false
-            self.barContainer.addSubview(barView)
+            self.barViewContainer.addSubview(barView)
             NSLayoutConstraint.activate([
-                barView.leadingAnchor.constraint(equalTo: self.barContainer.leadingAnchor),
-                barView.trailingAnchor.constraint(equalTo: self.barContainer.trailingAnchor),
-                barView.topAnchor.constraint(equalTo: self.barContainer.topAnchor),
-                barView.bottomAnchor.constraint(equalTo: self.barContainer.bottomAnchor)
+                barView.leadingAnchor.constraint(equalTo: self.barViewContainer.leadingAnchor),
+                barView.trailingAnchor.constraint(equalTo: self.barViewContainer.trailingAnchor),
+                barView.topAnchor.constraint(equalTo: self.barViewContainer.topAnchor),
+                barView.bottomAnchor.constraint(equalTo: self.barViewContainer.bottomAnchor)
             ])
             barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.bounds.height / 4
             barView.progressView.layer.cornerRadius = barView.progressView.bounds.height / 4
             self.barView = barView
-            self.barContainer.layoutIfNeeded()
+            self.barViewContainer.layoutIfNeeded()
         }
     }
     
@@ -59,7 +59,7 @@ class ListElementView: UIView {
             
             self.collectedLabel.text = "Зібрано: \(fundraiser.collected.formattedWithSeparator())"
         } else {
-            self.barContainer.isHidden = false
+            self.barViewContainer.isHidden = false
             self.barView?.setProgress(collected: fundraiser.collected, goal: fundraiser.goal)
         }
     }

@@ -21,14 +21,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="de5-zq-uK8">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E99-qn-G2C">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E99-qn-G2C">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNR-OE-GHM">
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNR-OE-GHM">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="998"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="116" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-dB-ykt">
-                                            <rect key="frame" x="16" y="0.0" width="361" height="998"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ngi-dB-ykt">
+                                            <rect key="frame" x="16" y="0.0" width="361" height="698"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTG-g7-yO8">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -48,7 +48,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QY-1Q-NFc">
-                                                    <rect key="frame" x="0.0" y="244" width="361" height="141"/>
+                                                    <rect key="frame" x="0.0" y="144" width="361" height="141"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftj-1w-78u">
                                                             <rect key="frame" x="0.0" y="0.0" width="361" height="141"/>
@@ -66,19 +66,33 @@
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3ro-NA-GX0">
-                                                    <rect key="frame" x="0.0" y="501" width="361" height="253"/>
+                                                    <rect key="frame" x="0.0" y="301" width="361" height="253"/>
+                                                    <subviews>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-RV-gTt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="253"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <constraints>
+                                                        <constraint firstItem="SCs-RV-gTt" firstAttribute="top" secondItem="3ro-NA-GX0" secondAttribute="top" id="0sV-HT-Muz"/>
+                                                        <constraint firstAttribute="bottom" secondItem="SCs-RV-gTt" secondAttribute="bottom" id="Vy3-e6-SXe"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SCs-RV-gTt" secondAttribute="trailing" id="Xcv-ER-mtX"/>
+                                                        <constraint firstItem="SCs-RV-gTt" firstAttribute="leading" secondItem="3ro-NA-GX0" secondAttribute="leading" id="Yr3-O5-2Lv"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urB-t3-Q4E">
+                                                    <rect key="frame" x="0.0" y="570" width="361" height="128"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urB-t3-Q4E">
-                                                    <rect key="frame" x="0.0" y="870" width="361" height="128"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="128" id="nPQ-yH-EPx"/>
-                                                    </constraints>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt8-yG-NBn">
+                                                    <rect key="frame" x="0.0" y="698" width="361" height="0.0"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="3ro-NA-GX0" firstAttribute="width" secondItem="ngi-dB-ykt" secondAttribute="width" id="4UN-eT-6i5"/>
                                                 <constraint firstItem="7QY-1Q-NFc" firstAttribute="width" secondItem="ngi-dB-ykt" secondAttribute="width" id="KTa-nA-xht"/>
+                                                <constraint firstItem="Lt8-yG-NBn" firstAttribute="width" secondItem="ngi-dB-ykt" secondAttribute="width" id="Ohw-Ke-wXT"/>
                                                 <constraint firstItem="urB-t3-Q4E" firstAttribute="width" secondItem="ngi-dB-ykt" secondAttribute="width" id="RFx-Kt-nxp"/>
                                                 <constraint firstItem="nTG-g7-yO8" firstAttribute="width" secondItem="ngi-dB-ykt" secondAttribute="width" id="WeR-No-cYK"/>
                                             </constraints>
@@ -122,8 +136,12 @@
                 <constraint firstItem="de5-zq-uK8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JrO-ha-EYp"/>
             </constraints>
             <connections>
+                <outlet property="activityIndicatorView" destination="SCs-RV-gTt" id="Y9g-1u-c0v"/>
+                <outlet property="barViewContainer" destination="urB-t3-Q4E" id="3xf-uk-Oqs"/>
                 <outlet property="descriptionLabel" destination="Ftj-1w-78u" id="Ab6-Gd-J66"/>
+                <outlet property="donateViewContainer" destination="Lt8-yG-NBn" id="v6U-55-CTX"/>
                 <outlet property="mediaCollectionContainer" destination="3ro-NA-GX0" id="bsm-vm-0Fb"/>
+                <outlet property="scrollView" destination="E99-qn-G2C" id="H0d-fH-XdO"/>
                 <outlet property="titleLabel" destination="H5E-d9-Ac2" id="lNR-uv-3pr"/>
             </connections>
             <point key="canvasLocation" x="162.59541984732823" y="26.760563380281692"/>

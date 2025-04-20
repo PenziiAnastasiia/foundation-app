@@ -27,6 +27,8 @@
 		1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */; };
 		1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */; };
 		1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */; };
+		1BB836A12DB2813900C0C094 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836A02DB2813900C0C094 /* DonateView.swift */; };
+		1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB836A22DB2814D00C0C094 /* DonateView.xib */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
 		1BF6C0EE2D297C1800635A49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0ED2D297C1800635A49 /* ViewController.swift */; };
@@ -55,6 +57,8 @@
 		1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFullscreenViewController.swift; sourceTree = "<group>"; };
 		1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
+		1BB836A02DB2813900C0C094 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
+		1BB836A22DB2814D00C0C094 /* DonateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonateView.xib; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +153,15 @@
 			path = VideoFullscreenViewController;
 			sourceTree = "<group>";
 		};
+		1BB8369F2DB280DD00C0C094 /* DonateView */ = {
+			isa = PBXGroup;
+			children = (
+				1BB836A02DB2813900C0C094 /* DonateView.swift */,
+				1BB836A22DB2814D00C0C094 /* DonateView.xib */,
+			);
+			path = DonateView;
+			sourceTree = "<group>";
+		};
 		1BF6C0DD2D297C1700635A49 = {
 			isa = PBXGroup;
 			children = (
@@ -200,9 +213,10 @@
 				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
 				1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */,
 				1BAC01272DAC2242008BCCA4 /* BarView */,
+				1BB8369F2DB280DD00C0C094 /* DonateView */,
+				1BF6C0FF2D29852A00635A49 /* ListElementView */,
 				1BAC01312DAE4DD5008BCCA4 /* MediaCollectionView */,
 				1BAC01382DAE6B42008BCCA4 /* MediaCollectionViewCell */,
-				1BF6C0FF2D29852A00635A49 /* ListElementView */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,6 +301,7 @@
 				1BF6C0F62D297C1B00635A49 /* Base in Resources */,
 				1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */,
 				1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */,
+				1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */,
 				1BAC01352DAE4E81008BCCA4 /* MediaCollectionView.xib in Resources */,
 				1BF6C0F12D297C1800635A49 /* Base in Resources */,
 				1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */,
@@ -312,6 +327,7 @@
 				1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */,
 				1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */,
 				1BF6C1092D29C79200635A49 /* ListElementView.swift in Sources */,
+				1BB836A12DB2813900C0C094 /* DonateView.swift in Sources */,
 				1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */,
 				1BAC01432DB04D94008BCCA4 /* ImageFullscreenViewController.swift in Sources */,
 				1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */,

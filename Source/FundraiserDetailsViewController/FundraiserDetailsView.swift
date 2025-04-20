@@ -8,17 +8,25 @@
 import UIKit
 
 class FundraiserDetailsView: UIView {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mediaCollectionContainer: UIView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var barViewContainer: UIView!
+    @IBOutlet weak var donateViewContainer: UIView!
     
-    public func fillView(with fundraiser: FundraiserModel, mediaNamesArray: [String]) {
+    public func fillView(with fundraiser: FundraiserModel) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
-        self.fillMediaCollectionView(for: fundraiser.id, with: mediaNamesArray)
+        self.addBarView(collected: fundraiser.collected, goal: fundraiser.goal)
+        if fundraiser.closeDate == nil {
+            self.donateViewContainer.isHidden = false
+            self.addDonateView()
+        }
     }
     
-    private func fillMediaCollectionView(for fundraiserID: String, with namesArray: [String]) {
+    public func fillMediaCollectionView(for fundraiserID: String, with namesArray: [String]) {
         if namesArray.isEmpty {
             self.mediaCollectionContainer.isHidden = true
             return
@@ -33,7 +41,43 @@ class FundraiserDetailsView: UIView {
                 mediaCollectionView.topAnchor.constraint(equalTo: self.mediaCollectionContainer.topAnchor, constant: 16),
                 mediaCollectionView.bottomAnchor.constraint(equalTo: self.mediaCollectionContainer.bottomAnchor, constant: -16)
             ])
+            self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.bounds.width / 20
             mediaCollectionView.loadMedia(for: fundraiserID, from: namesArray)
+            self.activityIndicatorView.stopAnimating()
+        }
+    }
+    
+    private func addBarView(collected: Double, goal: Int) {
+        if let barView = BarView.loadFromNib() {
+            barView.translatesAutoresizingMaskIntoConstraints = false
+            self.barViewContainer.addSubview(barView)
+            NSLayoutConstraint.activate([
+                barView.leadingAnchor.constraint(equalTo: self.barViewContainer.leadingAnchor, constant: 16),
+                barView.trailingAnchor.constraint(equalTo: self.barViewContainer.trailingAnchor, constant: -16),
+                barView.topAnchor.constraint(equalTo: self.barViewContainer.topAnchor, constant: 16),
+                barView.bottomAnchor.constraint(equalTo: self.barViewContainer.bottomAnchor)
+            ])
+            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.bounds.height / 4
+            barView.progressView.layer.cornerRadius = barView.progressView.bounds.height / 4
+            self.barViewContainer.layoutIfNeeded()
+            self.barViewContainer.layer.cornerRadius = self.barViewContainer.bounds.width / 20
+            barView.setProgress(collected: collected, goal: goal)
+        }
+    }
+    
+    private func addDonateView() {
+        if let donateView = DonateView.loadFromNib() {
+            donateView.translatesAutoresizingMaskIntoConstraints = false
+            self.donateViewContainer.addSubview(donateView)
+            NSLayoutConstraint.activate([
+                donateView.leadingAnchor.constraint(equalTo: self.donateViewContainer.leadingAnchor, constant: 16),
+                donateView.trailingAnchor.constraint(equalTo: self.donateViewContainer.trailingAnchor, constant: -16),
+                donateView.topAnchor.constraint(equalTo: self.donateViewContainer.topAnchor, constant: 16),
+                donateView.bottomAnchor.constraint(equalTo: self.donateViewContainer.bottomAnchor, constant: -16)
+            ])
+            self.donateViewContainer.layoutIfNeeded()
+            self.donateViewContainer.layer.cornerRadius = self.donateViewContainer.bounds.width / 20
+            donateView.configure()
         }
     }
 }
