@@ -14,6 +14,8 @@ class DonateView: UIView, UITextFieldDelegate {
     @IBOutlet weak var creditCardExpiredInTextField: UITextField!
     @IBOutlet weak var creditCardCVV2TextField: UITextField!
     @IBOutlet weak var creditCardErrorMessage: UILabel!
+    @IBOutlet weak var payButton: UIButton!
+    @IBOutlet weak var donateButton: UIButton!
     
     class func loadFromNib() -> DonateView? {
         let nib = UINib(nibName: "DonateView", bundle: nil)
@@ -21,6 +23,12 @@ class DonateView: UIView, UITextFieldDelegate {
     }
     
     public func configure() {
+        [self.sumDonateTextField, self.creditCardNumberTextField, self.creditCardExpiredInTextField, self.creditCardCVV2TextField, self.payButton, self.donateButton].forEach { uiElement in
+            uiElement.layer.borderWidth = 0.5
+            uiElement.layer.borderColor = UIColor.gray.cgColor
+            uiElement.layer.cornerRadius = 8
+        }
+
         self.sumDonateTextField.delegate = self
         self.creditCardNumberTextField.delegate = self
         self.creditCardExpiredInTextField.delegate = self
@@ -63,7 +71,10 @@ class DonateView: UIView, UITextFieldDelegate {
     private func checkSumDonate() -> Bool {
         guard let sumDonateText = self.sumDonateTextField.text?.replacingOccurrences(of: ",", with: "."),
               let sumDonate = Double(sumDonateText)
-        else { return false }
+        else {
+            self.sumDonateErrorMessage.text = "Введіть суму донату"
+            return false
+        }
         
         if sumDonate == 0.0 {
             self.sumDonateErrorMessage.text = "Сума донату має бути ненульова"

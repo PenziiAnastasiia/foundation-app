@@ -29,9 +29,13 @@
 		1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */; };
 		1BB836A12DB2813900C0C094 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836A02DB2813900C0C094 /* DonateView.swift */; };
 		1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB836A22DB2814D00C0C094 /* DonateView.xib */; };
+		1BB836A82DB7CF1100C0C094 /* ReportsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836A72DB7CF1000C0C094 /* ReportsListViewController.swift */; };
+		1BB836AA2DB7EFC800C0C094 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836A92DB7EFC800C0C094 /* ReportModel.swift */; };
+		1BB836AE2DB8C29A00C0C094 /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836AC2DB8C29A00C0C094 /* ReportDetailsViewController.swift */; };
+		1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */; };
+		1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
-		1BF6C0EE2D297C1800635A49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0ED2D297C1800635A49 /* ViewController.swift */; };
 		1BF6C0F12D297C1800635A49 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F02D297C1800635A49 /* Base */; };
 		1BF6C0F32D297C1B00635A49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F22D297C1B00635A49 /* Assets.xcassets */; };
 		1BF6C0F62D297C1B00635A49 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F52D297C1B00635A49 /* Base */; };
@@ -59,10 +63,14 @@
 		1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
 		1BB836A02DB2813900C0C094 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
 		1BB836A22DB2814D00C0C094 /* DonateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonateView.xib; sourceTree = "<group>"; };
+		1BB836A72DB7CF1000C0C094 /* ReportsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsListViewController.swift; sourceTree = "<group>"; };
+		1BB836A92DB7EFC800C0C094 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
+		1BB836AC2DB8C29A00C0C094 /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
+		1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportDetailsViewController.xib; sourceTree = "<group>"; };
+		1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailsView.swift; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1BF6C0ED2D297C1800635A49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1BF6C0F02D297C1800635A49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1BF6C0F22D297C1B00635A49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BF6C0F52D297C1B00635A49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,12 +91,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B6933952D29E62C00D09C8F /* FundraisersViewController */ = {
+		1B6933952D29E62C00D09C8F /* FundraisersListViewController */ = {
 			isa = PBXGroup;
 			children = (
 				1B69339C2D2AEF1100D09C8F /* FundraisersListViewController.swift */,
 			);
-			path = FundraisersViewController;
+			path = FundraisersListViewController;
 			sourceTree = "<group>";
 		};
 		1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */ = {
@@ -162,6 +170,24 @@
 			path = DonateView;
 			sourceTree = "<group>";
 		};
+		1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BB836A72DB7CF1000C0C094 /* ReportsListViewController.swift */,
+			);
+			path = ReportsListViewController;
+			sourceTree = "<group>";
+		};
+		1BB836AB2DB8C26800C0C094 /* ReportDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BB836AC2DB8C29A00C0C094 /* ReportDetailsViewController.swift */,
+				1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */,
+				1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */,
+			);
+			path = ReportDetailsViewController;
+			sourceTree = "<group>";
+		};
 		1BF6C0DD2D297C1700635A49 = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +210,6 @@
 			children = (
 				1BF6C0E92D297C1800635A49 /* AppDelegate.swift */,
 				1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */,
-				1BF6C0ED2D297C1800635A49 /* ViewController.swift */,
 				1BF6C0EF2D297C1800635A49 /* Main.storyboard */,
 				1BF6C0F22D297C1B00635A49 /* Assets.xcassets */,
 				1BF6C0F42D297C1B00635A49 /* LaunchScreen.storyboard */,
@@ -199,8 +224,10 @@
 			children = (
 				1BF6C0FE2D29850B00635A49 /* Models */,
 				1BAC012E2DAD8475008BCCA4 /* Libs */,
-				1B6933952D29E62C00D09C8F /* FundraisersViewController */,
+				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
+				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
 				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
+				1BB836AB2DB8C26800C0C094 /* ReportDetailsViewController */,
 				1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */,
 				1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */,
 			);
@@ -211,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
+				1BB836A92DB7EFC800C0C094 /* ReportModel.swift */,
 				1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */,
 				1BAC01272DAC2242008BCCA4 /* BarView */,
 				1BB8369F2DB280DD00C0C094 /* DonateView */,
@@ -301,6 +329,7 @@
 				1BF6C0F62D297C1B00635A49 /* Base in Resources */,
 				1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */,
 				1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */,
+				1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */,
 				1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */,
 				1BAC01352DAE4E81008BCCA4 /* MediaCollectionView.xib in Resources */,
 				1BF6C0F12D297C1800635A49 /* Base in Resources */,
@@ -319,10 +348,11 @@
 				1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */,
 				1BAC01332DAE4E64008BCCA4 /* MediaCollectionView.swift in Sources */,
 				1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */,
+				1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */,
 				1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */,
-				1BF6C0EE2D297C1800635A49 /* ViewController.swift in Sources */,
 				1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */,
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,
+				1BB836A82DB7CF1100C0C094 /* ReportsListViewController.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
 				1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */,
 				1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */,
@@ -331,6 +361,8 @@
 				1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */,
 				1BAC01432DB04D94008BCCA4 /* ImageFullscreenViewController.swift in Sources */,
 				1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */,
+				1BB836AA2DB7EFC800C0C094 /* ReportModel.swift in Sources */,
+				1BB836AE2DB8C29A00C0C094 /* ReportDetailsViewController.swift in Sources */,
 				1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */,
 				1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */,
 			);

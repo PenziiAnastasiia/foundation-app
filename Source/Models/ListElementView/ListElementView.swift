@@ -50,17 +50,32 @@ class ListElementView: UIView {
         self.titleLabel.text = fundraiser.title
         
         if let closeDate = fundraiser.closeDate {
-            self.labelsContainer.isHidden = false
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            self.dateLabel.text = dateFormatter.string(from: closeDate)
-            
-            self.collectedLabel.text = "Зібрано: \(fundraiser.collected.formattedWithSeparator())"
+            self.fillWithoutBarView(closeDate: closeDate, collected: fundraiser.collected)
         } else {
-            self.barViewContainer.isHidden = false
-            self.barView?.setProgress(collected: fundraiser.collected, goal: fundraiser.goal)
+            self.fillWithBarView(collected: fundraiser.collected, goal: fundraiser.goal)
         }
+    }
+    
+    public func fillView(with report: ReportModel, action: @escaping () -> Void) {
+        self.action = action
+        
+        self.titleLabel.text = report.title
+        self.fillWithoutBarView(closeDate: report.closeDate, collected: report.collected)
+    }
+    
+    private func fillWithoutBarView(closeDate: Date, collected: Double) {
+        self.labelsContainer.isHidden = false
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        self.dateLabel.text = dateFormatter.string(from: closeDate)
+        
+        self.collectedLabel.text = "Зібрано: \(collected.formattedWithSeparator())"
+    }
+    
+    private func fillWithBarView(collected: Double, goal: Int) {
+        self.barViewContainer.isHidden = false
+        self.barView?.setProgress(collected: collected, goal: goal)
     }
 }

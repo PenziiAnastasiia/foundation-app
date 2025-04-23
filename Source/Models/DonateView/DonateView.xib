@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,6 +39,7 @@
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="MfQ-di-vGC">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="45"/>
+                                    <color key="backgroundColor" name="TextFieldColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 </textField>
@@ -59,14 +61,18 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFP-fr-OfM">
-                            <rect key="frame" x="0.0" y="116" width="500" height="72.333333333333314"/>
+                            <rect key="frame" x="0.0" y="116" width="500" height="82"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oq-vv-JMm">
-                                    <rect key="frame" x="0.0" y="16.000000000000004" width="500" height="40.333333333333343"/>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oq-vv-JMm">
+                                    <rect key="frame" x="0.0" y="16" width="500" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="TUF-Bp-akT"/>
+                                    </constraints>
                                     <color key="tintColor" systemColor="labelColor"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="filled" image="apple.logo" catalog="system" title=" Pay">
                                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                         <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -82,7 +88,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mI-EG-wXC">
-                            <rect key="frame" x="0.0" y="196.33333333333334" width="500" height="50"/>
+                            <rect key="frame" x="0.0" y="206" width="500" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7r3-zC-GjJ">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
@@ -92,7 +98,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pZ-f8-sC5">
                                                     <rect key="frame" x="0.0" y="24.666666666666657" width="217" height="1"/>
-                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                    <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="fYc-kc-Q3z"/>
                                                     </constraints>
@@ -111,7 +117,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="або" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-1s-Spi">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -127,7 +133,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEh-NN-wXH">
                                                     <rect key="frame" x="0.0" y="24.666666666666657" width="217" height="1"/>
-                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                    <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="zQ9-qc-vbl"/>
                                                     </constraints>
@@ -156,10 +162,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mg8-Zu-dhP">
-                            <rect key="frame" x="0.0" y="254.33333333333337" width="500" height="50"/>
+                            <rect key="frame" x="0.0" y="264" width="500" height="42.666666666666686"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введіть номер картки" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g81-3p-vn2">
-                                    <rect key="frame" x="0.0" y="15.999999999999972" width="500" height="34"/>
+                                    <rect key="frame" x="0.0" y="16" width="500" height="26.666666666666671"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -173,10 +179,11 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RT-ri-u0z">
-                            <rect key="frame" x="0.0" y="312.33333333333331" width="500" height="50"/>
+                            <rect key="frame" x="0.0" y="314.66666666666669" width="500" height="50"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XXXX XXXX XXXX XXXX" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="gJz-8v-RpV">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                    <color key="backgroundColor" name="TextFieldColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" textContentType="cc-number"/>
                                 </textField>
@@ -189,7 +196,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUT-hk-TWH">
-                            <rect key="frame" x="0.0" y="370.33333333333331" width="500" height="121.33333333333331"/>
+                            <rect key="frame" x="0.0" y="372.66666666666669" width="500" height="121.33333333333331"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="K2Y-8I-xUA">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="121.33333333333333"/>
@@ -222,6 +229,7 @@
                                                             <subviews>
                                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/YY" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="6gh-Sb-5cB">
                                                                     <rect key="frame" x="0.0" y="0.0" width="234" height="63.333333333333336"/>
+                                                                    <color key="backgroundColor" name="TextFieldColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
@@ -275,6 +283,7 @@
                                                             <subviews>
                                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XXX" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="AZ3-Dd-6dv">
                                                                     <rect key="frame" x="0.0" y="0.0" width="234" height="63.333333333333336"/>
+                                                                    <color key="backgroundColor" name="TextFieldColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
@@ -311,10 +320,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6P9-Qi-jcF">
-                            <rect key="frame" x="0.0" y="499.66666666666669" width="500" height="20.000000000000057"/>
+                            <rect key="frame" x="0.0" y="502" width="500" height="8"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkT-nN-WwO">
-                                    <rect key="frame" x="0.0" y="8" width="500" height="12"/>
+                                    <rect key="frame" x="0.0" y="8" width="500" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" systemColor="systemRedColor"/>
                                     <nil key="highlightedColor"/>
@@ -328,13 +337,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QkQ-bq-xMj">
-                            <rect key="frame" x="0.0" y="527.66666666666663" width="500" height="72.333333333333371"/>
+                            <rect key="frame" x="0.0" y="518" width="500" height="82"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="114-wT-dmv">
-                                    <rect key="frame" x="0.0" y="16.000000000000004" width="500" height="40.333333333333343"/>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="114-wT-dmv">
+                                    <rect key="frame" x="0.0" y="16" width="500" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="uq3-Eo-aFe"/>
+                                    </constraints>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="filled" title="Задонатити">
-                                        <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                        <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didTappedDonate" destination="58v-Ji-FRE" eventType="touchUpInside" id="Pqa-7T-Jpr"/>
@@ -373,6 +386,8 @@
                 <outlet property="creditCardErrorMessage" destination="IkT-nN-WwO" id="O2u-Ml-xY1"/>
                 <outlet property="creditCardExpiredInTextField" destination="6gh-Sb-5cB" id="hEu-fM-U2X"/>
                 <outlet property="creditCardNumberTextField" destination="gJz-8v-RpV" id="0nR-eN-KI3"/>
+                <outlet property="donateButton" destination="114-wT-dmv" id="HM3-SB-hHL"/>
+                <outlet property="payButton" destination="5Oq-vv-JMm" id="ny2-ru-wkc"/>
                 <outlet property="sumDonateErrorMessage" destination="iSa-SF-xm6" id="T64-Dq-i1B"/>
                 <outlet property="sumDonateTextField" destination="MfQ-di-vGC" id="7e6-vC-xvn"/>
             </connections>
@@ -381,11 +396,17 @@
     </objects>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
+        <namedColor name="TextFieldColor">
+            <color red="0.95659567488611608" green="0.96606691919191923" blue="0.96606691919191923" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

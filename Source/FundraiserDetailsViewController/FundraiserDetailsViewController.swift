@@ -14,17 +14,12 @@ class FundraiserDetailsViewController: UIViewController {
     }
     
     private let fundraiser: FundraiserModel
-    private var descriptionMediaNames: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.rootView?.fillView(with: self.fundraiser)
-        
-        Task {
-            await self.getDescriptionMediaNames()
-            self.rootView?.fillMediaCollectionView(for: self.fundraiser.id, with: self.descriptionMediaNames)
-        }
+        self.rootView?.fillMediaCollectionView(for: self.fundraiser)
             
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -41,19 +36,7 @@ class FundraiserDetailsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func getDescriptionMediaNames() async {
-        do {
-            let db = Firestore.firestore()
-            let document = try await db.collection("Fundraisers").document(self.fundraiser.id).getDocument()
-            if let descriptionMediaArray = document.data()?["descriptionMedia"] as? [String] {
-                self.descriptionMediaNames = descriptionMediaArray
-            }
-        } catch {
-            print("Error fetching media names data: \(error)")
-        }
-    }
-    
+
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let bottomInset = keyboardFrame.height

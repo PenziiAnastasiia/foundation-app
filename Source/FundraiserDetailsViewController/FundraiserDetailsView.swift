@@ -26,8 +26,9 @@ class FundraiserDetailsView: UIView {
         }
     }
     
-    public func fillMediaCollectionView(for fundraiserID: String, with namesArray: [String]) {
-        if namesArray.isEmpty {
+    public func fillMediaCollectionView(for fundraiser: FundraiserModel) {
+        guard let namesArray = fundraiser.descriptionMediaNames
+        else {
             self.mediaCollectionContainer.isHidden = true
             return
         }
@@ -42,7 +43,7 @@ class FundraiserDetailsView: UIView {
                 mediaCollectionView.bottomAnchor.constraint(equalTo: self.mediaCollectionContainer.bottomAnchor, constant: -16)
             ])
             self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.bounds.width / 20
-            mediaCollectionView.loadMedia(for: fundraiserID, from: namesArray)
+            mediaCollectionView.loadMedia(for: fundraiser.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
         }
     }

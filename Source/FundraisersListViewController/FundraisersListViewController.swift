@@ -22,6 +22,7 @@ class FundraisersListViewController: UIViewController {
 
         let searchBar = UISearchBar()
         searchBar.placeholder = "Пошук зборів"
+        searchBar.tintColor = .container
         
         let filterButton = UIBarButtonItem(
             image: UIImage(systemName: "line.3.horizontal.decrease"),
@@ -55,7 +56,7 @@ class FundraisersListViewController: UIViewController {
             let querySnapshot = try await db.collection("Fundraisers").getDocuments()
             
             for document in querySnapshot.documents {
-                if let fundraiser = await self.createFundraiser(from: document) {
+                if let fundraiser = await self.createFundraiser(from: document.data(), with: document.documentID) {
                     self.fundraisersList.append(fundraiser)
                 }
             }
@@ -64,18 +65,18 @@ class FundraisersListViewController: UIViewController {
         }
     }
     
-    private func createFundraiser(from document: QueryDocumentSnapshot) async -> FundraiserModel? {
-        guard let title = document.data()["title"] as? String,
-              let description = document.data()["description"] as? String,
-              let openDate = (document.data()["openDate"] as? Timestamp)?.dateValue(),
-              let goal = document.data()["goal"] as? Int,
-              let collected = document.data()["collected"] as? Double
+    private func createFundraiser(from document: [String: Any], with id: String) async -> FundraiserModel? {
+        guard let title = document["title"] as? String,
+              let description = document["description"] as? String,
+              let openDate = (document["openDate"] as? Timestamp)?.dateValue(),
+              let goal = document["goal"] as? Int,
+              let collected = document["collected"] as? Double
         else { return nil }
         
-        let id = document.documentID
-        let closeDate = (document.data()["closeDate"] as? Timestamp)?.dateValue()
+        let descriptionMediaNames = document["descriptionMedia"] as? [String]
+        let closeDate = (document["closeDate"] as? Timestamp)?.dateValue()
         
-        let fundraiser = FundraiserModel(id: id, title: title, description: description, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate)
+        let fundraiser = FundraiserModel(id: id, title: title, description: description, descriptionMediaNames: descriptionMediaNames, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate)
         
         return fundraiser
     }
