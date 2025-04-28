@@ -25,10 +25,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4o-vI-OGY">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="554"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="338"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gSl-Sg-G5c">
-                                            <rect key="frame" x="16" y="0.0" width="361" height="554"/>
+                                            <rect key="frame" x="16" y="0.0" width="361" height="338"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eu8-qv-iP5">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -66,10 +66,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="c22-hK-75h">
-                                                    <rect key="frame" x="0.0" y="301" width="361" height="253"/>
+                                                    <rect key="frame" x="0.0" y="301" width="361" height="37"/>
                                                     <subviews>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8hZ-vl-IiV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="253"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="37"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" name="ContainerColor"/>
@@ -109,7 +109,6 @@
                         <constraint firstItem="BGt-Xf-2YH" firstAttribute="height" secondItem="Gvc-ru-QZ5" secondAttribute="height" priority="250" id="8ZA-RZ-mk1"/>
                         <constraint firstItem="BGt-Xf-2YH" firstAttribute="width" secondItem="Gvc-ru-QZ5" secondAttribute="width" id="FjO-Oc-2b2"/>
                         <constraint firstItem="BGt-Xf-2YH" firstAttribute="leading" secondItem="Gvc-ru-QZ5" secondAttribute="leading" id="R8Y-WW-Zve"/>
-                        <constraint firstItem="c22-hK-75h" firstAttribute="height" secondItem="Gvc-ru-QZ5" secondAttribute="height" multiplier="1/3" id="bb6-GF-hOV"/>
                         <constraint firstAttribute="bottom" secondItem="BGt-Xf-2YH" secondAttribute="bottom" id="ngH-3c-0ay"/>
                         <constraint firstItem="BGt-Xf-2YH" firstAttribute="top" secondItem="Gvc-ru-QZ5" secondAttribute="top" id="wDb-6q-XNS"/>
                         <constraint firstItem="Q4o-vI-OGY" firstAttribute="width" secondItem="Gvc-ru-QZ5" secondAttribute="width" id="wPU-gU-mPs"/>
