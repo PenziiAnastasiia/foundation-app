@@ -50,10 +50,6 @@ class FundraiserDetailsViewController: UIViewController {
         self.rootView?.scrollView.verticalScrollIndicatorInsets.bottom = 0
     }
 
-    
-
-
-
     /*
     // MARK: - Navigation
 

@@ -23,7 +23,7 @@ class ReportDetailsViewController: UIViewController {
     
     init(report: ReportModel) {
         self.report = report
-        super.init(nibName: "FundraiserDetailsViewController", bundle: nil)
+        super.init(nibName: "ReportDetailsViewController", bundle: nil)
     }
     
     required init?(coder: NSCoder) {

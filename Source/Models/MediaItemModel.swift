@@ -12,4 +12,5 @@ struct MediaItem {
     let url: URL
     var image: UIImage?
     let isVideo: Bool
+    var size: CGSize?
 }

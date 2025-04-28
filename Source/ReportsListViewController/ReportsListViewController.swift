@@ -69,9 +69,10 @@ class ReportsListViewController: UIViewController {
     private func createReport(from document: [String: Any], with id: String) async -> ReportModel? {
         guard let title = document["title"] as? String,
               let closeDate = (document["closeDate"] as? Timestamp)?.dateValue(),
-              let reportMediaNames = document["reportMedia"] as? [String],
               let collected = document["collected"] as? Double
         else { return nil }
+        
+        let reportMediaNames = document["reportMedia"] as? [String]
         
         let report = ReportModel(id: id, title: title, description: description, collected: collected, closeDate: closeDate, reportMediaNames: reportMediaNames)
         
