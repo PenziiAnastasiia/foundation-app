@@ -15,7 +15,7 @@ class ReportDetailsView: UIView {
     
     public func fillView(with report: ReportModel) {
         self.titleLabel.text = report.title
-        self.descriptionLabel.text = ""
+        self.descriptionLabel.text = report.description
     }
     
     public func fillMediaCollectionView(for report: ReportModel) {

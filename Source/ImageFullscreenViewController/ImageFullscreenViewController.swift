@@ -12,31 +12,56 @@ class ImageFullscreenViewController: UIViewController, UIScrollViewDelegate {
     
     private let scrollView = UIScrollView()
     private let imageView = UIImageView()
+    private let closeButton = UIButton(type: .system)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
         
-        scrollView.delegate = self
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 4.0
-        scrollView.frame = view.bounds
-        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(scrollView)
+        self.configureScrollView()
+        self.configureImageView()
+        self.configureCloseButton()
         
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = scrollView.bounds
-        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        scrollView.addSubview(imageView)
-        
-        imageView.image = self.image
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreen))
-        view.addGestureRecognizer(tapGesture)
+        self.imageView.image = self.image
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
+        return self.imageView
+    }
+    
+    private func configureScrollView() {
+        self.scrollView.delegate = self
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 4.0
+        self.scrollView.frame = view.bounds
+        self.scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(self.scrollView)
+    }
+    
+    private func configureImageView() {
+        self.imageView.contentMode = .scaleAspectFit
+        self.imageView.frame = self.scrollView.bounds
+        self.imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.scrollView.addSubview(self.imageView)
+    }
+    
+    private func configureCloseButton() {
+        self.closeButton.setTitle("✕", for: .normal)
+        self.closeButton.setTitleColor(.white, for: .normal)
+        self.closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .regular)
+        self.closeButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        self.closeButton.layer.cornerRadius = 20
+        self.closeButton.clipsToBounds = true
+        self.closeButton.addTarget(self, action: #selector(self.dismissFullscreen), for: .touchUpInside)
+        self.closeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.closeButton)
+        
+        NSLayoutConstraint.activate([
+            self.closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            self.closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            self.closeButton.widthAnchor.constraint(equalToConstant: 40),
+            self.closeButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
 
     @objc private func dismissFullscreen() {

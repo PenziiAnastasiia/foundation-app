@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="468" height="150"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inR-Ih-3p2">
-                                    <rect key="frame" x="0.0" y="16" width="468" height="126"/>
+                                    <rect key="frame" x="0.0" y="16" width="468" height="118"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                                 <constraint firstItem="inR-Ih-3p2" firstAttribute="leading" secondItem="aG3-HQ-2MB" secondAttribute="leading" id="45E-Xf-Ukx"/>
                                 <constraint firstItem="inR-Ih-3p2" firstAttribute="top" secondItem="aG3-HQ-2MB" secondAttribute="top" constant="16" id="EU7-tU-U1V"/>
                                 <constraint firstAttribute="trailing" secondItem="inR-Ih-3p2" secondAttribute="trailing" id="hUG-kG-Y6d"/>
-                                <constraint firstAttribute="bottom" secondItem="inR-Ih-3p2" secondAttribute="bottom" constant="8" id="oWq-Px-G4B"/>
+                                <constraint firstAttribute="bottom" secondItem="inR-Ih-3p2" secondAttribute="bottom" constant="16" id="oWq-Px-G4B"/>
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ihu-WO-9IU">
@@ -107,7 +107,7 @@
     </objects>
     <resources>
         <namedColor name="ContainerColor">
-            <color red="0.87843566640671422" green="0.8871330492424242" blue="0.8871330492424242" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.88627450980392153" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

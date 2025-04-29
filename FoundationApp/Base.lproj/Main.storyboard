@@ -94,7 +94,7 @@
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dGi-Tn-wft">
                                                                 <rect key="frame" x="0.0" y="161" width="361" height="128"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-Lu-gYQ">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-Lu-gYQ">
                                                                         <rect key="frame" x="0.0" y="-36" width="361" height="200"/>
                                                                     </stackView>
                                                                 </subviews>
@@ -133,7 +133,7 @@
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CF6-QX-1y1">
                                                                 <rect key="frame" x="0.0" y="466" width="361" height="128"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="q2Q-tg-ajC">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q2Q-tg-ajC">
                                                                         <rect key="frame" x="0.0" y="-36" width="361" height="200"/>
                                                                     </stackView>
                                                                 </subviews>
@@ -219,7 +219,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvm-dx-mLo">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="paO-8e-5WD">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="paO-8e-5WD">
                                                         <rect key="frame" x="16" y="0.0" width="361" height="128"/>
                                                     </stackView>
                                                 </subviews>

@@ -68,6 +68,7 @@ class ReportsListViewController: UIViewController {
     
     private func createReport(from document: [String: Any], with id: String) async -> ReportModel? {
         guard let title = document["title"] as? String,
+              let description = document["reportDescription"] as? String,
               let closeDate = (document["closeDate"] as? Timestamp)?.dateValue(),
               let collected = document["collected"] as? Double
         else { return nil }
