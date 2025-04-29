@@ -10,30 +10,25 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 
-class ReportsListViewController: UIViewController {
+class ReportsListViewController: UIViewController, KeyboardObservable {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var reportsStack: UIStackView!
+    
+    var scrollViewToAdjust: UIScrollView? {
+        return self.scrollView
+    }
     
     private var reportsList: [ReportModel] = []
     private var updateTimer: Timer?
+    private var searchBar: UISearchBar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.isHidden = true
 
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "Пошук звітів"
-        searchBar.tintColor = .container
-        
-        let filterButton = UIBarButtonItem(
-            image: UIImage(systemName: "line.3.horizontal.decrease"),
-            style: .plain,
-            target: self,
-            action: #selector(didTapFilter)
-        )
-        
-        navigationItem.titleView = searchBar
-        navigationItem.rightBarButtonItem = filterButton
+        self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук звітів", filterAction: #selector(self.didTapFilter))
+        self.startObservingKeyboard()
         
         Task {
             await self.fillReportsList()
@@ -44,6 +39,14 @@ class ReportsListViewController: UIViewController {
                 self.startUpdateTimer()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.enableHideKeyboardOnTap()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.stopObservingKeyboard()
     }
     
     @objc private func didTapFilter() {

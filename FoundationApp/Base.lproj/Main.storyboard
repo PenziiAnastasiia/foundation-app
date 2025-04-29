@@ -101,7 +101,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="tOb-Lu-gYQ" secondAttribute="trailing" id="Bfu-J5-sB4"/>
                                                                     <constraint firstItem="tOb-Lu-gYQ" firstAttribute="top" secondItem="dGi-Tn-wft" secondAttribute="top" id="D45-dO-YLW"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="tOb-Lu-gYQ" secondAttribute="bottom" constant="16" id="T6x-Pk-ngg"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="tOb-Lu-gYQ" secondAttribute="bottom" constant="32" id="T6x-Pk-ngg"/>
                                                                     <constraint firstItem="tOb-Lu-gYQ" firstAttribute="width" secondItem="dGi-Tn-wft" secondAttribute="width" id="hUr-S8-JEJ"/>
                                                                     <constraint firstItem="tOb-Lu-gYQ" firstAttribute="leading" secondItem="dGi-Tn-wft" secondAttribute="leading" id="kZY-xf-Ve8"/>
                                                                 </constraints>
@@ -196,6 +196,7 @@
                     <connections>
                         <outlet property="closedFundraisersStack" destination="q2Q-tg-ajC" id="iqI-iZ-1qL"/>
                         <outlet property="openFundraisersStack" destination="tOb-Lu-gYQ" id="HG7-l3-olD"/>
+                        <outlet property="scrollView" destination="LSs-fh-nik" id="Dm4-3q-uu3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT6-pW-7UV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -262,6 +263,7 @@
                     <navigationItem key="navigationItem" id="saF-Zf-vqp"/>
                     <connections>
                         <outlet property="reportsStack" destination="paO-8e-5WD" id="kRc-pu-RwY"/>
+                        <outlet property="scrollView" destination="xBS-o2-nLg" id="4ml-Ek-8l9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3Y-kn-ZPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -292,7 +294,7 @@
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="doc.text" catalog="system" width="115" height="128"/>
         <namedColor name="BackgroundColor">
-            <color red="0.95129485895823673" green="0.96317648847703652" blue="0.97261679292929293" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.94901960784313721" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -8,9 +8,13 @@
 import UIKit
 import FirebaseFirestore
 
-class FundraiserDetailsViewController: UIViewController {
+class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     private var rootView: FundraiserDetailsView? {
         self.viewIfLoaded as? FundraiserDetailsView
+    }
+    
+    var scrollViewToAdjust: UIScrollView? {
+        return self.rootView?.scrollView
     }
     
     private let fundraiser: FundraiserModel
@@ -20,12 +24,7 @@ class FundraiserDetailsViewController: UIViewController {
         
         self.rootView?.fillView(with: self.fundraiser)
         self.rootView?.fillMediaCollectionView(for: self.fundraiser)
-            
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        self.startObservingKeyboard()
     }
     
     init(fundraiser: FundraiserModel) {
@@ -36,18 +35,13 @@ class FundraiserDetailsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let bottomInset = keyboardFrame.height
-            self.rootView?.scrollView.contentInset.bottom = bottomInset
-            self.rootView?.scrollView.verticalScrollIndicatorInsets.bottom = bottomInset
-        }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.enableHideKeyboardOnTap()
     }
-
-    @objc func keyboardWillHide(notification: Notification) {
-        self.rootView?.scrollView.contentInset.bottom = 0
-        self.rootView?.scrollView.verticalScrollIndicatorInsets.bottom = 0
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.stopObservingKeyboard()
     }
 
     /*

@@ -8,31 +8,28 @@
 import UIKit
 import FirebaseFirestore
 
-class FundraisersListViewController: UIViewController {
+class FundraisersListViewController: UIViewController, KeyboardObservable {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var openFundraisersStack: UIStackView!
     @IBOutlet weak var closedFundraisersStack: UIStackView!
     
+    var scrollViewToAdjust: UIScrollView? {
+        return self.scrollView
+    }
+    
     private var fundraisersList: [FundraiserModel] = []
+    private var filteredFundraisersList: [FundraiserModel] = []
     private var updateTimer: Timer?
+    private var searchBar: UISearchBar?
+    private var filterButton: UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.isHidden = true
 
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "Пошук зборів"
-        searchBar.tintColor = .container
-        
-        let filterButton = UIBarButtonItem(
-            image: UIImage(systemName: "line.3.horizontal.decrease"),
-            style: .plain,
-            target: self,
-            action: #selector(didTapFilter)
-        )
-        
-        navigationItem.titleView = searchBar
-        navigationItem.rightBarButtonItem = filterButton
+        self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук зборів", filterAction: #selector(self.didTapFilter))
+        self.startObservingKeyboard()
         
         Task {
             await self.fillFundraisersList()
@@ -43,6 +40,14 @@ class FundraisersListViewController: UIViewController {
                 self.startUpdateTimer()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.enableHideKeyboardOnTap()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.stopObservingKeyboard()
     }
     
     @objc private func didTapFilter() {
@@ -82,11 +87,22 @@ class FundraisersListViewController: UIViewController {
     }
 
     private func fillStacks() {
-        let closedFundraisers = self.fundraisersList
+        let searchText = self.searchBar?.text?.lowercased() ?? ""
+        if !searchText.isEmpty {
+            self.filteredFundraisersList = self.fundraisersList.filter { fundraiser in
+                let titleMatch = fundraiser.title.lowercased().contains(searchText)
+                let descriptionMatch = fundraiser.description.lowercased().contains(searchText)
+                return titleMatch || descriptionMatch
+            }
+        } else {
+            self.filteredFundraisersList = self.fundraisersList
+        }
+        
+        let closedFundraisers = self.filteredFundraisersList
             .filter { $0.closeDate != nil }
             .sorted { $0.closeDate! > $1.closeDate! }
         
-        let openFundraisers = self.fundraisersList
+        let openFundraisers = self.filteredFundraisersList
             .filter { $0.closeDate == nil }
             .sorted { $0.collected / Double($0.goal) > $1.collected / Double($1.goal) }
         
@@ -134,4 +150,10 @@ class FundraisersListViewController: UIViewController {
     }
     */
 
+}
+
+extension FundraisersListViewController {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        fillStacks()
+    }
 }
