@@ -21,7 +21,7 @@ class BarView: UIView {
     
     public func setProgress(collected: Double, goal: Int) {
         let progress = max(collected / Double(goal), 0.0)
-        let barWidth = max(CGFloat(min(progress, 1.0)) * self.progressBackgroundView.bounds.width, 1.0)
+        let barWidth = max(CGFloat(min(progress, 1.0)) * self.progressBackgroundView.frame.width, 1.0)
         
         self.progressWidthConstraint.constant = barWidth
         

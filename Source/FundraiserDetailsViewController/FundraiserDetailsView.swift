@@ -42,7 +42,7 @@ class FundraiserDetailsView: UIView {
                 mediaCollectionView.topAnchor.constraint(equalTo: self.mediaCollectionContainer.topAnchor, constant: 16),
                 mediaCollectionView.bottomAnchor.constraint(equalTo: self.mediaCollectionContainer.bottomAnchor, constant: -16)
             ])
-            self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.bounds.width / 20
+            self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.frame.width / 20
             mediaCollectionView.loadMedia(for: fundraiser.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
         }
@@ -58,9 +58,9 @@ class FundraiserDetailsView: UIView {
                 barView.topAnchor.constraint(equalTo: self.barViewContainer.topAnchor, constant: 16),
                 barView.bottomAnchor.constraint(equalTo: self.barViewContainer.bottomAnchor)
             ])
-            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.bounds.height / 4
-            barView.progressView.layer.cornerRadius = barView.progressView.bounds.height / 4
-            self.barViewContainer.layer.cornerRadius = self.barViewContainer.bounds.width / 20
+            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.frame.height / 4
+            barView.progressView.layer.cornerRadius = barView.progressView.frame.height / 4
+            self.barViewContainer.layer.cornerRadius = self.barViewContainer.frame.width / 20
             self.barViewContainer.layoutIfNeeded()
             barView.layoutIfNeeded()
             DispatchQueue.main.async {
@@ -80,7 +80,7 @@ class FundraiserDetailsView: UIView {
                 donateView.bottomAnchor.constraint(equalTo: self.donateViewContainer.bottomAnchor, constant: -16)
             ])
             self.donateViewContainer.layoutIfNeeded()
-            self.donateViewContainer.layer.cornerRadius = self.donateViewContainer.bounds.width / 20
+            self.donateViewContainer.layer.cornerRadius = self.donateViewContainer.frame.width / 20
             donateView.configure()
         }
     }

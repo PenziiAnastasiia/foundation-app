@@ -19,6 +19,7 @@ class ReportsListViewController: UIViewController, KeyboardObservable {
     }
     
     private var reportsList: [ReportModel] = []
+    private var filteredReportsList: [ReportModel] = []
     private var updateTimer: Timer?
     private var searchBar: UISearchBar?
 
@@ -84,14 +85,25 @@ class ReportsListViewController: UIViewController, KeyboardObservable {
     }
 
     private func fillStack() {
+        let searchText = self.searchBar?.text?.lowercased() ?? ""
+        if !searchText.isEmpty {
+            self.filteredReportsList = self.reportsList.filter { report in
+                let titleMatch = report.title.lowercased().contains(searchText)
+                let descriptionMatch = report.description.lowercased().contains(searchText)
+                return titleMatch || descriptionMatch
+            }
+        } else {
+            self.filteredReportsList = self.reportsList
+        }
+        
         self.reportsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        self.reportsList.sorted { $0.closeDate > $1.closeDate }.forEach { self.addListElementIntoStack(listElement: $0) }
+        self.filteredReportsList.sorted { $0.closeDate > $1.closeDate }.forEach { self.addListElementIntoStack(listElement: $0) }
     }
     
     private func addListElementIntoStack(listElement: ReportModel) {
         if let listElementView = ListElementView.loadFromNib() {
             self.reportsStack.addArrangedSubview(listElementView)
-            listElementView.layer.cornerRadius = listElementView.bounds.width / 25
+            listElementView.layer.cornerRadius = listElementView.frame.width / 25
             listElementView.addBarView()
             listElementView.fillView(with: listElement, action: { [weak self] in
                 let controller = ReportDetailsViewController(report: listElement)
@@ -113,5 +125,11 @@ class ReportsListViewController: UIViewController, KeyboardObservable {
                 self.fillStack()
             }
         }
+    }
+}
+
+extension ReportsListViewController {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.fillStack()
     }
 }

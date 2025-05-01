@@ -22,11 +22,98 @@
                     <connections>
                         <segue destination="K6B-za-v1V" kind="relationship" relationship="viewControllers" id="uca-zq-aco"/>
                         <segue destination="cCg-eD-WEW" kind="relationship" relationship="viewControllers" id="FNd-I8-wTa"/>
+                        <segue destination="NoA-uh-dFx" kind="relationship" relationship="viewControllers" id="Mo9-QB-Dck"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9HY-c3-hWM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-399" y="-27"/>
+        </scene>
+        <!--Звіти-->
+        <scene sceneID="Dah-Vc-lPx">
+            <objects>
+                <navigationController id="K6B-za-v1V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Звіти" id="jvl-oN-5K4">
+                        <imageReference key="image" image="doc.text" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2JY-lk-BAl">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cOh-yI-ysK" kind="relationship" relationship="rootViewController" id="una-T1-cvn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Orp-IG-HYC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1091" y="749"/>
+        </scene>
+        <!--Reports List View Controller-->
+        <scene sceneID="KAc-w2-10e">
+            <objects>
+                <viewController id="cOh-yI-ysK" customClass="ReportsListViewController" customModule="FoundationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KnF-2P-Kfv">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-y8-wov">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBS-o2-nLg">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvm-dx-mLo">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="paO-8e-5WD">
+                                                        <rect key="frame" x="16" y="0.0" width="361" height="128"/>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="paO-8e-5WD" firstAttribute="leading" secondItem="Zvm-dx-mLo" secondAttribute="leading" constant="16" id="4dk-uO-fb0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="paO-8e-5WD" secondAttribute="trailing" constant="16" id="5Z5-jS-mxc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="paO-8e-5WD" secondAttribute="bottom" id="P2f-2Z-bTp"/>
+                                                    <constraint firstItem="paO-8e-5WD" firstAttribute="top" secondItem="Zvm-dx-mLo" secondAttribute="top" id="UFZ-iw-tet"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="top" secondItem="xBS-o2-nLg" secondAttribute="top" id="2r4-UP-AY7"/>
+                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="leading" secondItem="xBS-o2-nLg" secondAttribute="leading" id="Y8U-vM-6ni"/>
+                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="trailing" secondItem="xBS-o2-nLg" secondAttribute="trailing" id="flL-3W-Msm"/>
+                                            <constraint firstAttribute="bottom" secondItem="Zvm-dx-mLo" secondAttribute="bottom" id="jlO-zb-Vd1"/>
+                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="width" secondItem="xBS-o2-nLg" secondAttribute="width" id="qLH-Xy-qKU"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xBS-o2-nLg" firstAttribute="leading" secondItem="wKF-y8-wov" secondAttribute="leading" id="9Sc-xi-ai8"/>
+                                    <constraint firstItem="Zvm-dx-mLo" firstAttribute="width" secondItem="wKF-y8-wov" secondAttribute="width" id="Gkp-D6-kNi"/>
+                                    <constraint firstAttribute="trailing" secondItem="xBS-o2-nLg" secondAttribute="trailing" id="M28-Qo-XI9"/>
+                                    <constraint firstItem="xBS-o2-nLg" firstAttribute="width" secondItem="wKF-y8-wov" secondAttribute="width" id="akw-aO-mio"/>
+                                    <constraint firstItem="xBS-o2-nLg" firstAttribute="top" secondItem="wKF-y8-wov" secondAttribute="top" id="rq6-P2-dH6"/>
+                                    <constraint firstAttribute="bottom" secondItem="xBS-o2-nLg" secondAttribute="bottom" id="ueb-MN-n4K"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TyN-6U-esB"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TyN-6U-esB" firstAttribute="bottom" secondItem="wKF-y8-wov" secondAttribute="bottom" id="X0b-7P-1bL"/>
+                            <constraint firstItem="wKF-y8-wov" firstAttribute="trailing" secondItem="TyN-6U-esB" secondAttribute="trailing" id="YZD-3q-65B"/>
+                            <constraint firstItem="TyN-6U-esB" firstAttribute="top" secondItem="wKF-y8-wov" secondAttribute="top" id="ZzB-Ys-4oK"/>
+                            <constraint firstItem="wKF-y8-wov" firstAttribute="leading" secondItem="TyN-6U-esB" secondAttribute="leading" id="hRM-ib-1bW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="saF-Zf-vqp"/>
+                    <connections>
+                        <outlet property="reportsStack" destination="paO-8e-5WD" id="kRc-pu-RwY"/>
+                        <outlet property="scrollView" destination="xBS-o2-nLg" id="4ml-Ek-8l9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O3Y-kn-ZPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1092.3664122137404" y="1474.6478873239437"/>
         </scene>
         <!--Збори-->
         <scene sceneID="jbh-dD-eO0">
@@ -203,96 +290,77 @@
             </objects>
             <point key="canvasLocation" x="-399" y="1475"/>
         </scene>
-        <!--Reports List View Controller-->
-        <scene sceneID="KAc-w2-10e">
+        <!--Мій акаунт-->
+        <scene sceneID="pLi-Vh-9PW">
             <objects>
-                <viewController id="cOh-yI-ysK" customClass="ReportsListViewController" customModule="FoundationApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KnF-2P-Kfv">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-y8-wov">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBS-o2-nLg">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvm-dx-mLo">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="paO-8e-5WD">
-                                                        <rect key="frame" x="16" y="0.0" width="361" height="128"/>
-                                                    </stackView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="paO-8e-5WD" firstAttribute="leading" secondItem="Zvm-dx-mLo" secondAttribute="leading" constant="16" id="4dk-uO-fb0"/>
-                                                    <constraint firstAttribute="trailing" secondItem="paO-8e-5WD" secondAttribute="trailing" constant="16" id="5Z5-jS-mxc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="paO-8e-5WD" secondAttribute="bottom" id="P2f-2Z-bTp"/>
-                                                    <constraint firstItem="paO-8e-5WD" firstAttribute="top" secondItem="Zvm-dx-mLo" secondAttribute="top" id="UFZ-iw-tet"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="top" secondItem="xBS-o2-nLg" secondAttribute="top" id="2r4-UP-AY7"/>
-                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="leading" secondItem="xBS-o2-nLg" secondAttribute="leading" id="Y8U-vM-6ni"/>
-                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="trailing" secondItem="xBS-o2-nLg" secondAttribute="trailing" id="flL-3W-Msm"/>
-                                            <constraint firstAttribute="bottom" secondItem="Zvm-dx-mLo" secondAttribute="bottom" id="jlO-zb-Vd1"/>
-                                            <constraint firstItem="Zvm-dx-mLo" firstAttribute="width" secondItem="xBS-o2-nLg" secondAttribute="width" id="qLH-Xy-qKU"/>
-                                        </constraints>
-                                    </scrollView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="xBS-o2-nLg" firstAttribute="leading" secondItem="wKF-y8-wov" secondAttribute="leading" id="9Sc-xi-ai8"/>
-                                    <constraint firstItem="Zvm-dx-mLo" firstAttribute="width" secondItem="wKF-y8-wov" secondAttribute="width" id="Gkp-D6-kNi"/>
-                                    <constraint firstAttribute="trailing" secondItem="xBS-o2-nLg" secondAttribute="trailing" id="M28-Qo-XI9"/>
-                                    <constraint firstItem="xBS-o2-nLg" firstAttribute="width" secondItem="wKF-y8-wov" secondAttribute="width" id="akw-aO-mio"/>
-                                    <constraint firstItem="xBS-o2-nLg" firstAttribute="top" secondItem="wKF-y8-wov" secondAttribute="top" id="rq6-P2-dH6"/>
-                                    <constraint firstAttribute="bottom" secondItem="xBS-o2-nLg" secondAttribute="bottom" id="ueb-MN-n4K"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="TyN-6U-esB"/>
-                        <color key="backgroundColor" name="BackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="TyN-6U-esB" firstAttribute="bottom" secondItem="wKF-y8-wov" secondAttribute="bottom" id="X0b-7P-1bL"/>
-                            <constraint firstItem="wKF-y8-wov" firstAttribute="trailing" secondItem="TyN-6U-esB" secondAttribute="trailing" id="YZD-3q-65B"/>
-                            <constraint firstItem="TyN-6U-esB" firstAttribute="top" secondItem="wKF-y8-wov" secondAttribute="top" id="ZzB-Ys-4oK"/>
-                            <constraint firstItem="wKF-y8-wov" firstAttribute="leading" secondItem="TyN-6U-esB" secondAttribute="leading" id="hRM-ib-1bW"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="saF-Zf-vqp"/>
-                    <connections>
-                        <outlet property="reportsStack" destination="paO-8e-5WD" id="kRc-pu-RwY"/>
-                        <outlet property="scrollView" destination="xBS-o2-nLg" id="4ml-Ek-8l9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O3Y-kn-ZPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1092.3664122137404" y="1474.6478873239437"/>
-        </scene>
-        <!--Звіти-->
-        <scene sceneID="Dah-Vc-lPx">
-            <objects>
-                <navigationController id="K6B-za-v1V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Звіти" id="jvl-oN-5K4">
-                        <imageReference key="image" image="doc.text" catalog="system" symbolScale="large"/>
+                <navigationController id="NoA-uh-dFx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Мій акаунт" id="msi-Hq-4pN">
+                        <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2JY-lk-BAl">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zZm-kT-4aw">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="cOh-yI-ysK" kind="relationship" relationship="rootViewController" id="una-T1-cvn"/>
+                        <segue destination="Civ-zi-Std" kind="relationship" relationship="rootViewController" id="EEH-ef-X7Q"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Orp-IG-HYC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdt-Lb-OXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1091" y="749"/>
+            <point key="canvasLocation" x="291" y="749"/>
+        </scene>
+        <!--Account Page View Controller-->
+        <scene sceneID="inC-xo-87i">
+            <objects>
+                <viewController id="Civ-zi-Std" customClass="AccountPageViewController" customModule="FoundationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I6x-s0-uqK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="StP-yO-IuI">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u4Z-oK-9GZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Civ-zi-Std" id="YYs-XZ-A6m"/>
+                                            <outlet property="delegate" destination="Civ-zi-Std" id="Ba7-4j-gOo"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="u4Z-oK-9GZ" secondAttribute="bottom" id="7wH-Cs-txA"/>
+                                    <constraint firstAttribute="trailing" secondItem="u4Z-oK-9GZ" secondAttribute="trailing" id="KF9-BK-bvx"/>
+                                    <constraint firstItem="u4Z-oK-9GZ" firstAttribute="leading" secondItem="StP-yO-IuI" secondAttribute="leading" id="Ugt-yz-1ag"/>
+                                    <constraint firstItem="u4Z-oK-9GZ" firstAttribute="top" secondItem="StP-yO-IuI" secondAttribute="top" id="YKJ-uH-4Zz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="guQ-cF-tig"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="StP-yO-IuI" firstAttribute="top" secondItem="guQ-cF-tig" secondAttribute="top" id="GCm-OD-gpD"/>
+                            <constraint firstItem="guQ-cF-tig" firstAttribute="bottom" secondItem="StP-yO-IuI" secondAttribute="bottom" id="IKi-PG-0lN"/>
+                            <constraint firstItem="StP-yO-IuI" firstAttribute="leading" secondItem="guQ-cF-tig" secondAttribute="leading" id="cL4-UE-GOz"/>
+                            <constraint firstItem="guQ-cF-tig" firstAttribute="trailing" secondItem="StP-yO-IuI" secondAttribute="trailing" id="gLz-gX-hr4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ebS-7I-TLE"/>
+                    <connections>
+                        <outlet property="donationHistoryTableView" destination="u4Z-oK-9GZ" id="QPh-vK-Ukl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5gi-Iz-Bla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="290.83969465648852" y="1474.6478873239437"/>
         </scene>
     </scenes>
     <resources>
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="doc.text" catalog="system" width="115" height="128"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <namedColor name="BackgroundColor">
             <color red="0.94901960784313721" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

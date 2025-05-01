@@ -112,13 +112,13 @@ class MediaCollectionView: UIView {
     }
     
     private func sizeTransform() {
-        let screenWidth = self.mediaCollectionView.bounds.width
+        let screenWidth = self.mediaCollectionView.frame.width
         var totalWidth: CGFloat = 0
 
         for (index, item) in self.mediaItems.enumerated() {
             guard let size = item.size else { return }
             let aspectRatio = size.width / size.height
-            let height = self.mediaCollectionView.bounds.height
+            let height = self.mediaCollectionView.frame.height
             let width = height * aspectRatio
             
             self.mediaItems[index].size = CGSizeMake(width, height)

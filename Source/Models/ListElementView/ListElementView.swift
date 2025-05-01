@@ -37,8 +37,8 @@ class ListElementView: UIView {
                 barView.topAnchor.constraint(equalTo: self.barViewContainer.topAnchor),
                 barView.bottomAnchor.constraint(equalTo: self.barViewContainer.bottomAnchor)
             ])
-            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.bounds.height / 4
-            barView.progressView.layer.cornerRadius = barView.progressView.bounds.height / 4
+            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.frame.height / 4
+            barView.progressView.layer.cornerRadius = barView.progressView.frame.height / 4
             self.barView = barView
             self.barViewContainer.layoutIfNeeded()
         }
@@ -65,12 +65,7 @@ class ListElementView: UIView {
     
     private func fillWithoutBarView(closeDate: Date, collected: Double) {
         self.labelsContainer.isHidden = false
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        self.dateLabel.text = dateFormatter.string(from: closeDate)
-        
+        self.dateLabel.text = DateFormatter.shared.string(from: closeDate)
         self.collectedLabel.text = "Зібрано: \(collected.formattedWithSeparator())"
     }
     

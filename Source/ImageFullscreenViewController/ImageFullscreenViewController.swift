@@ -33,14 +33,14 @@ class ImageFullscreenViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.delegate = self
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 4.0
-        self.scrollView.frame = view.bounds
+        self.scrollView.frame = self.view.frame
         self.scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(self.scrollView)
     }
     
     private func configureImageView() {
         self.imageView.contentMode = .scaleAspectFit
-        self.imageView.frame = self.scrollView.bounds
+        self.imageView.frame = self.scrollView.frame
         self.imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.scrollView.addSubview(self.imageView)
     }
@@ -57,8 +57,8 @@ class ImageFullscreenViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(self.closeButton)
         
         NSLayoutConstraint.activate([
-            self.closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            self.closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            self.closeButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             self.closeButton.widthAnchor.constraint(equalToConstant: 40),
             self.closeButton.heightAnchor.constraint(equalToConstant: 40)
         ])

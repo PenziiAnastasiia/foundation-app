@@ -34,7 +34,7 @@ class ReportDetailsView: UIView {
                 mediaCollectionView.topAnchor.constraint(equalTo: self.mediaCollectionContainer.topAnchor, constant: 16),
                 mediaCollectionView.bottomAnchor.constraint(equalTo: self.mediaCollectionContainer.bottomAnchor, constant: -16)
             ])
-            self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.bounds.width / 20
+            self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.frame.width / 20
             mediaCollectionView.loadMedia(for: report.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
         }

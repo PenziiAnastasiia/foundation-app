@@ -27,6 +27,14 @@
 		1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */; };
 		1BAFC4042DC0FFA300EB6FB4 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC4032DC0FFA300EB6FB4 /* KeyboardObservable.swift */; };
 		1BAFC4062DC1037400EB6FB4 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC4052DC1037400EB6FB4 /* UIViewController+Extensions.swift */; };
+		1BAFC40B2DC128B600EB6FB4 /* AccountPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC4082DC128B600EB6FB4 /* AccountPageViewController.swift */; };
+		1BAFC4112DC13B9B00EB6FB4 /* DonationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC4102DC13B9B00EB6FB4 /* DonationModel.swift */; };
+		1BAFC4152DC144F600EB6FB4 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC4142DC144F600EB6FB4 /* DateFormatter+Extension.swift */; };
+		1BAFC41C2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC41A2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift */; };
+		1BAFC41D2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAFC41B2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.xib */; };
+		1BAFC4212DC283F500EB6FB4 /* InfoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAFC4202DC283F500EB6FB4 /* InfoViewCell.xib */; };
+		1BAFC4222DC283F500EB6FB4 /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC41F2DC283F500EB6FB4 /* InfoViewCell.swift */; };
+		1BAFC4242DC289D500EB6FB4 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAFC4232DC289D500EB6FB4 /* Array+Extension.swift */; };
 		1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */; };
 		1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */; };
 		1BB836A12DB2813900C0C094 /* DonateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836A02DB2813900C0C094 /* DonateView.swift */; };
@@ -63,6 +71,14 @@
 		1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1BAFC4032DC0FFA300EB6FB4 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
 		1BAFC4052DC1037400EB6FB4 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		1BAFC4082DC128B600EB6FB4 /* AccountPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageViewController.swift; sourceTree = "<group>"; };
+		1BAFC4102DC13B9B00EB6FB4 /* DonationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationModel.swift; sourceTree = "<group>"; };
+		1BAFC4142DC144F600EB6FB4 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		1BAFC41A2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		1BAFC41B2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DonationHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		1BAFC41F2DC283F500EB6FB4 /* InfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
+		1BAFC4202DC283F500EB6FB4 /* InfoViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewCell.xib; sourceTree = "<group>"; };
+		1BAFC4232DC289D500EB6FB4 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		1BB8369B2DB12DC400C0C094 /* VideoFullscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFullscreenViewController.swift; sourceTree = "<group>"; };
 		1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
 		1BB836A02DB2813900C0C094 /* DonateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateView.swift; sourceTree = "<group>"; };
@@ -126,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */,
+				1BAFC4232DC289D500EB6FB4 /* Array+Extension.swift */,
+				1BAFC4142DC144F600EB6FB4 /* DateFormatter+Extension.swift */,
 				1BAC01452DB05294008BCCA4 /* UIView+Extension.swift */,
 				1BAFC4052DC1037400EB6FB4 /* UIViewController+Extensions.swift */,
 				1BAFC4032DC0FFA300EB6FB4 /* KeyboardObservable.swift */,
@@ -157,6 +175,32 @@
 				1BAC01412DB04D94008BCCA4 /* ImageFullscreenViewController.swift */,
 			);
 			path = ImageFullscreenViewController;
+			sourceTree = "<group>";
+		};
+		1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BAFC4082DC128B600EB6FB4 /* AccountPageViewController.swift */,
+			);
+			path = AccountPageViewController;
+			sourceTree = "<group>";
+		};
+		1BAFC40D2DC13A0100EB6FB4 /* DonationHistoryTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1BAFC41A2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift */,
+				1BAFC41B2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.xib */,
+			);
+			path = DonationHistoryTableViewCell;
+			sourceTree = "<group>";
+		};
+		1BAFC41E2DC283C300EB6FB4 /* InfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				1BAFC41F2DC283F500EB6FB4 /* InfoViewCell.swift */,
+				1BAFC4202DC283F500EB6FB4 /* InfoViewCell.xib */,
+			);
+			path = InfoCell;
 			sourceTree = "<group>";
 		};
 		1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */ = {
@@ -232,6 +276,7 @@
 				1BAC012E2DAD8475008BCCA4 /* Libs */,
 				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
 				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
+				1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */,
 				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
 				1BB836AB2DB8C26800C0C094 /* ReportDetailsViewController */,
 				1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */,
@@ -246,11 +291,14 @@
 				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
 				1BB836A92DB7EFC800C0C094 /* ReportModel.swift */,
 				1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */,
+				1BAFC4102DC13B9B00EB6FB4 /* DonationModel.swift */,
 				1BAC01272DAC2242008BCCA4 /* BarView */,
 				1BB8369F2DB280DD00C0C094 /* DonateView */,
 				1BF6C0FF2D29852A00635A49 /* ListElementView */,
 				1BAC01312DAE4DD5008BCCA4 /* MediaCollectionView */,
 				1BAC01382DAE6B42008BCCA4 /* MediaCollectionViewCell */,
+				1BAFC41E2DC283C300EB6FB4 /* InfoCell */,
+				1BAFC40D2DC13A0100EB6FB4 /* DonationHistoryTableViewCell */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,10 +382,12 @@
 				1BF6C0F32D297C1B00635A49 /* Assets.xcassets in Resources */,
 				1BF6C0F62D297C1B00635A49 /* Base in Resources */,
 				1B9336882D3AB4F100E18231 /* ListElementView.xib in Resources */,
+				1BAFC41D2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.xib in Resources */,
 				1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */,
 				1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */,
 				1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */,
 				1BAC01352DAE4E81008BCCA4 /* MediaCollectionView.xib in Resources */,
+				1BAFC4212DC283F500EB6FB4 /* InfoViewCell.xib in Resources */,
 				1BF6C0F12D297C1800635A49 /* Base in Resources */,
 				1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */,
 				1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */,
@@ -351,16 +401,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BAFC4112DC13B9B00EB6FB4 /* DonationModel.swift in Sources */,
 				1BAFC4042DC0FFA300EB6FB4 /* KeyboardObservable.swift in Sources */,
 				1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */,
 				1BAC01332DAE4E64008BCCA4 /* MediaCollectionView.swift in Sources */,
+				1BAFC41C2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift in Sources */,
 				1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */,
+				1BAFC4222DC283F500EB6FB4 /* InfoViewCell.swift in Sources */,
 				1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */,
 				1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */,
 				1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */,
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,
+				1BAFC4242DC289D500EB6FB4 /* Array+Extension.swift in Sources */,
 				1BB836A82DB7CF1100C0C094 /* ReportsListViewController.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
+				1BAFC4152DC144F600EB6FB4 /* DateFormatter+Extension.swift in Sources */,
 				1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */,
 				1BAC01462DB05294008BCCA4 /* UIView+Extension.swift in Sources */,
 				1BAFC4062DC1037400EB6FB4 /* UIViewController+Extensions.swift in Sources */,
@@ -370,6 +425,7 @@
 				1BAC01432DB04D94008BCCA4 /* ImageFullscreenViewController.swift in Sources */,
 				1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */,
 				1BB836AA2DB7EFC800C0C094 /* ReportModel.swift in Sources */,
+				1BAFC40B2DC128B600EB6FB4 /* AccountPageViewController.swift in Sources */,
 				1BB836AE2DB8C29A00C0C094 /* ReportDetailsViewController.swift in Sources */,
 				1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */,
 				1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */,
