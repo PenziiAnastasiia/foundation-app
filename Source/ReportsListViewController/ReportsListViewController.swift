@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 
-class ReportsListViewController: UIViewController, KeyboardObservable {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var reportsStack: UIStackView!
+class ReportsListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var reportsTableView: UITableView!
     
     var scrollViewToAdjust: UIScrollView? {
-        return self.scrollView
+        return self.reportsTableView
     }
     
     private var reportsList: [ReportModel] = []
@@ -31,11 +31,17 @@ class ReportsListViewController: UIViewController, KeyboardObservable {
         self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук звітів", filterAction: #selector(self.didTapFilter))
         self.startObservingKeyboard()
         
+        let listElementCell = UINib(nibName: "ListElementTableViewCell", bundle: nil)
+        self.reportsTableView.register(listElementCell, forCellReuseIdentifier: "ListElementCell")
+        
+        self.reportsTableView.dataSource = self
+        self.reportsTableView.delegate = self
+        
         Task {
             await self.fillReportsList()
-
+            
             DispatchQueue.main.async {
-                self.fillStack()
+                self.reportsTableView.reloadData()
                 self.view.isHidden = false
                 self.startUpdateTimer()
             }
@@ -84,37 +90,21 @@ class ReportsListViewController: UIViewController, KeyboardObservable {
         return report
     }
 
-    private func fillStack() {
+    private func filterList() {
         let searchText = self.searchBar?.text?.lowercased() ?? ""
-        if !searchText.isEmpty {
-            self.filteredReportsList = self.reportsList.filter { report in
-                let titleMatch = report.title.lowercased().contains(searchText)
-                let descriptionMatch = report.description.lowercased().contains(searchText)
-                return titleMatch || descriptionMatch
-            }
-        } else {
-            self.filteredReportsList = self.reportsList
-        }
-        
-        self.reportsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        self.filteredReportsList.sorted { $0.closeDate > $1.closeDate }.forEach { self.addListElementIntoStack(listElement: $0) }
-    }
-    
-    private func addListElementIntoStack(listElement: ReportModel) {
-        if let listElementView = ListElementView.loadFromNib() {
-            self.reportsStack.addArrangedSubview(listElementView)
-            listElementView.layer.cornerRadius = listElementView.frame.width / 25
-            listElementView.addBarView()
-            listElementView.fillView(with: listElement, action: { [weak self] in
-                let controller = ReportDetailsViewController(report: listElement)
-                self?.navigationController?.pushViewController(controller, animated: true)
-            })
-        }
+        self.filteredReportsList = searchText.isEmpty
+            ? self.reportsList
+            : self.reportsList.filter { report in
+                    let titleMatch = report.title.lowercased().contains(searchText)
+                    let descriptionMatch = report.description.lowercased().contains(searchText)
+                    return titleMatch || descriptionMatch
+                }
+        self.filteredReportsList.sort { $0.closeDate > $1.closeDate }
     }
     
     private func startUpdateTimer() {
-        updateTimer?.invalidate()
-        updateTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateFundraisersData), userInfo: nil, repeats: true)
+        self.updateTimer?.invalidate()
+        self.updateTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.updateFundraisersData), userInfo: nil, repeats: true)
     }
 
     @objc private func updateFundraisersData() {
@@ -122,14 +112,40 @@ class ReportsListViewController: UIViewController, KeyboardObservable {
             await self.fillReportsList()
 
             DispatchQueue.main.async {
-                self.fillStack()
+                self.reportsTableView.reloadData()
             }
+        }
+    }
+    
+    // MARK: - UITableViewDataSource, UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.filterList()
+        return self.filteredReportsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "ListElementCell", for: indexPath) as? ListElementTableViewCell)
+            .flatMap {
+                if let model = self.filteredReportsList.object(at: indexPath.row) {
+                    $0.configure(with: model)
+                    return $0
+                }
+                return nil
+            }
+        return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let model = self.filteredReportsList.object(at: indexPath.row) {
+            let controller = ReportDetailsViewController(report: model)
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
 
 extension ReportsListViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.fillStack()
+        self.reportsTableView.reloadData()
     }
 }

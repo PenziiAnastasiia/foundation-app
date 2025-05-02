@@ -8,17 +8,17 @@
 import UIKit
 import FirebaseFirestore
 
-class FundraisersListViewController: UIViewController, KeyboardObservable {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var openFundraisersStack: UIStackView!
-    @IBOutlet weak var closedFundraisersStack: UIStackView!
+class FundraisersListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var fundraisersTableView: UITableView!
     
     var scrollViewToAdjust: UIScrollView? {
-        return self.scrollView
+        return self.fundraisersTableView
     }
     
     private var fundraisersList: [FundraiserModel] = []
-    private var filteredFundraisersList: [FundraiserModel] = []
+    private var openFundraisers: [FundraiserModel] = []
+    private var closedFundraisers: [FundraiserModel] = []
     private var updateTimer: Timer?
     private var searchBar: UISearchBar?
     private var filterButton: UIBarButtonItem?
@@ -31,11 +31,20 @@ class FundraisersListViewController: UIViewController, KeyboardObservable {
         self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук зборів", filterAction: #selector(self.didTapFilter))
         self.startObservingKeyboard()
         
+        let separatortCell = UINib(nibName: "FundraisersSeparatorTableViewCell", bundle: nil)
+        let listElementCell = UINib(nibName: "ListElementTableViewCell", bundle: nil)
+        
+        self.fundraisersTableView.register(separatortCell, forCellReuseIdentifier: "SeparatorCell")
+        self.fundraisersTableView.register(listElementCell, forCellReuseIdentifier: "ListElementCell")
+        
+        self.fundraisersTableView.dataSource = self
+        self.fundraisersTableView.delegate = self
+        
         Task {
             await self.fillFundraisersList()
             
             DispatchQueue.main.async {
-                self.fillStacks()
+                self.fundraisersTableView.reloadData()
                 self.view.isHidden = false
                 self.startUpdateTimer()
             }
@@ -86,48 +95,28 @@ class FundraisersListViewController: UIViewController, KeyboardObservable {
         return fundraiser
     }
 
-    private func fillStacks() {
+    private func filterList() {
         let searchText = self.searchBar?.text?.lowercased() ?? ""
-        if !searchText.isEmpty {
-            self.filteredFundraisersList = self.fundraisersList.filter { fundraiser in
-                let titleMatch = fundraiser.title.lowercased().contains(searchText)
-                let descriptionMatch = fundraiser.description.lowercased().contains(searchText)
-                return titleMatch || descriptionMatch
-            }
-        } else {
-            self.filteredFundraisersList = self.fundraisersList
-        }
+        let filtered = searchText.isEmpty
+            ? self.fundraisersList
+            : self.fundraisersList.filter { fundraiser in
+                    let titleMatch = fundraiser.title.lowercased().contains(searchText)
+                    let descriptionMatch = fundraiser.description.lowercased().contains(searchText)
+                    return titleMatch || descriptionMatch
+                }
         
-        let closedFundraisers = self.filteredFundraisersList
+        self.closedFundraisers = filtered
             .filter { $0.closeDate != nil }
             .sorted { $0.closeDate! > $1.closeDate! }
         
-        let openFundraisers = self.filteredFundraisersList
+        self.openFundraisers = filtered
             .filter { $0.closeDate == nil }
             .sorted { $0.collected / Double($0.goal) > $1.collected / Double($1.goal) }
-        
-        self.closedFundraisersStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        closedFundraisers.forEach { self.addListElementIntoStack(listElement: $0, stack: self.closedFundraisersStack) }
-        
-        self.openFundraisersStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        openFundraisers.forEach { self.addListElementIntoStack(listElement: $0, stack: self.openFundraisersStack) }
-    }
-    
-    private func addListElementIntoStack(listElement: FundraiserModel, stack: UIStackView) {
-        if let listElementView = ListElementView.loadFromNib() {
-            stack.addArrangedSubview(listElementView)
-            listElementView.layer.cornerRadius = listElementView.frame.width / 25
-            listElementView.addBarView()
-            listElementView.fillView(with: listElement, action: { [weak self] in
-                let controller = FundraiserDetailsViewController(fundraiser: listElement)
-                self?.navigationController?.pushViewController(controller, animated: true)
-            })
-        }
     }
     
     private func startUpdateTimer() {
-        updateTimer?.invalidate()
-        updateTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateFundraisersData), userInfo: nil, repeats: true)
+        self.updateTimer?.invalidate()
+        self.updateTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.updateFundraisersData), userInfo: nil, repeats: true)
     }
 
     @objc private func updateFundraisersData() {
@@ -135,25 +124,56 @@ class FundraisersListViewController: UIViewController, KeyboardObservable {
             await self.fillFundraisersList()
 
             DispatchQueue.main.async {
-                self.fillStacks()
+                self.fundraisersTableView.reloadData()
             }
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - UITableViewDataSource, UITableViewDelegate
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.filterList()
+        return section == 0 ? self.openFundraisers.count + 1 : self.closedFundraisers.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
+        
+        if indexPath.row == 0 {
+            let separatorText = indexPath.section == 0 ? "Активні збори" : "Закриті збори"
+            let editConstraint = indexPath.section == 0 ? false : true
+            cell = (tableView.dequeueReusableCell(withIdentifier: "SeparatorCell", for: indexPath) as? FundraisersSeparatorTableViewCell)
+                .flatMap {
+                    $0.configure(with: separatorText, editConstraint)
+                    return $0
+                }
+        } else {
+            cell = (tableView.dequeueReusableCell(withIdentifier: "ListElementCell", for: indexPath) as? ListElementTableViewCell)
+                .flatMap {
+                    if let model = (indexPath.section == 0 ? self.openFundraisers : self.closedFundraisers).object(at: indexPath.row - 1) {
+                        $0.configure(with: model)
+                        return $0
+                    }
+                    return nil
+                }
+        }
+        return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let model = (indexPath.section == 0 ? self.openFundraisers : self.closedFundraisers).object(at: indexPath.row - 1) {
+            let controller = FundraiserDetailsViewController(fundraiser: model)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
 
 extension FundraisersListViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        fillStacks()
+        self.fundraisersTableView.reloadData()
     }
 }
