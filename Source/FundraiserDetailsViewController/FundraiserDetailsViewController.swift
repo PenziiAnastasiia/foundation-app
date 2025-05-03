@@ -9,6 +9,7 @@ import UIKit
 import FirebaseFirestore
 
 class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
+    
     private var rootView: FundraiserDetailsView? {
         self.viewIfLoaded as? FundraiserDetailsView
     }
@@ -22,7 +23,16 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rootView?.fillView(with: self.fundraiser)
+        self.rootView?.fillView(with: self.fundraiser, donateFunc: { sum in
+            DonateService.shared.updateFundraiserCollectedValue(fundraiserID: self.fundraiser.id, donationAmount: sum) { result in
+                switch result {
+                case .success:
+                    print("Донат успішно додано")
+                case .failure(let error):
+                    print("Помилка при оновленні збору: \(error.localizedDescription)")
+                }
+            }
+        })
         self.rootView?.fillMediaCollectionView(for: self.fundraiser)
         self.startObservingKeyboard()
     }

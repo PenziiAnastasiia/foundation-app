@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="436" height="118"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inR-Ih-3p2">
-                                                <rect key="frame" x="0.0" y="16" width="436" height="86"/>
+                                                <rect key="frame" x="0.0" y="8" width="436" height="98"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -35,16 +35,16 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="inR-Ih-3p2" firstAttribute="leading" secondItem="aG3-HQ-2MB" secondAttribute="leading" id="45E-Xf-Ukx"/>
-                                            <constraint firstItem="inR-Ih-3p2" firstAttribute="top" secondItem="aG3-HQ-2MB" secondAttribute="top" constant="16" id="EU7-tU-U1V"/>
+                                            <constraint firstItem="inR-Ih-3p2" firstAttribute="top" secondItem="aG3-HQ-2MB" secondAttribute="top" constant="8" id="EU7-tU-U1V"/>
                                             <constraint firstAttribute="trailing" secondItem="inR-Ih-3p2" secondAttribute="trailing" id="hUG-kG-Y6d"/>
-                                            <constraint firstAttribute="bottom" secondItem="inR-Ih-3p2" secondAttribute="bottom" constant="16" id="oWq-Px-G4B"/>
+                                            <constraint firstAttribute="bottom" secondItem="inR-Ih-3p2" secondAttribute="bottom" constant="12" id="oWq-Px-G4B"/>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ihu-WO-9IU">
                                         <rect key="frame" x="0.0" y="118" width="436" height="0.0"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERK-H1-ha1">
-                                        <rect key="frame" x="0.0" y="118" width="436" height="24"/>
+                                        <rect key="frame" x="0.0" y="118" width="436" height="16"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hOn-3G-6cp">
                                                 <rect key="frame" x="0.0" y="8" width="436" height="0.0"/>
@@ -66,7 +66,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="hOn-3G-6cp" firstAttribute="leading" secondItem="ERK-H1-ha1" secondAttribute="leading" id="8Ns-mH-VO8"/>
-                                            <constraint firstAttribute="bottom" secondItem="hOn-3G-6cp" secondAttribute="bottom" constant="16" id="91a-V5-bxe"/>
+                                            <constraint firstAttribute="bottom" secondItem="hOn-3G-6cp" secondAttribute="bottom" constant="8" id="91a-V5-bxe"/>
                                             <constraint firstAttribute="trailing" secondItem="hOn-3G-6cp" secondAttribute="trailing" id="Gko-iM-9Up"/>
                                             <constraint firstItem="hOn-3G-6cp" firstAttribute="top" secondItem="ERK-H1-ha1" secondAttribute="top" constant="8" id="cCp-0k-Su4"/>
                                         </constraints>

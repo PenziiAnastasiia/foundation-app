@@ -15,6 +15,7 @@
 		1B6933AD2D31B7F900D09C8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1B6933AC2D31B7F900D09C8F /* FirebaseFirestore */; };
 		1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */; };
 		1B9336882D3AB4F100E18231 /* ListElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B9336872D3AB4F100E18231 /* ListElementTableViewCell.xib */; };
+		1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7A92DC6333B009D8FC5 /* DonateService.swift */; };
 		1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01282DAC22D6008BCCA4 /* BarView.swift */; };
 		1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC012C2DAC231E008BCCA4 /* BarView.xib */; };
 		1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */; };
@@ -62,6 +63,7 @@
 		1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserModel.swift; sourceTree = "<group>"; };
 		1B9336872D3AB4F100E18231 /* ListElementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListElementTableViewCell.xib; sourceTree = "<group>"; };
+		1BABD7A92DC6333B009D8FC5 /* DonateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateService.swift; sourceTree = "<group>"; };
 		1BAC01282DAC22D6008BCCA4 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		1BAC012C2DAC231E008BCCA4 /* BarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarView.xib; sourceTree = "<group>"; };
 		1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+Extension.swift"; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 				1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */,
 			);
 			path = FundraiserDetailsViewController;
+			sourceTree = "<group>";
+		};
+		1BABD7A82DC63326009D8FC5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1BABD7A92DC6333B009D8FC5 /* DonateService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		1BAC01272DAC2242008BCCA4 /* BarView */ = {
@@ -285,6 +295,7 @@
 		1BF6C0FD2D2980D000635A49 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1BABD7A82DC63326009D8FC5 /* Services */,
 				1BF6C0FE2D29850B00635A49 /* Models */,
 				1BAC012E2DAD8475008BCCA4 /* Libs */,
 				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
@@ -422,6 +433,7 @@
 				1BAC01332DAE4E64008BCCA4 /* MediaCollectionView.swift in Sources */,
 				1BAFC41C2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift in Sources */,
 				1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */,
+				1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */,
 				1BAFC4292DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.swift in Sources */,
 				1BAFC4222DC283F500EB6FB4 /* UserInfoViewCell.swift in Sources */,
 				1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */,

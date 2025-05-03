@@ -8,6 +8,7 @@
 import UIKit
 
 class FundraiserDetailsView: UIView {
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -16,13 +17,13 @@ class FundraiserDetailsView: UIView {
     @IBOutlet weak var barViewContainer: UIView!
     @IBOutlet weak var donateViewContainer: UIView!
     
-    public func fillView(with fundraiser: FundraiserModel) {
+    public func fillView(with fundraiser: FundraiserModel, donateFunc: @escaping (Double) -> Void) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
         self.addBarView(collected: fundraiser.collected, goal: fundraiser.goal)
         if fundraiser.closeDate == nil {
             self.donateViewContainer.isHidden = false
-            self.addDonateView()
+            self.addDonateView(fundraiserID: fundraiser.id, donateFunc: donateFunc)
         }
     }
     
@@ -69,7 +70,7 @@ class FundraiserDetailsView: UIView {
         }
     }
     
-    private func addDonateView() {
+    private func addDonateView(fundraiserID: String, donateFunc: @escaping (Double) -> Void) {
         if let donateView = DonateView.loadFromNib() {
             donateView.translatesAutoresizingMaskIntoConstraints = false
             self.donateViewContainer.addSubview(donateView)
@@ -81,7 +82,9 @@ class FundraiserDetailsView: UIView {
             ])
             self.donateViewContainer.layoutIfNeeded()
             self.donateViewContainer.layer.cornerRadius = self.donateViewContainer.frame.width / 20
-            donateView.configure()
+            donateView.configure(donate: { sum in
+                donateFunc(sum)
+            })
         }
     }
 }

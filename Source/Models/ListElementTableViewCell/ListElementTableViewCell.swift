@@ -17,6 +17,8 @@ class ListElementTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var collectedLabel: UILabel!
     
+    private var barView: BarView?
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -25,6 +27,9 @@ class ListElementTableViewCell: UITableViewCell {
         self.collectedLabel.text = ""
         self.labelsContainer.isHidden = true
         self.barViewContainer.isHidden = true
+        self.barView?.collectedLabel.text = ""
+        self.barView?.goalLabel.text = ""
+        self.barView = nil
     }
     
     public func configure(with fundraiser: FundraiserModel) {
@@ -51,7 +56,14 @@ class ListElementTableViewCell: UITableViewCell {
         self.collectedLabel.text = "Зібрано: \(collected.formattedWithSeparator())"
     }
     
-    public func addBarView(collected: Double, goal: Int) {
+    private func fillWithBarView(collected: Double, goal: Int) {
+        self.addBarView(collected: collected, goal: goal)
+        self.barViewContainer.isHidden = false
+    }
+    
+    private func addBarView(collected: Double, goal: Int) {
+        self.barViewContainer.subviews.forEach { $0.removeFromSuperview() }
+
         if let barView = BarView.loadFromNib() {
             barView.translatesAutoresizingMaskIntoConstraints = false
             self.barViewContainer.addSubview(barView)
@@ -65,11 +77,7 @@ class ListElementTableViewCell: UITableViewCell {
             barView.progressView.layer.cornerRadius = barView.progressView.frame.height / 4
             self.barViewContainer.layoutIfNeeded()
             barView.setProgress(collected: collected, goal: goal)
+            self.barView = barView
         }
-    }
-    
-    private func fillWithBarView(collected: Double, goal: Int) {
-        self.addBarView(collected: collected, goal: goal)
-        self.barViewContainer.isHidden = false
     }
 }

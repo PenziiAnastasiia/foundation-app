@@ -165,9 +165,21 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 { return }
+        
         if let model = (indexPath.section == 0 ? self.openFundraisers : self.closedFundraisers).object(at: indexPath.row - 1) {
             let controller = FundraiserDetailsViewController(fundraiser: model)
             self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 { return }
+        
+        if let listCell = cell as? ListElementTableViewCell {
+            if let model = self.openFundraisers.object(at: indexPath.row - 1) {
+                listCell.configure(with: model)
+            }
         }
     }
 }
