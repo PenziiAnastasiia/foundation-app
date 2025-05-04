@@ -16,6 +16,10 @@
 		1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */; };
 		1B9336882D3AB4F100E18231 /* ListElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B9336872D3AB4F100E18231 /* ListElementTableViewCell.xib */; };
 		1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7A92DC6333B009D8FC5 /* DonateService.swift */; };
+		1BABD7AE2DC696F4009D8FC5 /* DonateResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7AD2DC696F4009D8FC5 /* DonateResultViewController.xib */; };
+		1BABD7AF2DC696F4009D8FC5 /* DonateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7AC2DC696F4009D8FC5 /* DonateResultViewController.swift */; };
+		1BABD7B32DC6A55F009D8FC5 /* failure.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7B12DC6A55E009D8FC5 /* failure.gif */; };
+		1BABD7B42DC6A55F009D8FC5 /* success.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7B22DC6A55F009D8FC5 /* success.gif */; };
 		1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC01282DAC22D6008BCCA4 /* BarView.swift */; };
 		1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC012C2DAC231E008BCCA4 /* BarView.xib */; };
 		1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */; };
@@ -64,6 +68,10 @@
 		1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserModel.swift; sourceTree = "<group>"; };
 		1B9336872D3AB4F100E18231 /* ListElementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListElementTableViewCell.xib; sourceTree = "<group>"; };
 		1BABD7A92DC6333B009D8FC5 /* DonateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateService.swift; sourceTree = "<group>"; };
+		1BABD7AC2DC696F4009D8FC5 /* DonateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateResultViewController.swift; sourceTree = "<group>"; };
+		1BABD7AD2DC696F4009D8FC5 /* DonateResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonateResultViewController.xib; sourceTree = "<group>"; };
+		1BABD7B12DC6A55E009D8FC5 /* failure.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = failure.gif; sourceTree = "<group>"; };
+		1BABD7B22DC6A55F009D8FC5 /* success.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = success.gif; sourceTree = "<group>"; };
 		1BAC01282DAC22D6008BCCA4 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		1BAC012C2DAC231E008BCCA4 /* BarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarView.xib; sourceTree = "<group>"; };
 		1BAC012F2DAD8601008BCCA4 /* Numeric+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+Extension.swift"; sourceTree = "<group>"; };
@@ -141,6 +149,24 @@
 				1BABD7A92DC6333B009D8FC5 /* DonateService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1BABD7AB2DC6968F009D8FC5 /* DonateResultViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BABD7AC2DC696F4009D8FC5 /* DonateResultViewController.swift */,
+				1BABD7AD2DC696F4009D8FC5 /* DonateResultViewController.xib */,
+			);
+			path = DonateResultViewController;
+			sourceTree = "<group>";
+		};
+		1BABD7B02DC6A54B009D8FC5 /* Gifs */ = {
+			isa = PBXGroup;
+			children = (
+				1BABD7B12DC6A55E009D8FC5 /* failure.gif */,
+				1BABD7B22DC6A55F009D8FC5 /* success.gif */,
+			);
+			path = Gifs;
 			sourceTree = "<group>";
 		};
 		1BAC01272DAC2242008BCCA4 /* BarView */ = {
@@ -264,6 +290,7 @@
 		1BF6C0DD2D297C1700635A49 = {
 			isa = PBXGroup;
 			children = (
+				1BABD7B02DC6A54B009D8FC5 /* Gifs */,
 				1BF6C0FD2D2980D000635A49 /* Source */,
 				1BF6C0E82D297C1800635A49 /* FoundationApp */,
 				1BF6C0E72D297C1800635A49 /* Products */,
@@ -295,14 +322,15 @@
 		1BF6C0FD2D2980D000635A49 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1BAC012E2DAD8475008BCCA4 /* Libs */,
 				1BABD7A82DC63326009D8FC5 /* Services */,
 				1BF6C0FE2D29850B00635A49 /* Models */,
-				1BAC012E2DAD8475008BCCA4 /* Libs */,
 				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
 				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
 				1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */,
 				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
 				1BB836AB2DB8C26800C0C094 /* ReportDetailsViewController */,
+				1BABD7AB2DC6968F009D8FC5 /* DonateResultViewController */,
 				1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */,
 				1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */,
 			);
@@ -407,8 +435,11 @@
 				1BF6C0F32D297C1B00635A49 /* Assets.xcassets in Resources */,
 				1BF6C0F62D297C1B00635A49 /* Base in Resources */,
 				1B9336882D3AB4F100E18231 /* ListElementTableViewCell.xib in Resources */,
+				1BABD7AE2DC696F4009D8FC5 /* DonateResultViewController.xib in Resources */,
 				1BAFC41D2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.xib in Resources */,
 				1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */,
+				1BABD7B42DC6A55F009D8FC5 /* success.gif in Resources */,
+				1BABD7B32DC6A55F009D8FC5 /* failure.gif in Resources */,
 				1BAFC4282DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.xib in Resources */,
 				1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */,
 				1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */,
@@ -441,6 +472,7 @@
 				1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */,
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,
 				1BAFC4242DC289D500EB6FB4 /* Array+Extension.swift in Sources */,
+				1BABD7AF2DC696F4009D8FC5 /* DonateResultViewController.swift in Sources */,
 				1BB836A82DB7CF1100C0C094 /* ReportsListViewController.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
 				1BAFC4152DC144F600EB6FB4 /* DateFormatter+Extension.swift in Sources */,

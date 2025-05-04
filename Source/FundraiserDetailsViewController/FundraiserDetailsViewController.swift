@@ -23,13 +23,18 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rootView?.fillView(with: self.fundraiser, donateFunc: { sum in
+        self.rootView?.fillView(with: self.fundraiser, donateFunc: { sum, cardNumber, expiredIn, CVV2 in
+            if cardNumber == 0 {
+                self.presentDonateResultViewController(success: false)
+                return
+            }
+            
             DonateService.shared.updateFundraiserCollectedValue(fundraiserID: self.fundraiser.id, donationAmount: sum) { result in
                 switch result {
                 case .success:
-                    print("Донат успішно додано")
+                    self.presentDonateResultViewController(success: true)
                 case .failure(let error):
-                    print("Помилка при оновленні збору: \(error.localizedDescription)")
+                    self.presentDonateResultViewController(success: false)
                 }
             }
         })
@@ -52,6 +57,11 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.stopObservingKeyboard()
+    }
+    
+    private func presentDonateResultViewController(success: Bool) {
+        let controller = DonateResultViewController(success: success, fundraiserTitle: self.fundraiser.title)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     /*

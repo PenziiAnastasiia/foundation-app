@@ -18,14 +18,14 @@ class DonateView: UIView, UITextFieldDelegate {
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var donateButton: UIButton!
     
-    public var donate: ((_ sum: Double) -> Void)?
+    public var donate: ((_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) -> Void)?
     
     class func loadFromNib() -> DonateView? {
         let nib = UINib(nibName: "DonateView", bundle: nil)
         return nib.instantiate(withOwner: nil, options: nil).first as? DonateView
     }
     
-    public func configure(donate: @escaping (Double) -> Void) {
+    public func configure(donate: @escaping (Double, Int?, Date?, Int?) -> Void) {
         [self.sumDonateTextField, self.creditCardNumberTextField, self.creditCardExpiredInTextField, self.creditCardCVV2TextField, self.payButton, self.donateButton].forEach { uiElement in
             uiElement.layer.borderWidth = 0.5
             uiElement.layer.borderColor = UIColor.gray.cgColor
@@ -45,7 +45,7 @@ class DonateView: UIView, UITextFieldDelegate {
         
         guard let sum = self.checkDonateSum() else { return }
         
-        self.donate?(sum)
+        self.donate?(sum, nil, nil, nil)
     }
     
     @IBAction func didTappedDonate() {
@@ -58,7 +58,7 @@ class DonateView: UIView, UITextFieldDelegate {
               let CVV2 = self.checkCardCVV2()
         else { return }
         
-        self.donate?(sum)
+        self.donate?(sum, cardNumber, expiredIn, CVV2)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -97,7 +97,7 @@ class DonateView: UIView, UITextFieldDelegate {
               let cardNumber = Int(text.replacingOccurrences(of: " ", with: ""))
         else { return nil }
         
-        if !self.isValidCardNumber(cardNumber) {
+        if !self.isValidCardNumber(cardNumber) && cardNumber != 0 {
             self.creditCardErrorMessage.text = "Невірно введено номер картки"
             return nil
         }

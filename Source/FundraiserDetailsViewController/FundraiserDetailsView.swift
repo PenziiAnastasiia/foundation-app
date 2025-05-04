@@ -17,7 +17,7 @@ class FundraiserDetailsView: UIView {
     @IBOutlet weak var barViewContainer: UIView!
     @IBOutlet weak var donateViewContainer: UIView!
     
-    public func fillView(with fundraiser: FundraiserModel, donateFunc: @escaping (Double) -> Void) {
+    public func fillView(with fundraiser: FundraiserModel, donateFunc: @escaping (Double, Int?, Date?, Int?) -> Void) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
         self.addBarView(collected: fundraiser.collected, goal: fundraiser.goal)
@@ -70,7 +70,7 @@ class FundraiserDetailsView: UIView {
         }
     }
     
-    private func addDonateView(fundraiserID: String, donateFunc: @escaping (Double) -> Void) {
+    private func addDonateView(fundraiserID: String, donateFunc: @escaping (Double, Int?, Date?, Int?) -> Void) {
         if let donateView = DonateView.loadFromNib() {
             donateView.translatesAutoresizingMaskIntoConstraints = false
             self.donateViewContainer.addSubview(donateView)
@@ -82,8 +82,8 @@ class FundraiserDetailsView: UIView {
             ])
             self.donateViewContainer.layoutIfNeeded()
             self.donateViewContainer.layer.cornerRadius = self.donateViewContainer.frame.width / 20
-            donateView.configure(donate: { sum in
-                donateFunc(sum)
+            donateView.configure(donate: { sum, cardNumber, expiredIn, CVV2 in
+                donateFunc(sum, cardNumber, expiredIn, CVV2)
             })
         }
     }
