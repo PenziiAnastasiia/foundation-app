@@ -62,17 +62,9 @@ class ListElementTableViewCell: UITableViewCell {
     }
     
     private func addBarView(collected: Double, goal: Int) {
-        self.barViewContainer.subviews.forEach { $0.removeFromSuperview() }
-
         if let barView = BarView.loadFromNib() {
-            barView.translatesAutoresizingMaskIntoConstraints = false
-            self.barViewContainer.addSubview(barView)
-            NSLayoutConstraint.activate([
-                barView.leadingAnchor.constraint(equalTo: self.barViewContainer.leadingAnchor),
-                barView.trailingAnchor.constraint(equalTo: self.barViewContainer.trailingAnchor),
-                barView.topAnchor.constraint(equalTo: self.barViewContainer.topAnchor),
-                barView.bottomAnchor.constraint(equalTo: self.barViewContainer.bottomAnchor)
-            ])
+            barView.embedIn(self.barViewContainer)
+            
             barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.frame.height / 4
             barView.progressView.layer.cornerRadius = barView.progressView.frame.height / 4
             self.barViewContainer.layoutIfNeeded()

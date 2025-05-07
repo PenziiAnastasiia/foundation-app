@@ -55,7 +55,7 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
             switch result {
             case .success:
                 self.presentDonateResultViewController(success: true)
-            case .failure(let error):
+            case .failure(_):
                 self.presentDonateResultViewController(success: false)
             }
         }

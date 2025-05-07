@@ -21,23 +21,15 @@ class ReportDetailsView: UIView {
     public func fillMediaCollectionView(for report: ReportModel) {
         guard let namesArray = report.reportMediaNames
         else {
-            self.mediaCollectionContainer.isHidden = true
+            self.mediaCollectionContainer.superview?.isHidden = true
             return
         }
         
         if let mediaCollectionView = MediaCollectionView.loadFromNib() {
-            mediaCollectionView.translatesAutoresizingMaskIntoConstraints = false
-            self.mediaCollectionContainer.addSubview(mediaCollectionView)
-            NSLayoutConstraint.activate([
-                mediaCollectionView.leadingAnchor.constraint(equalTo: self.mediaCollectionContainer.leadingAnchor, constant: 16),
-                mediaCollectionView.trailingAnchor.constraint(equalTo: self.mediaCollectionContainer.trailingAnchor, constant: -16),
-                mediaCollectionView.topAnchor.constraint(equalTo: self.mediaCollectionContainer.topAnchor, constant: 16),
-                mediaCollectionView.bottomAnchor.constraint(equalTo: self.mediaCollectionContainer.bottomAnchor, constant: -16)
-            ])
-            self.mediaCollectionContainer.layer.cornerRadius = self.mediaCollectionContainer.frame.width / 20
+            mediaCollectionView.embedIn(self.mediaCollectionContainer)
+            self.mediaCollectionContainer.superview?.layer.cornerRadius = self.mediaCollectionContainer.frame.width / 20
             mediaCollectionView.loadMedia(for: report.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
         }
     }
 }
-

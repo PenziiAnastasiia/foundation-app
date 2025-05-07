@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,16 +19,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gvc-ru-QZ5">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGt-Xf-2YH">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4o-vI-OGY">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="338"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="370"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gSl-Sg-G5c">
-                                            <rect key="frame" x="16" y="0.0" width="361" height="338"/>
+                                            <rect key="frame" x="16" y="0.0" width="361" height="370"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eu8-qv-iP5">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -66,18 +66,30 @@
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="c22-hK-75h">
-                                                    <rect key="frame" x="0.0" y="301" width="361" height="37"/>
+                                                    <rect key="frame" x="0.0" y="301" width="361" height="69"/>
                                                     <subviews>
-                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8hZ-vl-IiV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="37"/>
-                                                        </activityIndicatorView>
+                                                        <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="4xJ-pj-XlQ">
+                                                            <rect key="frame" x="16" y="16" width="329" height="37"/>
+                                                            <subviews>
+                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6Nv-64-n8H">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="37"/>
+                                                                </activityIndicatorView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="ContainerColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="6Nv-64-n8H" secondAttribute="trailing" id="7YI-Mx-mnL"/>
+                                                                <constraint firstItem="6Nv-64-n8H" firstAttribute="top" secondItem="4xJ-pj-XlQ" secondAttribute="top" id="Mth-DA-1j3"/>
+                                                                <constraint firstAttribute="bottom" secondItem="6Nv-64-n8H" secondAttribute="bottom" id="xWt-OT-ACT"/>
+                                                                <constraint firstItem="6Nv-64-n8H" firstAttribute="leading" secondItem="4xJ-pj-XlQ" secondAttribute="leading" id="yEm-tY-CNy"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" name="ContainerColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="8hZ-vl-IiV" firstAttribute="top" secondItem="c22-hK-75h" secondAttribute="top" id="0FA-pw-kHs"/>
-                                                        <constraint firstAttribute="trailing" secondItem="8hZ-vl-IiV" secondAttribute="trailing" id="Tuv-Q9-NDI"/>
-                                                        <constraint firstAttribute="bottom" secondItem="8hZ-vl-IiV" secondAttribute="bottom" id="lR4-Qa-efZ"/>
-                                                        <constraint firstItem="8hZ-vl-IiV" firstAttribute="leading" secondItem="c22-hK-75h" secondAttribute="leading" id="uAm-Px-478"/>
+                                                        <constraint firstItem="4xJ-pj-XlQ" firstAttribute="leading" secondItem="c22-hK-75h" secondAttribute="leading" constant="16" id="Dig-LE-yEV"/>
+                                                        <constraint firstItem="4xJ-pj-XlQ" firstAttribute="top" secondItem="c22-hK-75h" secondAttribute="top" constant="16" id="YZO-Re-tMY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4xJ-pj-XlQ" secondAttribute="trailing" constant="16" id="cON-6r-p6f"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4xJ-pj-XlQ" secondAttribute="bottom" constant="16" id="tog-7r-rqB"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -124,9 +136,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Gvc-ru-QZ5" secondAttribute="bottom" id="cfo-KO-z7d"/>
             </constraints>
             <connections>
-                <outlet property="activityIndicatorView" destination="8hZ-vl-IiV" id="e0Y-gW-8YM"/>
+                <outlet property="activityIndicatorView" destination="6Nv-64-n8H" id="AqZ-eQ-Vew"/>
                 <outlet property="descriptionLabel" destination="hON-hX-NLh" id="SWp-Ox-I5c"/>
-                <outlet property="mediaCollectionContainer" destination="c22-hK-75h" id="VnL-by-Wjd"/>
+                <outlet property="mediaCollectionContainer" destination="4xJ-pj-XlQ" id="ukL-UA-gKK"/>
                 <outlet property="titleLabel" destination="kaM-nm-8WB" id="5Ld-JX-8cf"/>
             </connections>
             <point key="canvasLocation" x="-106.10687022900763" y="19.718309859154932"/>
@@ -134,10 +146,10 @@
     </objects>
     <resources>
         <namedColor name="BackgroundColor">
-            <color red="0.95129485895823673" green="0.96317648847703652" blue="0.97261679292929293" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.94901960784313721" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="ContainerColor">
-            <color red="0.8892776570855615" green="0.89808238636363635" blue="0.89808238636363635" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.88627450980392153" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
