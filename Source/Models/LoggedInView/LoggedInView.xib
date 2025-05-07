@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="GJs-sk-epa" customClass="LoggedInView" customModule="FoundationApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyk-cL-vE4">
+                    <rect key="frame" x="8" y="0.0" width="80" height="80"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDs-eN-TW7">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="fDs-eN-TW7" secondAttribute="bottom" id="0IY-56-8zD"/>
+                        <constraint firstAttribute="height" constant="80" id="1KR-Ec-icw"/>
+                        <constraint firstAttribute="width" constant="80" id="AQo-wD-4KT"/>
+                        <constraint firstItem="fDs-eN-TW7" firstAttribute="leading" secondItem="Eyk-cL-vE4" secondAttribute="leading" id="EJn-4B-Itm"/>
+                        <constraint firstItem="fDs-eN-TW7" firstAttribute="top" secondItem="Eyk-cL-vE4" secondAttribute="top" id="KSR-Ai-9ld"/>
+                        <constraint firstAttribute="trailing" secondItem="fDs-eN-TW7" secondAttribute="trailing" id="LgX-1l-DAR"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaY-km-aRd">
+                    <rect key="frame" x="104" y="0.0" width="0.0" height="80"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odN-Mj-m5y">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="odN-Mj-m5y" firstAttribute="top" secondItem="xaY-km-aRd" secondAttribute="top" id="Nlf-I6-ejI"/>
+                        <constraint firstAttribute="trailing" secondItem="odN-Mj-m5y" secondAttribute="trailing" id="ano-Vl-4IK"/>
+                        <constraint firstAttribute="bottom" secondItem="odN-Mj-m5y" secondAttribute="bottom" id="dVj-9V-ZfT"/>
+                        <constraint firstItem="odN-Mj-m5y" firstAttribute="leading" secondItem="xaY-km-aRd" secondAttribute="leading" id="vEE-2F-jWa"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzo-O2-oNm">
+                    <rect key="frame" x="441" y="0.0" width="59" height="80"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGT-01-S5D">
+                            <rect key="frame" x="0.0" y="0.0" width="51" height="80"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="logoutTapped" destination="GJs-sk-epa" eventType="touchUpInside" id="pJe-Jk-Cap"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="PGT-01-S5D" secondAttribute="bottom" id="AOs-sw-QOF"/>
+                        <constraint firstAttribute="trailing" secondItem="PGT-01-S5D" secondAttribute="trailing" constant="8" id="T7I-EU-nl7"/>
+                        <constraint firstItem="PGT-01-S5D" firstAttribute="leading" secondItem="vzo-O2-oNm" secondAttribute="leading" id="oZE-rA-Fcm"/>
+                        <constraint firstItem="PGT-01-S5D" firstAttribute="top" secondItem="vzo-O2-oNm" secondAttribute="top" id="ov8-HC-9Gl"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vzo-O2-oNm" firstAttribute="top" secondItem="GJs-sk-epa" secondAttribute="top" id="6Pm-bB-3b8"/>
+                <constraint firstItem="Eyk-cL-vE4" firstAttribute="leading" secondItem="GJs-sk-epa" secondAttribute="leading" constant="8" id="7Cg-KU-VEK"/>
+                <constraint firstAttribute="bottom" secondItem="Eyk-cL-vE4" secondAttribute="bottom" id="7cS-Hb-s5q"/>
+                <constraint firstAttribute="trailing" secondItem="vzo-O2-oNm" secondAttribute="trailing" id="DDk-ek-S2q"/>
+                <constraint firstAttribute="bottom" secondItem="xaY-km-aRd" secondAttribute="bottom" id="SZs-e8-Ok1"/>
+                <constraint firstAttribute="bottom" secondItem="vzo-O2-oNm" secondAttribute="bottom" id="W6N-zn-I8g"/>
+                <constraint firstItem="xaY-km-aRd" firstAttribute="top" secondItem="GJs-sk-epa" secondAttribute="top" id="XYi-qT-UUI"/>
+                <constraint firstItem="xaY-km-aRd" firstAttribute="leading" secondItem="Eyk-cL-vE4" secondAttribute="trailing" constant="16" id="kvm-tg-TXP"/>
+                <constraint firstItem="Eyk-cL-vE4" firstAttribute="top" secondItem="GJs-sk-epa" secondAttribute="top" id="luV-J7-6S1"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="image" destination="fDs-eN-TW7" id="H5W-CB-iRJ"/>
+                <outlet property="name" destination="odN-Mj-m5y" id="UaC-S0-ztl"/>
+            </connections>
+            <point key="canvasLocation" x="191" y="35"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
+    </resources>
+</document>

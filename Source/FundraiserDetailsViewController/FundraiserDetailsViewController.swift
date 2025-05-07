@@ -23,23 +23,9 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rootView?.fillView(with: self.fundraiser, donateFunc: { sum, cardNumber, expiredIn, CVV2 in
-            if cardNumber == 0 {
-                self.presentDonateResultViewController(success: false)
-                return
-            }
-            
-            DonateService.shared.updateFundraiserCollectedValue(fundraiserID: self.fundraiser.id, donationAmount: sum) { result in
-                switch result {
-                case .success:
-                    self.presentDonateResultViewController(success: true)
-                case .failure(let error):
-                    self.presentDonateResultViewController(success: false)
-                }
-            }
-        })
+        self.rootView?.fillView(with: self.fundraiser, donateFunc: self.donateFunc)
         self.rootView?.fillMediaCollectionView(for: self.fundraiser)
-        self.startObservingKeyboard()
+        self.enableHideKeyboardOnTap()
     }
     
     init(fundraiser: FundraiserModel) {
@@ -52,26 +38,31 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.enableHideKeyboardOnTap()
+        self.startObservingKeyboard()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.stopObservingKeyboard()
+    }
+                                
+    private func donateFunc(_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) {
+        if cardNumber == 0 {
+            self.presentDonateResultViewController(success: false)
+            return
+        }
+        
+        DonateService.shared.updateFundraiserCollectedValue(fundraiserID: self.fundraiser.id, donationAmount: sum) { result in
+            switch result {
+            case .success:
+                self.presentDonateResultViewController(success: true)
+            case .failure(let error):
+                self.presentDonateResultViewController(success: false)
+            }
+        }
     }
     
     private func presentDonateResultViewController(success: Bool) {
         let controller = DonateResultViewController(success: success, fundraiserTitle: self.fundraiser.title)
         self.navigationController?.pushViewController(controller, animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

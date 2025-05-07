@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AccountPageViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
 
@@ -22,6 +23,9 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         super.viewDidLoad()
         
         self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук", filterAction: #selector(self.didTapFilter))
+        
+        self.enableHideKeyboardOnTap()
+        self.startObservingKeyboard()
         
         let donationCell = UINib(nibName: "DonationHistoryTableViewCell", bundle: nil)
         let infoCell = UINib(nibName: "UserInfoViewCell", bundle: nil)
@@ -43,17 +47,29 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.startObservingKeyboard()
+        self.donationHistoryTableView.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    deinit {
         self.stopObservingKeyboard()
     }
     
     @objc private func didTapFilter() {
         print("Filter button tapped")
     }
-
+    
+    private func getUID() -> String? {
+        return Auth.auth().getUserID()
+    }
+    
+    private func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            
+        }
+        self.donationHistoryTableView.reloadData()
+    }
 
     // MARK: - UITableViewDataSource, UITableViewDelegate
     
@@ -66,8 +82,21 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         
         switch indexPath.row {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoCell", for: indexPath) as? UserInfoViewCell
-     
+            cell = (tableView.dequeueReusableCell(withIdentifier: "UserInfoCell", for: indexPath) as? UserInfoViewCell)
+                .flatMap {
+                    if let uid = self.getUID() {
+                        $0.configureWithLoggedInView(userImage: UIImage(), userName: "Анастасія", logout: self.logout)
+                    } else {
+                        $0.configureWithNotLoggedInView(onSignInTap: { [weak self] in
+                            let signInVC = SignInViewController()
+                            self?.navigationController?.pushViewController(signInVC, animated: true)
+                        }, onSignUpTap: { [weak self] in
+                            let signUpVC = SignUpViewController()
+                            self?.navigationController?.pushViewController(signUpVC, animated: true)
+                        })
+                    }
+                    return $0
+                }
         default:
             cell = (tableView.dequeueReusableCell(withIdentifier: "DonationCell", for: indexPath) as? DonationHistoryTableViewCell)
                 .flatMap {

@@ -1,0 +1,233 @@
+//
+//  LegalEntityForm.swift
+//  FoundationApp
+//
+//  Created by Анастасія Пензій on 04.05.2025.
+//
+
+import Foundation
+import UIKit
+
+class LegalEntityForm: UIView, FormView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    weak var delegate: FormViewDelegate?
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var organizationNameTextField: UITextField!
+    @IBOutlet weak var EDRPOYTextField: UITextField!
+    @IBOutlet weak var IBANTextField: UITextField!
+    @IBOutlet weak var bankTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var PIBTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    
+    private let banks = ["ПриватБанк", "Ощадбанк", "UKRSIBBANK", "Альфа-Банк", "ПУМБ", "Універсал банк"]
+    private let bankPicker = UIPickerView()
+    private var hasAddedUAPrefix = false
+    private var hasAddedPhonePrefix = false
+    
+    private let EDRPOYSize = 8
+    private let IBANSize = 34
+    private let phoneNumberSize = 13
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.configureBankPicker()
+        self.EDRPOYTextField.delegate = self
+        self.IBANTextField.delegate = self
+        self.phoneNumberTextField.delegate = self
+    }
+    
+    func getScrollView() -> UIScrollView? {
+        return self.scrollView
+    }
+    
+    @objc private func donePressed() {
+        self.bankTextField.resignFirstResponder()
+    }
+    
+    @IBAction func didTappedSignUp() {
+        if !self.getResultOfAllChecks() { return }
+    }
+    
+    public func configure() {
+        [self.organizationNameTextField, self.EDRPOYTextField, self.IBANTextField, self.bankTextField, self.addressTextField, self.PIBTextField, self.phoneNumberTextField, self.emailTextField, self.passwordTextField].forEach { textField in
+            textField.applyStandardStyle()
+        }
+    }
+    
+    public func updateErrorLabels(with errorResult: AuthErrorResult) {
+        self.emailErrorLabel.text = errorResult.textEmailError
+        self.passwordErrorLabel.text = errorResult.textPasswordError
+    }
+    
+    public func resetErrorLabels() {
+        self.emailErrorLabel.text = ""
+        self.passwordErrorLabel.text = ""
+    }
+    
+    public func getUserData() -> [String: String]? {
+        guard let organizationName = self.organizationNameTextField.text,
+              let EDRPOY = self.EDRPOYTextField.text,
+              let IBAN = self.IBANTextField.text,
+              let bank = self.bankTextField.text,
+              let address = self.addressTextField.text,
+              let pib = self.PIBTextField.text,
+              let phoneNumber = self.phoneNumberTextField.text
+        else { return nil }
+        
+        return [
+            "organizationName": organizationName,
+            "EDRPOY": EDRPOY,
+            "IBAN": IBAN,
+            "bank": bank,
+            "address": address,
+            "PIB": pib,
+            "phoneNumber": phoneNumber,
+            "type": "legal"
+        ]
+    }
+    
+    // MARK: - private
+    
+    private func configureBankPicker() {
+        self.bankPicker.delegate = self
+        self.bankPicker.dataSource = self
+        self.bankTextField.inputView = self.bankPicker
+
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(self.donePressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([flexibleSpace, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        self.bankTextField.inputAccessoryView = toolbar
+    }
+    
+    // MARK: -- check
+    
+    private func checkTextFieldHasEnoughText(_ textField: UITextField, neededLength: Int) -> Bool {
+        if let length = textField.text?.count, length < neededLength {
+            textField.layer.borderColor = UIColor.red.cgColor
+            return false
+        }
+        textField.layer.borderColor = UIColor.gray.cgColor
+        return true
+    }
+    
+    private func getResultOfAllChecks() -> Bool {
+        let checkOrganizationNameResult = self.organizationNameTextField.isNotEmpty
+        let checkEDRPOYResult = self.checkTextFieldHasEnoughText(self.EDRPOYTextField, neededLength: self.EDRPOYSize)
+        let checkIBANResult = self.checkTextFieldHasEnoughText(self.IBANTextField, neededLength: self.IBANSize)
+        let checkBankResult = self.bankTextField.isNotEmpty
+        let checkAddressResult = self.addressTextField.isNotEmpty
+        let checkPIBResult = self.PIBTextField.checkPIB()
+        let checkPhoneNumberResult = self.checkTextFieldHasEnoughText(self.phoneNumberTextField, neededLength: self.phoneNumberSize)
+        let checkEmailResult = self.emailTextField.validateEmail()
+        let checkPassword = self.passwordTextField.isNotEmpty
+        
+        let isValid =
+            checkOrganizationNameResult &&
+            checkEDRPOYResult &&
+            checkIBANResult &&
+            checkBankResult &&
+            checkAddressResult &&
+            checkPIBResult &&
+            checkPhoneNumberResult &&
+            checkEmailResult &&
+            checkPassword
+        
+        return isValid
+    }
+    
+    // MARK: -- addPrefixes
+    
+    private func addUAPrefix(textField: UITextField) {
+        textField.text = "UA"
+        self.hasAddedUAPrefix = true
+    }
+    
+    private func addPhonePrefix(textField: UITextField) {
+        textField.text = "+380"
+        self.hasAddedPhonePrefix = true
+    }
+    
+    // MARK: -- handle
+    
+    private func handleEDRPOYTextFieldFormatting(newText: String) -> Bool {
+        if newText.count > self.EDRPOYSize {
+            return false
+        }
+        return true
+    }
+    
+    private func handleIBANTextFieldFormatting(newText: String, currentText: String) -> Bool {
+        if (newText.count < currentText.count && currentText == "UA") || newText.count > self.IBANSize {
+            return false
+        } else if !newText.contains("UA") {
+            self.IBANTextField.text = "UA"
+            return false
+        }
+        return true
+    }
+    
+    private func handlePhoneNumberTextFieldFormatting(newText: String, currentText: String) -> Bool {
+        if (newText.count < currentText.count && currentText == "+380") || newText.count > self.phoneNumberSize {
+            return false
+        } else if !newText.contains("+380") {
+            self.phoneNumberTextField.text = "+380"
+            return false
+        }
+        return true
+    }
+    
+    // MARK: - UIPickerViewDelegate, UIPickerViewDataSource
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.banks.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.banks[row]
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.bankTextField.text = banks[row]
+    }
+    
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.IBANTextField && !self.hasAddedUAPrefix && (textField.text?.isEmpty ?? true) {
+            self.addUAPrefix(textField: textField)
+        } else if textField == self.phoneNumberTextField && !self.hasAddedPhonePrefix && (textField.text?.isEmpty ?? true) {
+            self.addPhonePrefix(textField: textField)
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        switch textField {
+        case self.EDRPOYTextField:
+            return self.handleEDRPOYTextFieldFormatting(newText: newText)
+        case self.IBANTextField:
+            return self.handleIBANTextFieldFormatting(newText: newText, currentText: currentText)
+        case self.phoneNumberTextField:
+            return self.handlePhoneNumberTextFieldFormatting(newText: newText, currentText: currentText)
+        default:
+            break
+        }
+        return true
+    }
+}

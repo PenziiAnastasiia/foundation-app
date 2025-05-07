@@ -29,6 +29,8 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
         self.view.isHidden = true
 
         self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук звітів", filterAction: #selector(self.didTapFilter))
+        
+        self.enableHideKeyboardOnTap()
         self.startObservingKeyboard()
         
         let listElementCell = UINib(nibName: "ListElementTableViewCell", bundle: nil)
@@ -48,11 +50,7 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.enableHideKeyboardOnTap()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
+    deinit {
         self.stopObservingKeyboard()
     }
     

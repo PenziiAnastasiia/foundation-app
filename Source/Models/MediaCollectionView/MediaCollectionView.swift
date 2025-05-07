@@ -16,11 +16,6 @@ class MediaCollectionView: UIView {
     private var mediaSizes: [CGSize] = []
     private var dynamicHeightConstraint: NSLayoutConstraint?
     
-    class func loadFromNib() -> MediaCollectionView? {
-        let nib = UINib(nibName: "MediaCollectionView", bundle: nil)
-        return nib.instantiate(withOwner: nil, options: nil).first as? MediaCollectionView
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
         

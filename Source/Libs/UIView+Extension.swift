@@ -19,4 +19,23 @@ extension UIView {
         }
         return nil
     }
+    
+    static func loadFromNib() -> Self? {
+        let nibName = String(describing: self)
+        let nib = UINib(nibName: nibName, bundle: nil)
+        return nib.instantiate(withOwner: nil, options: nil).first as? Self
+    }
+    
+    func embedIn(_ container: UIView) {
+        container.subviews.forEach { $0.removeFromSuperview() }
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(self)
+        NSLayoutConstraint.activate([
+            self.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            self.topAnchor.constraint(equalTo: container.topAnchor),
+            self.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            self.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        ])
+    }
 }

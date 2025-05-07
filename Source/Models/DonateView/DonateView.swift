@@ -18,18 +18,15 @@ class DonateView: UIView, UITextFieldDelegate {
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var donateButton: UIButton!
     
-    public var donate: ((_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) -> Void)?
+    private var donate: ((_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) -> Void)?
     
-    class func loadFromNib() -> DonateView? {
-        let nib = UINib(nibName: "DonateView", bundle: nil)
-        return nib.instantiate(withOwner: nil, options: nil).first as? DonateView
-    }
-    
+    private let creditCardNumberTextSize = 4 * 4
+    private let creditCardExpiredInSizeWithSlash = 2 * 2 + 1
+    private let creditCardCVV2Size = 3
+
     public func configure(donate: @escaping (Double, Int?, Date?, Int?) -> Void) {
-        [self.sumDonateTextField, self.creditCardNumberTextField, self.creditCardExpiredInTextField, self.creditCardCVV2TextField, self.payButton, self.donateButton].forEach { uiElement in
-            uiElement.layer.borderWidth = 0.5
-            uiElement.layer.borderColor = UIColor.gray.cgColor
-            uiElement.layer.cornerRadius = 8
+        [self.sumDonateTextField, self.creditCardNumberTextField, self.creditCardExpiredInTextField, self.creditCardCVV2TextField].forEach { textField in
+            textField.applyStandardStyle()
         }
 
         self.sumDonateTextField.delegate = self
@@ -61,21 +58,8 @@ class DonateView: UIView, UITextFieldDelegate {
         self.donate?(sum, cardNumber, expiredIn, CVV2)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        
-        if textField == self.sumDonateTextField {
-            return self.handleSumDonateFormatting(newText: newText)
-        } else if textField == self.creditCardNumberTextField {
-            return self.handleCardNumberFormatting(newText: newText, currentText: currentText, textField: textField)
-        } else if textField == self.creditCardExpiredInTextField {
-            return self.handleCardExpiredInFormatting(newText: newText, currentText: currentText, textField: textField)
-        } else if textField == self.creditCardCVV2TextField {
-            return self.handleCardCVV2Formatting(newText: newText)
-        }
-        return true
-    }
+    // MARK: - private
+    // MARK: -- check
     
     private func checkDonateSum() -> Double? {
         guard let donateSumText = self.sumDonateTextField.text?.replacingOccurrences(of: ",", with: "."),
@@ -145,11 +129,14 @@ class DonateView: UIView, UITextFieldDelegate {
     }
     
     private func checkCardCVV2() -> Int? {
-        if let text = self.creditCardCVV2TextField.text, text.count == 3, let CVV2 = Int(text) {
+        if let text = self.creditCardCVV2TextField.text, text.count == self.creditCardCVV2Size, let CVV2 = Int(text) {
             return CVV2
         }
+        self.creditCardErrorMessage.text = "Невірно введено CVV2 картки"
         return nil
     }
+    
+    // MARK: -- handle
     
     private func handleSumDonateFormatting(newText: String) -> Bool {
         if newText.filter({ $0 == "," }).count > 1 {
@@ -162,9 +149,8 @@ class DonateView: UIView, UITextFieldDelegate {
         return true
     }
     
-    private func handleCardNumberFormatting(newText: String, currentText: String, textField: UITextField) -> Bool {
-        let creditCardNumberTextSize = 4 * 4
-        let creditCardNumberTextSizeWithSpaces = creditCardNumberTextSize + 3
+    private func handleCardNumberFormatting(newText: String, currentText: String) -> Bool {
+        let creditCardNumberTextSizeWithSpaces = self.creditCardNumberTextSize + 3
         
         if newText.count > creditCardNumberTextSizeWithSpaces {
             return false
@@ -172,30 +158,28 @@ class DonateView: UIView, UITextFieldDelegate {
         
         let rawNewText = newText.replacingOccurrences(of: " ", with: "")
         
-        if newText.count > currentText.count && rawNewText.count % 4 == 0 && rawNewText.count < creditCardNumberTextSize {
-            textField.text = newText + " "
+        if newText.count > currentText.count && rawNewText.count % 4 == 0 && rawNewText.count < self.creditCardNumberTextSize {
+            self.creditCardNumberTextField.text = newText + " "
             return false
         }
         
         if newText.count < currentText.count && currentText.last == " " {
-            textField.text = String(newText.dropLast(1))
+            self.creditCardNumberTextField.text = String(newText.dropLast(1))
             return false
         }
         return true
     }
     
-    private func handleCardExpiredInFormatting(newText: String, currentText: String, textField: UITextField) -> Bool {
-        let creditCardExpiredInSizeWithSlash = 2 * 2 + 1
-        
-        if newText.count > creditCardExpiredInSizeWithSlash {
+    private func handleCardExpiredInFormatting(newText: String, currentText: String) -> Bool {
+        if newText.count > self.creditCardExpiredInSizeWithSlash {
             return false
         }
         
         if newText.count == 2 {
             if newText.count < currentText.count {
-                textField.text = String(newText.dropLast(1))
+                self.creditCardExpiredInTextField.text = String(newText.dropLast(1))
             } else {
-                textField.text = newText + "/"
+                self.creditCardExpiredInTextField.text = newText + "/"
             }
             return false
         }
@@ -203,10 +187,29 @@ class DonateView: UIView, UITextFieldDelegate {
     }
     
     private func handleCardCVV2Formatting(newText: String) -> Bool {
-        let creditCardCVV2SizeWithSlash = 3
-        
-        if newText.count > creditCardCVV2SizeWithSlash {
+        if newText.count > self.creditCardCVV2Size {
             return false
+        }
+        return true
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        switch textField {
+        case self.sumDonateTextField:
+            return self.handleSumDonateFormatting(newText: newText)
+        case self.creditCardNumberTextField:
+            return self.handleCardNumberFormatting(newText: newText, currentText: currentText)
+        case self.creditCardExpiredInTextField:
+            return self.handleCardExpiredInFormatting(newText: newText, currentText: currentText)
+        case self.creditCardCVV2TextField:
+            return self.handleCardCVV2Formatting(newText: newText)
+        default:
+            break
         }
         return true
     }

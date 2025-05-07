@@ -29,6 +29,7 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
         self.view.isHidden = true
 
         self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук зборів", filterAction: #selector(self.didTapFilter))
+        self.enableHideKeyboardOnTap()
         self.startObservingKeyboard()
         
         let separatortCell = UINib(nibName: "FundraisersSeparatorTableViewCell", bundle: nil)
@@ -50,12 +51,8 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.enableHideKeyboardOnTap()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
+
+    deinit {
         self.stopObservingKeyboard()
     }
     
