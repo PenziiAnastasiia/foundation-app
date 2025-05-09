@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,6 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let tabBarController = window?.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = 1
+        }
+        if Auth.auth().currentUser == nil {
+            UserManager.shared.clearUser()
+        } else {
+            UserManager.shared.loadUserFromDefaults()
         }
     }
 

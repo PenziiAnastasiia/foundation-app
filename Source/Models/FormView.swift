@@ -12,7 +12,7 @@ protocol FormView: AnyObject {
 
     func configure()
     func getScrollView() -> UIScrollView?
-    func getUserData() -> [String: String]?
+    func getUser() -> UserModel?
     func updateErrorLabels(with result: AuthErrorResult)
     func resetErrorLabels()
 }

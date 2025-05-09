@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class AccountPageViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
 
@@ -18,11 +17,12 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     
     private var searchBar: UISearchBar?
     private var donationItems: [DonationModel] = []
+    private var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук", filterAction: #selector(self.didTapFilter))
+        self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук в історії", filterAction: #selector(self.didTapFilter))
         
         self.enableHideKeyboardOnTap()
         self.startObservingKeyboard()
@@ -36,18 +36,18 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         self.donationHistoryTableView.dataSource = self
         self.donationHistoryTableView.delegate = self
         
-        self.donationItems = [
-            DonationModel(fundraiserTitle: "1keeihehkqekjekje", donate: 109.2, date: Date()),
-            DonationModel(fundraiserTitle: "393919eihf diuwhjfgql jeh1u39 u9 31y 8ey 0fjofpw0if fjf fiwo0f9", donate: 1.25, date: Date()),
-            DonationModel(fundraiserTitle: "djdjkssofjfo3947rh", donate: 10902.98, date: Date()),
-            DonationModel(fundraiserTitle: "4o0ejjdjwijdqodjfqejied9nd", donate: 5555, date: Date()),
-        ]
-        
-        self.donationHistoryTableView.reloadData()
+        self.uid = UserManager.shared.currentUID
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.donationHistoryTableView.reloadData()
+        if let uid = self.uid {
+            Task {
+                do {
+                    self.donationItems = try await self.getUserDonationHistory(uid)
+                    self.donationHistoryTableView.reloadData()
+                } catch {  }
+            }
+        }
     }
     
     deinit {
@@ -58,23 +58,43 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         print("Filter button tapped")
     }
     
-    private func getUID() -> String? {
-        return Auth.auth().getUserID()
+    // MARK: - private
+    
+    private func getUserDonationHistory(_ uid: String) async throws -> [DonationModel] {
+        try await withCheckedThrowingContinuation { continuation in
+            DonateService.shared.getUserDonationHistory(uid: uid) { result in
+                switch result {
+                case .success(let donations):
+                    continuation.resume(returning: donations)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
     }
     
     private func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            
+        AuthService.shared.signOut() { result in
+            switch result {
+            case .success:
+                UserManager.shared.clearUser()
+                DispatchQueue.main.async {
+                    self.donationHistoryTableView.reloadData()
+                }
+            case .failure(_):
+                self.showAlert(title: "Невідома помилка", message: "Повторіть спробу виходу пізніше")
+            }
         }
-        self.donationHistoryTableView.reloadData()
     }
 
     // MARK: - UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.donationItems.count + 1
+        if let _ = UserManager.shared.currentUser {
+            return self.donationItems.count + 1
+        } else {
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,15 +104,21 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         case 0:
             cell = (tableView.dequeueReusableCell(withIdentifier: "UserInfoCell", for: indexPath) as? UserInfoViewCell)
                 .flatMap {
-                    if let uid = self.getUID() {
-                        $0.configureWithLoggedInView(userImage: UIImage(), userName: "Анастасія", logout: self.logout)
+                    if let user = UserManager.shared.currentUser {
+                        $0.configureWithLoggedInView(
+                            userImage: UIImage(),
+                            userName: user.PIB.components(separatedBy: " ").object(at: 1) ?? "Unknown",
+                            userHistoryIsEmpty: self.donationItems.isEmpty,
+                            logout: { [weak self] in self?.logout() })
                     } else {
                         $0.configureWithNotLoggedInView(onSignInTap: { [weak self] in
+                            guard let self = self else { return }
                             let signInVC = SignInViewController()
-                            self?.navigationController?.pushViewController(signInVC, animated: true)
+                            self.navigationController?.pushViewController(signInVC, animated: true)
                         }, onSignUpTap: { [weak self] in
+                            guard let self = self else { return }
                             let signUpVC = SignUpViewController()
-                            self?.navigationController?.pushViewController(signUpVC, animated: true)
+                            self.navigationController?.pushViewController(signUpVC, animated: true)
                         })
                     }
                     return $0

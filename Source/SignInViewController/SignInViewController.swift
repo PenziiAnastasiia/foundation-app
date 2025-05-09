@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
@@ -40,14 +39,19 @@ class SignInViewController: UIViewController {
     }
     
     private func signIn(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let errorResult = ErrorService.getLocalizedError(from: error) {
-                self.updateErrorLabels(with: errorResult)
-                return
+        AuthService.shared.signIn(email: email, password: password) { result in
+            switch result {
+            case .success(let uid):
+                self.resetErrorLabels()
+                Task {
+                    await self.getUserData(uid)
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case.failure(let error):
+                if let errorResult = ErrorService.getLocalizedError(from: error) {
+                    self.updateErrorLabels(with: errorResult)
+                }
             }
-            
-            self.resetErrorLabels()
-            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -59,5 +63,15 @@ class SignInViewController: UIViewController {
     private func resetErrorLabels() {
         self.emailErrorLabel.text = ""
         self.passwordErrorLabel.text = ""
+    }
+    
+    private func getUserData(_ uid: String) async {
+        do {
+            let data = try await AuthService.shared.getUserData(uid)
+            UserManager.shared.saveUserToDefaults(try UserModel.fromDictionary(data), uid: uid)
+        } catch {
+            AuthService.shared.signOut { _ in }
+            self.showAlert(title: "Невідома помилка", message: "Повторіть спробу входу пізніше")
+        }
     }
 }

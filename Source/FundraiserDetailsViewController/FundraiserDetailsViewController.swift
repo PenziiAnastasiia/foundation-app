@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     
@@ -23,7 +22,14 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rootView?.fillView(with: self.fundraiser, donateFunc: self.donateFunc)
+        let user = UserManager.shared.currentUser
+        
+        if user?.type == nil || user?.type == "individual" {
+            self.rootView?.fillView(with: self.fundraiser, donateFunc: self.donate)
+        } else {
+            self.rootView?.fillView(with: self.fundraiser, generateInvoiceFunc: self.generateInvoice)
+        }
+
         self.rootView?.fillMediaCollectionView(for: self.fundraiser)
         self.enableHideKeyboardOnTap()
     }
@@ -44,19 +50,39 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     override func viewWillDisappear(_ animated: Bool) {
         self.stopObservingKeyboard()
     }
+    
+    private func generateInvoice(_ sum: Double) {
+        
+    }
                                 
-    private func donateFunc(_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) {
+    private func donate(_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) {
         if cardNumber == 0 {
             self.presentDonateResultViewController(success: false)
             return
         }
         
-        DonateService.shared.updateFundraiserCollectedValue(fundraiserID: self.fundraiser.id, donationAmount: sum) { result in
+        let donation = DonationModel(fundraiser: self.fundraiser.id, amount: sum, date: Date())
+        
+        DonateService.shared.updateFundraiserCollectedValue(donation: donation) { result in
             switch result {
             case .success:
+                if let uid = UserManager.shared.currentUID {
+                    self.saveToHistory(uid: uid, donation: donation)
+                }
                 self.presentDonateResultViewController(success: true)
             case .failure(_):
                 self.presentDonateResultViewController(success: false)
+            }
+        }
+    }
+    
+    private func saveToHistory(uid: String, donation: DonationModel) {
+        DonateService.shared.saveDonateToUserHistory(uid: uid, donation: donation) { result in
+            switch result {
+            case .success:
+                print("success saved donation into history")
+            case .failure:
+                print("saving donation into history failed")
             }
         }
     }

@@ -19,11 +19,11 @@ class DonationHistoryTableViewCell: UITableViewCell {
     }
     
     public func configure(with donation: DonationModel) {
-        self.titleLabel.text = donation.fundraiserTitle
-        self.donateLabel.text = "\(donation.donate.formattedWithSeparator()) ₴"
+        self.titleLabel.text = donation.fundraiser
+        self.donateLabel.text = "\(donation.amount.formattedWithSeparator()) ₴"
         self.dateLabel.text = DateFormatter.shared.string(from: donation.date)
         
-        self.nestedView.layer.cornerRadius = self.nestedView.frame.width / 25
+        self.nestedView.setCornerRadius()
         self.donateLabel.adjustsFontSizeToFitWidth = true
         self.donateLabel.minimumScaleFactor = 0.5
     }

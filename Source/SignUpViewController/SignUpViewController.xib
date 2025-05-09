@@ -5,14 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="FoundationApp" customModuleProvider="target">
             <connections>
                 <outlet property="formContainer" destination="AlA-lY-R3W" id="YkL-aH-LWT"/>
-                <outlet property="generalErrorView" destination="FyH-9N-u5H" id="Y99-ld-zcA"/>
                 <outlet property="segmentControl" destination="KSe-2v-QjS" id="BSe-lM-PDG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -49,25 +47,8 @@
                         <action selector="segmentControlAction:" destination="-1" eventType="valueChanged" id="iAy-ls-9db"/>
                     </connections>
                 </segmentedControl>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyH-9N-u5H">
-                    <rect key="frame" x="0.0" y="201.66666666666666" width="393" height="18"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сталась невідома помилка" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja8-hn-vpw">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" systemColor="systemRedColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="Ja8-hn-vpw" secondAttribute="bottom" id="HV5-gt-WT5"/>
-                        <constraint firstItem="Ja8-hn-vpw" firstAttribute="top" secondItem="FyH-9N-u5H" secondAttribute="top" id="W4E-T2-IEs"/>
-                        <constraint firstAttribute="trailing" secondItem="Ja8-hn-vpw" secondAttribute="trailing" id="X6v-ks-UH9"/>
-                        <constraint firstItem="Ja8-hn-vpw" firstAttribute="leading" secondItem="FyH-9N-u5H" secondAttribute="leading" id="lCd-80-4Y5"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AlA-lY-R3W">
-                    <rect key="frame" x="0.0" y="227.66666666666669" width="393" height="556.33333333333326"/>
+                    <rect key="frame" x="0.0" y="201.66666666666669" width="393" height="582.33333333333326"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -78,14 +59,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AlA-lY-R3W" secondAttribute="trailing" id="8WW-dv-2wm"/>
                 <constraint firstItem="evL-Pc-Z4o" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8cC-ii-hIx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KSe-2v-QjS" secondAttribute="trailing" constant="16" id="9tS-ih-ltG"/>
-                <constraint firstItem="FyH-9N-u5H" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BIA-MQ-ogd"/>
-                <constraint firstItem="FyH-9N-u5H" firstAttribute="top" secondItem="KSe-2v-QjS" secondAttribute="bottom" constant="8" id="NRB-Oq-Ky2"/>
                 <constraint firstItem="KSe-2v-QjS" firstAttribute="top" secondItem="evL-Pc-Z4o" secondAttribute="bottom" constant="16" id="QhL-dw-1Vu"/>
                 <constraint firstItem="KSe-2v-QjS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Qw4-ea-cv4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FyH-9N-u5H" secondAttribute="trailing" id="RPi-V8-OFu"/>
                 <constraint firstItem="AlA-lY-R3W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vi5-za-2Iy"/>
                 <constraint firstItem="KSe-2v-QjS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cMX-5g-zi0"/>
-                <constraint firstItem="AlA-lY-R3W" firstAttribute="top" secondItem="FyH-9N-u5H" secondAttribute="bottom" constant="8" id="eUx-RV-nns"/>
+                <constraint firstItem="AlA-lY-R3W" firstAttribute="top" secondItem="KSe-2v-QjS" secondAttribute="bottom" constant="8" id="g0J-fV-hmK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="evL-Pc-Z4o" secondAttribute="leading" id="s8Z-mS-yri"/>
             </constraints>
             <point key="canvasLocation" x="9.9236641221374047" y="656.33802816901414"/>
@@ -95,8 +73,5 @@
         <namedColor name="BackgroundColor">
             <color red="0.94901960784313721" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

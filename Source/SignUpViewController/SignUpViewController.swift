@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelegate {
     
@@ -65,28 +63,31 @@ class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelega
     }
     
     private func signUp(email: String, password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let errorResult = ErrorService.getLocalizedError(from: error) {
-                self.currentFormView?.updateErrorLabels(with: errorResult)
-                return
+        AuthService.shared.signUp(email: email, password: password) { result in
+            switch result {
+            case .success(let uid):
+                self.currentFormView?.resetErrorLabels()
+                guard let user = self.currentFormView?.getUser() else { return }
+                self.saveUserData(uid, user)
+
+            case .failure(let error):
+                if let errorResult = ErrorService.getLocalizedError(from: error) {
+                    self.currentFormView?.updateErrorLabels(with: errorResult)
+                }
             }
-            
-            self.currentFormView?.resetErrorLabels()
-            guard let uid = result?.user.uid,
-                  let data = self.currentFormView?.getUserData()
-            else { return }
-            
-            self.saveUserData(user: uid, data: data)
         }
     }
     
-    private func saveUserData(user uid: String, data: [String: String]) {
-        Firestore.firestore().collection("Users").document(uid).setData(data) { error in
-            if error != nil {
-                Auth.auth().currentUser?.delete { _ in }
-                self.generalErrorView.isHidden = false
-            } else {
+    private func saveUserData(_ uid: String, _ user: UserModel) {
+        AuthService.shared.saveUserData(uid, user) { result in
+            switch result {
+            case .success:
+                UserManager.shared.saveUserToDefaults(user, uid: uid)
                 self.navigationController?.popViewController(animated: true)
+                
+            case .failure(let error):
+                AuthService.shared.deleteUser()
+                self.showAlert(title: "Невідома помилка", message: "Повторіть спробу регістрації пізніше")
             }
         }
     }

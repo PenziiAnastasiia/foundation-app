@@ -50,7 +50,7 @@ class ImageFullscreenViewController: UIViewController, UIScrollViewDelegate {
         self.closeButton.setTitleColor(.white, for: .normal)
         self.closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .regular)
         self.closeButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        self.closeButton.layer.cornerRadius = 20
+        self.closeButton.setCornerRadius()
         self.closeButton.clipsToBounds = true
         self.closeButton.addTarget(self, action: #selector(self.dismissFullscreen), for: .touchUpInside)
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false

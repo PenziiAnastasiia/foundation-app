@@ -17,14 +17,20 @@ class FundraiserDetailsView: UIView {
     @IBOutlet weak var barViewContainer: UIView!
     @IBOutlet weak var donateViewContainer: UIView!
     
-    public func fillView(with fundraiser: FundraiserModel, donateFunc: @escaping (Double, Int?, Date?, Int?) -> Void) {
+    
+    public func fillView(with fundraiser: FundraiserModel,
+                         donateFunc: ((Double, Int?, Date?, Int?) -> Void)? = nil,
+                         generateInvoiceFunc: ((Double) -> Void)? = nil
+    ) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
         self.addBarView(collected: fundraiser.collected, goal: fundraiser.goal)
+        self.donateViewContainer.superview?.setCornerRadius()
+        
         if fundraiser.closeDate == nil {
             self.donateViewContainer.superview?.isHidden = false
-            self.addDonateView(fundraiserID: fundraiser.id, donateFunc: donateFunc)
         }
+        self.addDonateView(donateFunc: donateFunc, generateInvoiceFunc: generateInvoiceFunc)
     }
     
     public func fillMediaCollectionView(for fundraiser: FundraiserModel) {
@@ -36,18 +42,20 @@ class FundraiserDetailsView: UIView {
         
         if let mediaCollectionView = MediaCollectionView.loadFromNib() {
             mediaCollectionView.embedIn(self.mediaCollectionContainer)
-            self.mediaCollectionContainer.superview?.layer.cornerRadius = self.mediaCollectionContainer.frame.width / 20
+            self.mediaCollectionContainer.superview?.setCornerRadius()
             mediaCollectionView.loadMedia(for: fundraiser.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
         }
     }
     
+    // MARK: - private
+    
     private func addBarView(collected: Double, goal: Int) {
         if let barView = BarView.loadFromNib() {
             barView.embedIn(self.barViewContainer)
-            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.frame.height / 4
-            barView.progressView.layer.cornerRadius = barView.progressView.frame.height / 4
-            self.barViewContainer.superview?.layer.cornerRadius = self.barViewContainer.frame.width / 20
+            barView.progressBackgroundView.setCornerRadius(value: 10)
+            barView.progressView.setCornerRadius(value: 10)
+            self.barViewContainer.superview?.setCornerRadius()
             self.barViewContainer.superview?.layoutIfNeeded()
             barView.layoutIfNeeded()
             DispatchQueue.main.async {
@@ -56,14 +64,18 @@ class FundraiserDetailsView: UIView {
         }
     }
     
-    private func addDonateView(fundraiserID: String, donateFunc: @escaping (Double, Int?, Date?, Int?) -> Void) {
+    private func addDonateView(
+        donateFunc: ((Double, Int?, Date?, Int?) -> Void)? = nil,
+        generateInvoiceFunc: ((Double) -> Void)? = nil
+    ) {
         if let donateView = DonateView.loadFromNib() {
             donateView.embedIn(self.donateViewContainer)
             self.donateViewContainer.superview?.layoutIfNeeded()
-            self.donateViewContainer.superview?.layer.cornerRadius = self.donateViewContainer.frame.width / 20
-            donateView.configure(donate: { sum, cardNumber, expiredIn, CVV2 in
-                donateFunc(sum, cardNumber, expiredIn, CVV2)
-            })
+            if let donateFunc = donateFunc {
+                donateView.configure(donate: donateFunc)
+            } else if let generateInvoiceFunc = generateInvoiceFunc {
+                donateView.configure(generateInvoice: generateInvoiceFunc)
+            }
         }
     }
 }

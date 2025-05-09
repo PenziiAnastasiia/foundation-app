@@ -26,6 +26,11 @@ extension UIView {
         return nib.instantiate(withOwner: nil, options: nil).first as? Self
     }
     
+    func setCornerRadius(value: CGFloat? = nil) {
+        self.layer.cornerRadius = value ?? 16
+        self.clipsToBounds = true
+    }
+    
     func embedIn(_ container: UIView) {
         container.subviews.forEach { $0.removeFromSuperview() }
         

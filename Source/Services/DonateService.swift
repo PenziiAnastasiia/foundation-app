@@ -12,16 +12,40 @@ class DonateService {
     
     static let shared = DonateService()
     
-    func updateFundraiserCollectedValue(fundraiserID: String, donationAmount: Double, completion: @escaping (Result<Bool, Error>) -> Void) {
-        
-        let fundraiserRef = Firestore.firestore().collection("Fundraisers").document(fundraiserID)
+    func updateFundraiserCollectedValue(donation: DonationModel, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let fundraiserRef = Firestore.firestore().collection("Fundraisers").document(donation.fundraiser)
         fundraiserRef.updateData([
-            "collected": FieldValue.increment(donationAmount)
+            "collected": FieldValue.increment(donation.amount)
         ]) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(true))
+            }
+        }
+    }
+    
+    func saveDonateToUserHistory(uid: String, donation: DonationModel, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let data = try? donation.toDictionary() else { return }
+        let userRef = Firestore.firestore().collection("Users").document(uid)
+        
+        userRef.collection("Donations").addDocument(data: data) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    func getUserDonationHistory(uid: String, completion: @escaping (Result<[DonationModel], Error>) -> Void) {
+        let userRef = Firestore.firestore().collection("Users").document(uid)
+        userRef.collection("Donations").getDocuments() { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let documents = snapshot?.documents {
+                let donations = documents.compactMap { try? DonationModel.fromDictionary($0.data()) }
+                completion(.success(donations))
             }
         }
     }

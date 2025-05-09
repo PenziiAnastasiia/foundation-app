@@ -45,10 +45,10 @@ class IndividualFormView: UIView, FormView {
         self.passwordErrorLabel.text = ""
     }
     
-    public func getUserData() -> [String: String]? {
+    public func getUser() -> UserModel? {
         guard let pib = self.PIBTextField.text else { return nil }
         
-        return ["PIB": pib, "type": "individual"]
+        return UserModel(PIB: pib, type: "individual")
     }
     
     // MARK: - private

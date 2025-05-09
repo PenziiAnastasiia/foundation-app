@@ -19,6 +19,6 @@ class MediaCollectionViewCell: UICollectionViewCell {
     public func configure(with image: UIImage?, isVideo: Bool) {
         self.imageView.image = image
         self.playImageView.isHidden = !isVideo
-        self.imageView.layer.cornerRadius = 8
+        self.imageView.setCornerRadius(value: 8)
     }
 }

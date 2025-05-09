@@ -25,8 +25,6 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.isHidden = true
 
         self.searchBar = self.setupSearchBarWithFilter(placeholder: "Пошук зборів", filterAction: #selector(self.didTapFilter))
         self.enableHideKeyboardOnTap()
@@ -46,7 +44,6 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
             
             DispatchQueue.main.async {
                 self.fundraisersTableView.reloadData()
-                self.view.isHidden = false
                 self.startUpdateTimer()
             }
         }

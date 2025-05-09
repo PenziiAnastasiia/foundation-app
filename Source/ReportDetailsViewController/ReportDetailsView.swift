@@ -27,7 +27,7 @@ class ReportDetailsView: UIView {
         
         if let mediaCollectionView = MediaCollectionView.loadFromNib() {
             mediaCollectionView.embedIn(self.mediaCollectionContainer)
-            self.mediaCollectionContainer.superview?.layer.cornerRadius = self.mediaCollectionContainer.frame.width / 20
+            self.mediaCollectionContainer.superview?.setCornerRadius()
             mediaCollectionView.loadMedia(for: report.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
         }

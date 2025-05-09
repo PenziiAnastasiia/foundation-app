@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct DonationModel {
-    let fundraiserTitle: String
-    let donate: Double
+struct DonationModel: Codable {
+    let fundraiser: String
+    let amount: Double
     let date: Date
 }

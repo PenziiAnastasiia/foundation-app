@@ -40,14 +40,13 @@ class ListElementTableViewCell: UITableViewCell {
         } else {
             self.fillWithBarView(collected: fundraiser.collected, goal: fundraiser.goal)
         }
-        
-        self.nestedView.layer.cornerRadius = self.nestedView.frame.width / 25
+        self.nestedView.setCornerRadius()
     }
     
     public func configure(with report: ReportModel) {
         self.titleLabel.text = report.title
         self.fillWithoutBarView(closeDate: report.closeDate, collected: report.collected)
-        self.nestedView.layer.cornerRadius = self.nestedView.frame.width / 25
+        self.nestedView.setCornerRadius()
     }
     
     private func fillWithoutBarView(closeDate: Date, collected: Double) {
@@ -65,8 +64,8 @@ class ListElementTableViewCell: UITableViewCell {
         if let barView = BarView.loadFromNib() {
             barView.embedIn(self.barViewContainer)
             
-            barView.progressBackgroundView.layer.cornerRadius = barView.progressBackgroundView.frame.height / 4
-            barView.progressView.layer.cornerRadius = barView.progressView.frame.height / 4
+            barView.progressBackgroundView.setCornerRadius(value: 10)
+            barView.progressView.setCornerRadius(value: 10)
             self.barViewContainer.layoutIfNeeded()
             barView.setProgress(collected: collected, goal: goal)
             self.barView = barView

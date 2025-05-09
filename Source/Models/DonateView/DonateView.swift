@@ -15,26 +15,46 @@ class DonateView: UIView, UITextFieldDelegate {
     @IBOutlet weak var creditCardExpiredInTextField: UITextField!
     @IBOutlet weak var creditCardCVV2TextField: UITextField!
     @IBOutlet weak var creditCardErrorMessage: UILabel!
-    @IBOutlet weak var payButton: UIButton!
-    @IBOutlet weak var donateButton: UIButton!
     
+    @IBOutlet weak var generateInvoiceButtonContainer: UIView!
+    @IBOutlet weak var stackViewContainer: UIView!
+    
+    private var generateInvoice: ((_ sum: Double) -> Void)?
     private var donate: ((_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) -> Void)?
     
     private let creditCardNumberTextSize = 4 * 4
     private let creditCardExpiredInSizeWithSlash = 2 * 2 + 1
     private let creditCardCVV2Size = 3
+    
+    public func configure(generateInvoice: @escaping (_ sum: Double) -> Void) {
+        self.sumDonateTextField.applyStandardStyle()
+        self.sumDonateTextField.delegate = self
+        
+        self.generateInvoice = generateInvoice
+        
+        self.stackViewContainer.isHidden = true
+    }
 
     public func configure(donate: @escaping (Double, Int?, Date?, Int?) -> Void) {
         [self.sumDonateTextField, self.creditCardNumberTextField, self.creditCardExpiredInTextField, self.creditCardCVV2TextField].forEach { textField in
             textField.applyStandardStyle()
         }
-
         self.sumDonateTextField.delegate = self
         self.creditCardNumberTextField.delegate = self
         self.creditCardExpiredInTextField.delegate = self
         self.creditCardCVV2TextField.delegate = self
         
         self.donate = donate
+        
+        self.generateInvoiceButtonContainer.isHidden = true
+    }
+    
+    @IBAction func didTappedGenerate() {
+        self.sumDonateErrorMessage.text = ""
+        
+        guard let sum = self.checkDonateSum() else { return }
+        
+        self.generateInvoice?(sum)
     }
     
     @IBAction func didTappedApplePay() {
