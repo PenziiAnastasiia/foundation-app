@@ -21,15 +21,8 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let user = UserManager.shared.currentUser
-        
-        if user?.type == nil || user?.type == "individual" {
-            self.rootView?.fillView(with: self.fundraiser, donateFunc: self.donate)
-        } else {
-            self.rootView?.fillView(with: self.fundraiser, generateInvoiceFunc: self.generateInvoice)
-        }
 
+        self.rootView?.fillView(with: self.fundraiser)
         self.rootView?.fillMediaCollectionView(for: self.fundraiser)
         self.enableHideKeyboardOnTap()
     }
@@ -44,6 +37,13 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let user = UserManager.shared.currentUser
+        if user?.type == nil || user?.type == "individual" {
+            self.rootView?.fillDonateView(donateFunc: self.donate)
+        } else {
+            self.rootView?.fillDonateView(generateInvoiceFunc: self.generateInvoice)
+        }
+        
         self.startObservingKeyboard()
     }
     

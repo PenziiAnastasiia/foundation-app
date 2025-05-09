@@ -83,8 +83,9 @@ class LegalEntityForm: UIView, FormView, UIPickerViewDelegate, UIPickerViewDataS
               let pib = self.PIBTextField.text,
               let phoneNumber = self.phoneNumberTextField.text
         else { return nil }
+        let emoji = self.generateEmoji()
         
-        return UserModel(PIB: pib, type: "legal", organizationName: organizationName, EDRPOY: EDRPOY, IBAN: IBAN,
+        return UserModel(PIB: pib, emoji: emoji, type: "legal", organizationName: organizationName, EDRPOY: EDRPOY, IBAN: IBAN,
                     bank: bank, address: address, phoneNumber: phoneNumber)
     }
     
@@ -138,6 +139,12 @@ class LegalEntityForm: UIView, FormView, UIPickerViewDelegate, UIPickerViewDataS
             checkPassword
         
         return isValid
+    }
+    
+    private func generateEmoji() -> String {
+        let emojiArray = ["🏆", "🥇", "🎬", "🎨", "🧩", "🎮", "✈️", "🚁", "🚀",
+                          "🛸", "⚓️", "💎", "💵", "💡", "⚖️", "✉️", "🎉"]
+        return emojiArray.randomElement() ?? "😎"
     }
     
     // MARK: -- addPrefixes

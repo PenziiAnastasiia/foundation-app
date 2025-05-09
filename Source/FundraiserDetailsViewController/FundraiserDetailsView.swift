@@ -18,10 +18,7 @@ class FundraiserDetailsView: UIView {
     @IBOutlet weak var donateViewContainer: UIView!
     
     
-    public func fillView(with fundraiser: FundraiserModel,
-                         donateFunc: ((Double, Int?, Date?, Int?) -> Void)? = nil,
-                         generateInvoiceFunc: ((Double) -> Void)? = nil
-    ) {
+    public func fillView(with fundraiser: FundraiserModel) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
         self.addBarView(collected: fundraiser.collected, goal: fundraiser.goal)
@@ -30,7 +27,6 @@ class FundraiserDetailsView: UIView {
         if fundraiser.closeDate == nil {
             self.donateViewContainer.superview?.isHidden = false
         }
-        self.addDonateView(donateFunc: donateFunc, generateInvoiceFunc: generateInvoiceFunc)
     }
     
     public func fillMediaCollectionView(for fundraiser: FundraiserModel) {
@@ -45,6 +41,21 @@ class FundraiserDetailsView: UIView {
             self.mediaCollectionContainer.superview?.setCornerRadius()
             mediaCollectionView.loadMedia(for: fundraiser.id, from: namesArray)
             self.activityIndicatorView.stopAnimating()
+        }
+    }
+    
+    public func fillDonateView(
+        donateFunc: ((Double, Int?, Date?, Int?) -> Void)? = nil,
+        generateInvoiceFunc: ((Double) -> Void)? = nil
+    ) {
+        if let donateView = DonateView.loadFromNib() {
+            donateView.embedIn(self.donateViewContainer)
+            self.donateViewContainer.superview?.layoutIfNeeded()
+            if let donateFunc = donateFunc {
+                donateView.configure(donate: donateFunc)
+            } else if let generateInvoiceFunc = generateInvoiceFunc {
+                donateView.configure(generateInvoice: generateInvoiceFunc)
+            }
         }
     }
     

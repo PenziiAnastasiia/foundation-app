@@ -7,6 +7,7 @@
 
 struct UserModel: Codable {
     let PIB: String
+    let emoji: String
     let type: String
 
     // Тільки для legal
@@ -17,8 +18,9 @@ struct UserModel: Codable {
     let address: String?
     let phoneNumber: String?
     
-    init(PIB: String, type: String, organizationName: String?, EDRPOY: String?, IBAN: String?, bank: String?, address: String?, phoneNumber: String?) {
+    init(PIB: String, emoji: String, type: String, organizationName: String?, EDRPOY: String?, IBAN: String?, bank: String?, address: String?, phoneNumber: String?) {
         self.PIB = PIB
+        self.emoji = emoji
         self.type = type
         self.organizationName = organizationName
         self.EDRPOY = EDRPOY
@@ -28,8 +30,9 @@ struct UserModel: Codable {
         self.phoneNumber = phoneNumber
     }
     
-    init(PIB: String, type: String) {
+    init(PIB: String, emoji: String, type: String) {
         self.PIB = PIB
+        self.emoji = emoji
         self.type = type
         self.organizationName = nil
         self.EDRPOY = nil

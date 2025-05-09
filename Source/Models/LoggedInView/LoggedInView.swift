@@ -9,7 +9,8 @@ import UIKit
 
 class LoggedInView: UIView {
     
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var emojiContainer: UIView!
+    @IBOutlet weak var emoji: UILabel!
     @IBOutlet weak var name: UILabel!
     
     var logout: (() -> Void)?
@@ -18,7 +19,10 @@ class LoggedInView: UIView {
         self.logout?()
     }
     
-    public func configure(_ userImage: UIImage, _ userName: String) {
+    public func configure(_ userEmoji: String, _ userName: String) {
         self.name.text = userName
+        self.emoji.text = userEmoji
+        self.emojiContainer.layer.cornerRadius = self.emojiContainer.frame.width / 2
+        self.emojiContainer.layer.masksToBounds = true
     }
 }

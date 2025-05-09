@@ -47,8 +47,9 @@ class IndividualFormView: UIView, FormView {
     
     public func getUser() -> UserModel? {
         guard let pib = self.PIBTextField.text else { return nil }
+        let emoji = self.generateEmoji()
         
-        return UserModel(PIB: pib, type: "individual")
+        return UserModel(PIB: pib, emoji: emoji, type: "individual")
     }
     
     // MARK: - private
@@ -59,5 +60,11 @@ class IndividualFormView: UIView, FormView {
         let checkPassword = self.passwordTextField.isNotEmpty
         
         return checkPIBResult && checkEmailResult && checkPassword
+    }
+    
+    private func generateEmoji() -> String {
+        let emojiArray = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁",
+                          "🐮", "🐷", "🐸", "🐵", "🐥", "🦉", "🐺", "🦄", "🐝", "🦋", "🐬", "🐙"]
+        return emojiArray.randomElement() ?? "🙂"
     }
 }

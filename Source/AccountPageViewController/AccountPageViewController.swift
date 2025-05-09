@@ -17,7 +17,6 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     
     private var searchBar: UISearchBar?
     private var donationItems: [DonationModel] = []
-    private var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +34,10 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         
         self.donationHistoryTableView.dataSource = self
         self.donationHistoryTableView.delegate = self
-        
-        self.uid = UserManager.shared.currentUID
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if let uid = self.uid {
+        if let uid = UserManager.shared.currentUID {
             Task {
                 do {
                     self.donationItems = try await self.getUserDonationHistory(uid)
@@ -106,7 +103,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
                 .flatMap {
                     if let user = UserManager.shared.currentUser {
                         $0.configureWithLoggedInView(
-                            userImage: UIImage(),
+                            userEmoji: user.emoji,
                             userName: user.PIB.components(separatedBy: " ").object(at: 1) ?? "Unknown",
                             userHistoryIsEmpty: self.donationItems.isEmpty,
                             logout: { [weak self] in self?.logout() })
