@@ -11,7 +11,7 @@ struct FundraiserModel {
     let id: String
     let title: String
     let description: String
-    let descriptionMediaNames: [String]?
+    let descriptionMedia: [String]?
     let goal: Int
     let collected: Double
     let openDate: Date

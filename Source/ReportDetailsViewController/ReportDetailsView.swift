@@ -19,7 +19,7 @@ class ReportDetailsView: UIView {
     }
     
     public func fillMediaCollectionView(for report: ReportModel) {
-        guard let namesArray = report.reportMediaNames
+        guard let namesArray = report.reportMedia
         else {
             self.mediaCollectionContainer.superview?.isHidden = true
             return

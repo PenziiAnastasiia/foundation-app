@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct MediaItem {
-    let url: URL
+    let name: String
     var image: UIImage?
-    let isVideo: Bool
     var size: CGSize?
+    var isVideo: Bool
 }

@@ -19,7 +19,7 @@ class DonationHistoryTableViewCell: UITableViewCell {
     }
     
     public func configure(with donation: DonationModel) {
-        self.titleLabel.text = donation.fundraiser
+        self.titleLabel.text = donation.fundraiserTitle
         self.donateLabel.text = "\(donation.amount.formattedWithSeparator()) ₴"
         self.dateLabel.text = DateFormatter.shared.string(from: donation.date)
         

@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import Kingfisher
-import AVFoundation
 
 class MediaCollectionView: UIView {
+    
     @IBOutlet weak var mediaCollectionView: UICollectionView!
     
     private var mediaItems: [MediaItem] = []
@@ -25,14 +24,14 @@ class MediaCollectionView: UIView {
         self.mediaCollectionView.dataSource = self
         self.mediaCollectionView.delegate = self
         
-        self.dynamicHeightConstraint = self.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.height / 3.0)
+        self.dynamicHeightConstraint = self.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3.0)
         self.dynamicHeightConstraint?.isActive = true
     }
     
     public func loadMedia(for fundraiserID: String, from mediaNamesArray: [String]) {
         let group = DispatchGroup()
 
-        self.createMediaItemsModels(from: mediaNamesArray)
+        self.mediaItems = mediaNamesArray.map { MediaItem(name: $0, image: nil, size: nil, isVideo: false) }
         self.pullMedia(group: group)
         
         group.notify(queue: .main) {
@@ -41,98 +40,60 @@ class MediaCollectionView: UIView {
         }
     }
     
-    private func createMediaItemsModels(from mediaNamesArray: [String]) {
-        self.mediaItems = mediaNamesArray.map { name in
-            let isVideo = name.contains("mp4")
-            let urlString = "https://res.cloudinary.com/dofhtvflc/\(isVideo ? "video" : "image")/upload/v1744906116/\(name)"
-            return MediaItem(url: URL(string: urlString)!, image: nil, isVideo: isVideo, size: nil)
-        }
-    }
+    // MARK: - private
     
     private func pullMedia(group: DispatchGroup) {
         for (index, item) in self.mediaItems.enumerated() {
             group.enter()
-            if item.isVideo {
-                self.loadVideoPreview(from: item.url) { image in
-                    self.handleLoadedImage(image, for: index, group: group)
+            
+            MediaService.shared.fetchMediaPreview(for: item.name) { result in
+                switch result {
+                case .success(let (image, isVideo)):
+                    self.mediaItems[index].image = image
+                    self.mediaItems[index].size = image.size
+                    self.mediaItems[index].isVideo = isVideo
+                case .failure(let error):
+                    print(error)
                 }
-            } else {
-                self.loadImage(from: item.url) { image in
-                    self.handleLoadedImage(image, for: index, group: group)
-                }
+                group.leave()
             }
         }
-    }
-
-    private func loadVideoPreview(from url: URL, completion: @escaping (UIImage?) -> Void) {
-        let asset = AVAsset(url: url)
-        asset.loadTracks(withMediaType: .video) { tracks, error in
-            if let error = error {
-                print("Failed to load tracks: \(error)")
-                completion(nil)
-                return
-            }
-
-            let generator = AVAssetImageGenerator(asset: asset)
-            generator.appliesPreferredTrackTransform = true
-            let time = CMTime(seconds: 1, preferredTimescale: 600)
-            do {
-                let imageRef = try generator.copyCGImage(at: time, actualTime: nil)
-                let previewImage = UIImage(cgImage: imageRef)
-                completion(previewImage)
-            } catch {
-                print("Failed to generate preview: \(error)")
-                completion(nil)
-            }
-        }
-    }
-
-    private func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
-        KingfisherManager.shared.retrieveImage(with: url) { result in
-            if let value = try? result.get() {
-                DispatchQueue.main.async {
-                    completion(value.image)
-                }
-            } else {
-                print("Failed to load image")
-                completion(nil)
-            }
-        }
-    }
-    
-    private func handleLoadedImage(_ image: UIImage?, for index: Int, group: DispatchGroup) {
-        self.mediaItems[index].image = image
-        self.mediaItems[index].size = image?.size
-        group.leave()
     }
     
     private func sizeTransform() {
         let screenWidth = self.mediaCollectionView.frame.width
+
+        let layout = self.mediaCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let sectionInsets = layout?.sectionInset ?? .zero
+        let contentInsets = self.mediaCollectionView.contentInset
+        
         var totalWidth: CGFloat = 0
 
         for (index, item) in self.mediaItems.enumerated() {
             guard let size = item.size else { return }
             let aspectRatio = size.width / size.height
-            let height = self.mediaCollectionView.frame.height
-            let width = height * aspectRatio
             
-            self.mediaItems[index].size = CGSizeMake(width, height)
+            let height = self.dynamicHeightConstraint?.constant ?? self.mediaCollectionView.frame.height - sectionInsets.top - sectionInsets.bottom - contentInsets.top - contentInsets.bottom
+            let width = height * aspectRatio
+
+            self.mediaItems[index].size = CGSize(width: width, height: height)
             totalWidth += width
         }
 
         if totalWidth < screenWidth {
             let scaleFactor = screenWidth / totalWidth
-            var maxHeight = self.dynamicHeightConstraint?.constant ?? 0.0
-            
+            var maxHeight: CGFloat = 0.0
+
             for (index, item) in self.mediaItems.enumerated() {
-                guard let size = item.size else { return }
-                let height = size.height * scaleFactor
-                self.mediaItems[index].size = CGSizeMake(size.width * scaleFactor, height)
-                
-                if height > maxHeight {
-                    maxHeight = height
-                }
+                guard let size = item.size else { continue }
+                let scaledHeight = size.height * scaleFactor
+                let scaledWidth = size.width * scaleFactor
+
+                self.mediaItems[index].size = CGSize(width: scaledWidth, height: scaledHeight)
+
+                maxHeight = max(maxHeight, scaledHeight)
             }
+            
             self.dynamicHeightConstraint?.constant = maxHeight
             self.layoutIfNeeded()
         }
@@ -169,7 +130,7 @@ extension MediaCollectionView: UICollectionViewDataSource, UICollectionViewDeleg
         if mediaItem.isVideo {
             fullscreenVC = VideoFullscreenViewController()
             if let videoFullscreenVC = fullscreenVC as? VideoFullscreenViewController {
-                videoFullscreenVC.videoURL = mediaItem.url
+                videoFullscreenVC.videoName = mediaItem.name
             }
         } else {
             fullscreenVC = ImageFullscreenViewController()

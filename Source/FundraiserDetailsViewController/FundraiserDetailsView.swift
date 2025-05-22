@@ -17,7 +17,6 @@ class FundraiserDetailsView: UIView {
     @IBOutlet weak var barViewContainer: UIView!
     @IBOutlet weak var donateViewContainer: UIView!
     
-    
     public func fillView(with fundraiser: FundraiserModel) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
@@ -30,7 +29,7 @@ class FundraiserDetailsView: UIView {
     }
     
     public func fillMediaCollectionView(for fundraiser: FundraiserModel) {
-        guard let namesArray = fundraiser.descriptionMediaNames
+        guard let namesArray = fundraiser.descriptionMedia
         else {
             self.mediaCollectionContainer.superview?.isHidden = true
             return
@@ -44,18 +43,11 @@ class FundraiserDetailsView: UIView {
         }
     }
     
-    public func fillDonateView(
-        donateFunc: ((Double, Int?, Date?, Int?) -> Void)? = nil,
-        generateInvoiceFunc: ((Double) -> Void)? = nil
-    ) {
+    public func fillDonateView(donateFunc: ((Double) -> Void)? = nil, generateInvoiceFunc: ((Double) -> Void)? = nil) {
         if let donateView = DonateView.loadFromNib() {
             donateView.embedIn(self.donateViewContainer)
             self.donateViewContainer.superview?.layoutIfNeeded()
-            if let donateFunc = donateFunc {
-                donateView.configure(donate: donateFunc)
-            } else if let generateInvoiceFunc = generateInvoiceFunc {
-                donateView.configure(generateInvoice: generateInvoiceFunc)
-            }
+            donateView.configure(donate: donateFunc, generateInvoice: generateInvoiceFunc)
         }
     }
     
@@ -71,21 +63,6 @@ class FundraiserDetailsView: UIView {
             barView.layoutIfNeeded()
             DispatchQueue.main.async {
                 barView.setProgress(collected: collected, goal: goal)
-            }
-        }
-    }
-    
-    private func addDonateView(
-        donateFunc: ((Double, Int?, Date?, Int?) -> Void)? = nil,
-        generateInvoiceFunc: ((Double) -> Void)? = nil
-    ) {
-        if let donateView = DonateView.loadFromNib() {
-            donateView.embedIn(self.donateViewContainer)
-            self.donateViewContainer.superview?.layoutIfNeeded()
-            if let donateFunc = donateFunc {
-                donateView.configure(donate: donateFunc)
-            } else if let generateInvoiceFunc = generateInvoiceFunc {
-                donateView.configure(generateInvoice: generateInvoiceFunc)
             }
         }
     }

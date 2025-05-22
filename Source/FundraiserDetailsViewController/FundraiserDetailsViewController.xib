@@ -88,7 +88,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="dAK-FH-Kh2" secondAttribute="trailing" constant="16" id="5Sh-HV-98b"/>
                                                         <constraint firstItem="dAK-FH-Kh2" firstAttribute="top" secondItem="3ro-NA-GX0" secondAttribute="top" constant="16" id="Aj0-hb-lqI"/>
                                                         <constraint firstAttribute="bottom" secondItem="dAK-FH-Kh2" secondAttribute="bottom" constant="16" id="ShE-dU-H9q"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="cJd-CY-tdt"/>
                                                         <constraint firstItem="dAK-FH-Kh2" firstAttribute="leading" secondItem="3ro-NA-GX0" secondAttribute="leading" constant="16" id="cp5-OB-JhL"/>
                                                     </constraints>
                                                 </view>

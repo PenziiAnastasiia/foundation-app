@@ -42,7 +42,7 @@ class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelega
                 self.addFormIntoContainer(formView: formView)
             }
         case 1:
-            if let formView = LegalEntityForm.loadFromNib() {
+            if let formView = LegalEntityFormView.loadFromNib() {
                 self.addFormIntoContainer(formView: formView)
             }
         default:
@@ -82,10 +82,10 @@ class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelega
         AuthService.shared.saveUserData(uid, user) { result in
             switch result {
             case .success:
-                UserManager.shared.saveUserToDefaults(user, uid: uid)
+                UserManager.shared.saveUserData(user, uid: uid)
                 self.navigationController?.popViewController(animated: true)
                 
-            case .failure(let error):
+            case .failure(_):
                 AuthService.shared.deleteUser()
                 self.showAlert(title: "Невідома помилка", message: "Повторіть спробу регістрації пізніше")
             }

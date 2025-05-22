@@ -7,33 +7,36 @@
 
 import UIKit
 import AVKit
+import FirebaseStorage
 
 class VideoFullscreenViewController: UIViewController {
-    var videoURL: URL?
+    var videoName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .black
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        try? AVAudioSession.sharedInstance().setActive(true)
         
-        if let videoURL = videoURL {
-            let player = AVPlayer(url: videoURL)
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
-            
-            self.addChild(playerViewController)
-            self.view.addSubview(playerViewController.view)
-            playerViewController.view.frame = view.bounds
-            playerViewController.didMove(toParent: self)
-            
-            player.play()
+        if let videoName = videoName {
+            Storage.storage().reference(withPath: videoName).downloadURL { url, error in
+                if let url = url {
+                    let player = AVPlayer(url: url)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    
+                    self.addChild(playerViewController)
+                    self.view.addSubview(playerViewController.view)
+                    playerViewController.view.frame = self.view.bounds
+                    playerViewController.didMove(toParent: self)
+                    
+                    player.play()
+                } else if let error = error {
+                    print(error)
+                    self.dismiss(animated: true)
+                }
+            }
         }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreen))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc private func dismissFullscreen() {
-        dismiss(animated: true)
     }
 }

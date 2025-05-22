@@ -1202,6 +1202,9 @@ PODS:
   - Firebase/Firestore (11.12.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 11.12.0)
+  - Firebase/Storage (11.12.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 11.12.0)
   - FirebaseAnalytics (11.12.0):
     - FirebaseAnalytics/AdIdSupport (= 11.12.0)
     - FirebaseCore (~> 11.12.0)
@@ -1268,6 +1271,13 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
   - FirebaseSharedSwift (11.12.0)
+  - FirebaseStorage (11.12.0):
+    - FirebaseAppCheckInterop (~> 11.0)
+    - FirebaseAuthInterop (~> 11.0)
+    - FirebaseCore (~> 11.12.0)
+    - FirebaseCoreExtension (~> 11.12.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
   - FirebaseUI/Auth (15.0.0):
     - FirebaseAuthUI (~> 15.0)
   - GoogleAppMeasurement (11.12.0):
@@ -1419,12 +1429,15 @@ PODS:
   - nanopb/encode (3.30910.0)
   - PromisesObjC (2.4.0)
   - RecaptchaInterop (101.0.0)
+  - TPPDF (2.6.1)
 
 DEPENDENCIES:
   - Firebase/Core (~> 11)
   - Firebase/Firestore
+  - Firebase/Storage
   - FirebaseUI/Auth
   - Kingfisher (~> 8)
+  - TPPDF (~> 2.6)
 
 SPEC REPOS:
   trunk:
@@ -1443,6 +1456,7 @@ SPEC REPOS:
     - FirebaseFirestoreInternal
     - FirebaseInstallations
     - FirebaseSharedSwift
+    - FirebaseStorage
     - FirebaseUI
     - GoogleAppMeasurement
     - GoogleUtilities
@@ -1454,6 +1468,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - RecaptchaInterop
+    - TPPDF
 
 SPEC CHECKSUMS:
   abseil: a05cc83bf02079535e17169a73c5be5ba47f714b
@@ -1471,6 +1486,7 @@ SPEC CHECKSUMS:
   FirebaseFirestoreInternal: 8352b1e8c127200e1eddfaaaae501cf696f58d6c
   FirebaseInstallations: 41189d8b11007152d9e46ec844019f38a0a4282a
   FirebaseSharedSwift: d2475748a2d2a36242ed13baa34b2acda846c925
+  FirebaseStorage: 2fb852c0ffe18c2af9661b25c41f814b2e8c4b05
   FirebaseUI: 0d38fa4fda5606b3da0af78a829c960f3a81ca50
   GoogleAppMeasurement: 6ee0ee888bb1db802c49049001adb4013d7fe41b
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
@@ -1482,7 +1498,8 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
+  TPPDF: e55bb2616d2bd7398f32b5b75efdcc7ad628ad13
 
-PODFILE CHECKSUM: cbbaf0b3bf08d6ff5a7d6f1dc7a0c2e5ab740870
+PODFILE CHECKSUM: c7ca2bae6be9531da7644da255b0082d53db8916
 
 COCOAPODS: 1.16.2

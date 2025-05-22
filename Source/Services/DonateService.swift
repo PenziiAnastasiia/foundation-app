@@ -8,12 +8,12 @@
 import Foundation
 import FirebaseFirestore
 
-class DonateService {
+final class DonateService {
     
     static let shared = DonateService()
     
     func updateFundraiserCollectedValue(donation: DonationModel, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let fundraiserRef = Firestore.firestore().collection("Fundraisers").document(donation.fundraiser)
+        let fundraiserRef = Firestore.firestore().collection("Fundraisers").document(donation.fundraiserId)
         fundraiserRef.updateData([
             "collected": FieldValue.increment(donation.amount)
         ]) { error in

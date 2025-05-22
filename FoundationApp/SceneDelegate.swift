@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if Auth.auth().currentUser == nil {
             UserManager.shared.clearUser()
         } else {
-            UserManager.shared.loadUserFromDefaults()
+            UserManager.shared.loadUserData()
         }
     }
 

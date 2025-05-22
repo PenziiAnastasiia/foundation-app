@@ -68,7 +68,7 @@ class SignInViewController: UIViewController {
     private func getUserData(_ uid: String) async {
         do {
             let data = try await AuthService.shared.getUserData(uid)
-            UserManager.shared.saveUserToDefaults(try UserModel.fromDictionary(data), uid: uid)
+            UserManager.shared.saveUserData(try UserModel.fromDictionary(data), uid: uid)
         } catch {
             AuthService.shared.signOut { _ in }
             self.showAlert(title: "Невідома помилка", message: "Повторіть спробу входу пізніше")

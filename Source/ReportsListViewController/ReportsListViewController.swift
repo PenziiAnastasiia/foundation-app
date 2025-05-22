@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import UIKit
 import FirebaseFirestore
 
@@ -62,7 +61,7 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
         do {
             self.reportsList = []
             let db = Firestore.firestore()
-            let querySnapshot = try await db.collection("Fundraisers").getDocuments()
+            let querySnapshot = try await db.collection("Reports").getDocuments()
             
             for document in querySnapshot.documents {
                 if let report = await self.createReport(from: document.data(), with: document.documentID) {
@@ -76,14 +75,14 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
     
     private func createReport(from document: [String: Any], with id: String) async -> ReportModel? {
         guard let title = document["title"] as? String,
-              let description = document["reportDescription"] as? String,
+              let description = document["description"] as? String,
               let closeDate = (document["closeDate"] as? Timestamp)?.dateValue(),
               let collected = document["collected"] as? Double
         else { return nil }
         
-        let reportMediaNames = document["reportMedia"] as? [String]
+        let reportMedia = document["reportMedia"] as? [String]
         
-        let report = ReportModel(id: id, title: title, description: description, collected: collected, closeDate: closeDate, reportMediaNames: reportMediaNames)
+        let report = ReportModel(id: id, title: title, description: description, collected: collected, closeDate: closeDate, reportMedia: reportMedia)
         
         return report
     }

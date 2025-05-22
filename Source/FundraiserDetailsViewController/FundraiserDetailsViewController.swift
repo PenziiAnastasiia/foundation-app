@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
+class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UIDocumentInteractionControllerDelegate {
     
     private var rootView: FundraiserDetailsView? {
         self.viewIfLoaded as? FundraiserDetailsView
@@ -17,7 +17,9 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
         return self.rootView?.scrollView
     }
     
+    private var docController: UIDocumentInteractionController?
     private let fundraiser: FundraiserModel
+    private var donationSum: Double?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +40,10 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
     
     override func viewWillAppear(_ animated: Bool) {
         let user = UserManager.shared.currentUser
-        if user?.type == nil || user?.type == "individual" {
-            self.rootView?.fillDonateView(donateFunc: self.donate)
-        } else {
+        if user?.type == "legal" {
             self.rootView?.fillDonateView(generateInvoiceFunc: self.generateInvoice)
+        } else {
+            self.rootView?.fillDonateView(donateFunc: self.makeDonation)
         }
         
         self.startObservingKeyboard()
@@ -51,26 +53,38 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
         self.stopObservingKeyboard()
     }
     
-    private func generateInvoice(_ sum: Double) {
-        
+    private func makeDonation(_ sum: Double) {
+        self.donationSum = sum
+        self.donate()
     }
-                                
-    private func donate(_ sum: Double, _ cardNumber: Int?, _ expiredIn: Date?, _ CVV2: Int?) {
-        if cardNumber == 0 {
-            self.presentDonateResultViewController(success: false)
-            return
+    
+    private func generateInvoice(_ sum: Double) {
+        PDFGeneratorService.generateInvoice(amount: sum, fundraiser: self.fundraiser.title) { url in
+            guard let url = url else { return }
+            
+            self.donationSum = sum
+            
+            DispatchQueue.main.async {
+                self.docController = UIDocumentInteractionController(url: url)
+                self.docController?.delegate = self
+                self.docController?.presentPreview(animated: true)
+            }
         }
+    }
+    
+    private func donate() {
+        guard let uid = UserManager.shared.currentUID,
+              let donationSum = self.donationSum
+        else { return }
         
-        let donation = DonationModel(fundraiser: self.fundraiser.id, amount: sum, date: Date())
+        let donation = DonationModel(fundraiserId: self.fundraiser.id, fundraiserTitle: self.fundraiser.title,
+                                     amount: donationSum, date: Date())
         
         DonateService.shared.updateFundraiserCollectedValue(donation: donation) { result in
             switch result {
-            case .success:
-                if let uid = UserManager.shared.currentUID {
-                    self.saveToHistory(uid: uid, donation: donation)
-                }
-                self.presentDonateResultViewController(success: true)
-            case .failure(_):
+            case .success(_):
+                self.saveToHistory(uid: uid, donation: donation)
+            case .failure(let error):
                 self.presentDonateResultViewController(success: false)
             }
         }
@@ -80,9 +94,9 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
         DonateService.shared.saveDonateToUserHistory(uid: uid, donation: donation) { result in
             switch result {
             case .success:
-                print("success saved donation into history")
+                self.presentDonateResultViewController(success: true)
             case .failure:
-                print("saving donation into history failed")
+                self.presentDonateResultViewController(success: false)
             }
         }
     }
@@ -91,4 +105,16 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable {
         let controller = DonateResultViewController(success: success, fundraiserTitle: self.fundraiser.title)
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    // MARK: - UIDocumentInteractionControllerDelegate
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
+    func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
+        self.docController = nil
+        self.donate()
+    }
 }
+

@@ -8,7 +8,8 @@
 import Foundation
 
 struct DonationModel: Codable {
-    let fundraiser: String
+    let fundraiserId: String
+    let fundraiserTitle: String
     let amount: Double
     let date: Date
 }

@@ -10,8 +10,6 @@ import UIKit
 class UserInfoViewCell: UITableViewCell {
     
     @IBOutlet weak var loginStatusViewContainer: UIView!
-    @IBOutlet weak var subscribeViewContainer: UIView!
-    @IBOutlet weak var subscribeLabel: UILabel!
     @IBOutlet weak var noHistoryView: UIView!
     @IBOutlet weak var noHistoryLabel: UILabel!
     @IBOutlet weak var zeroSpacingView: UIView!
@@ -26,13 +24,8 @@ class UserInfoViewCell: UITableViewCell {
         view.onSignInTapped = onSignInTap
         view.onSignUpTapped = onSignUpTap
         
-        self.subscribeViewContainer.superview?.setCornerRadius()
         self.noHistoryView.superview?.setCornerRadius()
-        
-        self.subscribeLabel.text = "Автентифікуйтесь, щоб керувати підписками"
         self.noHistoryLabel.text = "Автентифікуйтесь, щоб бачити історію донатів"
-        
-        self.subscribeViewContainer.subviews.forEach { $0.isHidden = false }
         self.noHistoryView.superview?.isHidden = false
         self.zeroSpacingView.isHidden = true
     }
@@ -43,14 +36,7 @@ class UserInfoViewCell: UITableViewCell {
         view.configure(userEmoji, userName)
         view.logout = logout
         
-        self.subscribeViewContainer.superview?.setCornerRadius()
         self.noHistoryView.superview?.setCornerRadius()
-        
-        if userSubscribeIsEmpty {
-            self.subscribeLabel.text = "Ви ще не маєте підписки"
-        } else {
-            self.subscribeViewContainer.subviews.forEach { $0.isHidden = true }
-        }
         
         if userHistoryIsEmpty {
             self.noHistoryLabel.text = "Ви ще не здійснили жодного донату"

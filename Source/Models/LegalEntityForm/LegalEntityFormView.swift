@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LegalEntityForm: UIView, FormView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     weak var delegate: FormViewDelegate?
     

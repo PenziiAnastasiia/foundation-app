@@ -81,10 +81,10 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
               let collected = document["collected"] as? Double
         else { return nil }
         
-        let descriptionMediaNames = document["descriptionMedia"] as? [String]
+        let descriptionMedia = document["descriptionMedia"] as? [String]
         let closeDate = (document["closeDate"] as? Timestamp)?.dateValue()
         
-        let fundraiser = FundraiserModel(id: id, title: title, description: description, descriptionMediaNames: descriptionMediaNames, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate)
+        let fundraiser = FundraiserModel(id: id, title: title, description: description, descriptionMedia: descriptionMedia, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate)
         
         return fundraiser
     }

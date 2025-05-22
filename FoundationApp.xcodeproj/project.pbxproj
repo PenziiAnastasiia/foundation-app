@@ -14,12 +14,14 @@
 		1B078F0E2DCA8AE5002BAE57 /* NotLoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F0D2DCA8AE2002BAE57 /* NotLoggedInView.swift */; };
 		1B078F102DCB7A1B002BAE57 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F0F2DCB7A18002BAE57 /* UserModel.swift */; };
 		1B078F132DCB8935002BAE57 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F122DCB8934002BAE57 /* UserManager.swift */; };
+		1B1633832DDCFDC900C76B02 /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633822DDCFDB400C76B02 /* MediaService.swift */; };
+		1B1633852DDDEB0500C76B02 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633842DDDEAF700C76B02 /* KeychainManager.swift */; };
 		1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69339C2D2AEF1100D09C8F /* FundraisersListViewController.swift */; };
 		1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933A32D2C222C00D09C8F /* FundraiserDetailsViewController.swift */; };
 		1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */; };
 		1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */; };
 		1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */; };
-		1B8A18E22DCCF875007BDC86 /* FundInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E12DCCF873007BDC86 /* FundInfoManager.swift */; };
+		1B8A18E22DCCF875007BDC86 /* FoundationInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */; };
 		1B8A18E42DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A18E32DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib */; };
 		1B8A18E62DCD176B007BDC86 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E52DCD1762007BDC86 /* Codable+Extension.swift */; };
 		1B8A18E82DCD2328007BDC86 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E72DCD2324007BDC86 /* AuthService.swift */; };
@@ -35,8 +37,8 @@
 		1BABD7BE2DC7C56D009D8FC5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7BB2DC7C56D009D8FC5 /* SignInViewController.swift */; };
 		1BABD7C22DC7E915009D8FC5 /* IndividualFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7C12DC7E915009D8FC5 /* IndividualFormView.xib */; };
 		1BABD7C42DC7E921009D8FC5 /* IndividualFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7C32DC7E921009D8FC5 /* IndividualFormView.swift */; };
-		1BABD7C72DC7F3DD009D8FC5 /* LegalEntityForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7C62DC7F3DD009D8FC5 /* LegalEntityForm.swift */; };
-		1BABD7C92DC7F3E6009D8FC5 /* LegalEntityForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7C82DC7F3E6009D8FC5 /* LegalEntityForm.xib */; };
+		1BABD7C72DC7F3DD009D8FC5 /* LegalEntityFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7C62DC7F3DD009D8FC5 /* LegalEntityFormView.swift */; };
+		1BABD7C92DC7F3E6009D8FC5 /* LegalEntityFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7C82DC7F3E6009D8FC5 /* LegalEntityFormView.xib */; };
 		1BABD7CB2DC8D0C0009D8FC5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7CA2DC8D0C0009D8FC5 /* UITextField+Extension.swift */; };
 		1BABD7CD2DC93736009D8FC5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7CC2DC93736009D8FC5 /* String+Extension.swift */; };
 		1BABD7CF2DCA0D74009D8FC5 /* AuthErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7CE2DCA0D74009D8FC5 /* AuthErrorService.swift */; };
@@ -70,6 +72,7 @@
 		1BB836AE2DB8C29A00C0C094 /* ReportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836AC2DB8C29A00C0C094 /* ReportDetailsViewController.swift */; };
 		1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */; };
 		1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */; };
+		1BD4DD422DDE4DF8002ADA77 /* PDFGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD4DD412DDE4DDC002ADA77 /* PDFGeneratorService.swift */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
 		1BF6C0F12D297C1800635A49 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F02D297C1800635A49 /* Base */; };
@@ -87,12 +90,14 @@
 		1B078F0D2DCA8AE2002BAE57 /* NotLoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoggedInView.swift; sourceTree = "<group>"; };
 		1B078F0F2DCB7A18002BAE57 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1B078F122DCB8934002BAE57 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		1B1633822DDCFDB400C76B02 /* MediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
+		1B1633842DDDEAF700C76B02 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		1B69339C2D2AEF1100D09C8F /* FundraisersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraisersListViewController.swift; sourceTree = "<group>"; };
 		1B6933A32D2C222C00D09C8F /* FundraiserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsViewController.swift; sourceTree = "<group>"; };
 		1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsView.swift; sourceTree = "<group>"; };
 		1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserModel.swift; sourceTree = "<group>"; };
-		1B8A18E12DCCF873007BDC86 /* FundInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundInfoManager.swift; sourceTree = "<group>"; };
+		1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationInfoManager.swift; sourceTree = "<group>"; };
 		1B8A18E32DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FundraiserDetailsViewController.xib; sourceTree = "<group>"; };
 		1B8A18E52DCD1762007BDC86 /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		1B8A18E72DCD2324007BDC86 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -108,8 +113,8 @@
 		1BABD7BC2DC7C56D009D8FC5 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		1BABD7C12DC7E915009D8FC5 /* IndividualFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndividualFormView.xib; sourceTree = "<group>"; };
 		1BABD7C32DC7E921009D8FC5 /* IndividualFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualFormView.swift; sourceTree = "<group>"; };
-		1BABD7C62DC7F3DD009D8FC5 /* LegalEntityForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalEntityForm.swift; sourceTree = "<group>"; };
-		1BABD7C82DC7F3E6009D8FC5 /* LegalEntityForm.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalEntityForm.xib; sourceTree = "<group>"; };
+		1BABD7C62DC7F3DD009D8FC5 /* LegalEntityFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalEntityFormView.swift; sourceTree = "<group>"; };
+		1BABD7C82DC7F3E6009D8FC5 /* LegalEntityFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalEntityFormView.xib; sourceTree = "<group>"; };
 		1BABD7CA2DC8D0C0009D8FC5 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		1BABD7CC2DC93736009D8FC5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1BABD7CE2DCA0D74009D8FC5 /* AuthErrorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorService.swift; sourceTree = "<group>"; };
@@ -143,6 +148,7 @@
 		1BB836AC2DB8C29A00C0C094 /* ReportDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailsViewController.swift; sourceTree = "<group>"; };
 		1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportDetailsViewController.xib; sourceTree = "<group>"; };
 		1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailsView.swift; sourceTree = "<group>"; };
+		1BD4DD412DDE4DDC002ADA77 /* PDFGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGeneratorService.swift; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,9 +221,12 @@
 		1BABD7A82DC63326009D8FC5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1B8A18E12DCCF873007BDC86 /* FundInfoManager.swift */,
+				1BD4DD412DDE4DDC002ADA77 /* PDFGeneratorService.swift */,
+				1B1633842DDDEAF700C76B02 /* KeychainManager.swift */,
+				1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */,
 				1B078F122DCB8934002BAE57 /* UserManager.swift */,
 				1B8A18E72DCD2324007BDC86 /* AuthService.swift */,
+				1B1633822DDCFDB400C76B02 /* MediaService.swift */,
 				1BABD7A92DC6333B009D8FC5 /* DonateService.swift */,
 				1BABD7CE2DCA0D74009D8FC5 /* AuthErrorService.swift */,
 			);
@@ -272,8 +281,8 @@
 		1BABD7C52DC7F3C6009D8FC5 /* LegalEntityForm */ = {
 			isa = PBXGroup;
 			children = (
-				1BABD7C62DC7F3DD009D8FC5 /* LegalEntityForm.swift */,
-				1BABD7C82DC7F3E6009D8FC5 /* LegalEntityForm.xib */,
+				1BABD7C62DC7F3DD009D8FC5 /* LegalEntityFormView.swift */,
+				1BABD7C82DC7F3E6009D8FC5 /* LegalEntityFormView.xib */,
 			);
 			path = LegalEntityForm;
 			sourceTree = "<group>";
@@ -456,12 +465,12 @@
 		1BF6C0FE2D29850B00635A49 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1B078F012DCA5B3B002BAE57 /* FormView.swift */,
 				1B078F0F2DCB7A18002BAE57 /* UserModel.swift */,
 				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
 				1BB836A92DB7EFC800C0C094 /* ReportModel.swift */,
 				1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */,
 				1BAFC4102DC13B9B00EB6FB4 /* DonationModel.swift */,
+				1B078F012DCA5B3B002BAE57 /* FormView.swift */,
 				1BABD7C02DC7E8F5009D8FC5 /* IndividualFormView */,
 				1BABD7C52DC7F3C6009D8FC5 /* LegalEntityForm */,
 				1BAC01272DAC2242008BCCA4 /* BarView */,
@@ -570,7 +579,7 @@
 				1BAFC4282DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.xib in Resources */,
 				1BABD7C22DC7E915009D8FC5 /* IndividualFormView.xib in Resources */,
 				1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */,
-				1BABD7C92DC7F3E6009D8FC5 /* LegalEntityForm.xib in Resources */,
+				1BABD7C92DC7F3E6009D8FC5 /* LegalEntityFormView.xib in Resources */,
 				1BB836A32DB2814D00C0C094 /* DonateView.xib in Resources */,
 				1BAC01352DAE4E81008BCCA4 /* MediaCollectionView.xib in Resources */,
 				1B8A18E42DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib in Resources */,
@@ -635,16 +644,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B8A18E22DCCF875007BDC86 /* FundInfoManager.swift in Sources */,
+				1B8A18E22DCCF875007BDC86 /* FoundationInfoManager.swift in Sources */,
 				1B8A18E82DCD2328007BDC86 /* AuthService.swift in Sources */,
 				1B078F022DCA5B50002BAE57 /* FormView.swift in Sources */,
 				1BAFC4112DC13B9B00EB6FB4 /* DonationModel.swift in Sources */,
 				1BAFC4042DC0FFA300EB6FB4 /* KeyboardObservable.swift in Sources */,
 				1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */,
 				1BAC01332DAE4E64008BCCA4 /* MediaCollectionView.swift in Sources */,
+				1B1633852DDDEB0500C76B02 /* KeychainManager.swift in Sources */,
 				1BABD7CF2DCA0D74009D8FC5 /* AuthErrorService.swift in Sources */,
 				1BAFC41C2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift in Sources */,
 				1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */,
+				1BD4DD422DDE4DF8002ADA77 /* PDFGeneratorService.swift in Sources */,
 				1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */,
 				1BAFC4292DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.swift in Sources */,
 				1BAFC4222DC283F500EB6FB4 /* UserInfoViewCell.swift in Sources */,
@@ -656,11 +667,12 @@
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,
 				1B8A18E62DCD176B007BDC86 /* Codable+Extension.swift in Sources */,
 				1BAFC4242DC289D500EB6FB4 /* Array+Extension.swift in Sources */,
-				1BABD7C72DC7F3DD009D8FC5 /* LegalEntityForm.swift in Sources */,
+				1BABD7C72DC7F3DD009D8FC5 /* LegalEntityFormView.swift in Sources */,
 				1BABD7AF2DC696F4009D8FC5 /* DonateResultViewController.swift in Sources */,
 				1B078F102DCB7A1B002BAE57 /* UserModel.swift in Sources */,
 				1BB836A82DB7CF1100C0C094 /* ReportsListViewController.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
+				1B1633832DDCFDC900C76B02 /* MediaService.swift in Sources */,
 				1BAFC4152DC144F600EB6FB4 /* DateFormatter+Extension.swift in Sources */,
 				1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */,
 				1BABD7BE2DC7C56D009D8FC5 /* SignInViewController.swift in Sources */,

@@ -8,10 +8,10 @@
 import Foundation
 
 struct ReportModel {
-    let id: String
+    var id: String
     let title: String
     let description: String
     let collected: Double
     let closeDate: Date
-    let reportMediaNames: [String]?
+    let reportMedia: [String]?
 }

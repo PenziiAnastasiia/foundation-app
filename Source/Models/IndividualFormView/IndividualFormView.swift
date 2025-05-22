@@ -49,7 +49,11 @@ class IndividualFormView: UIView, FormView {
         guard let pib = self.PIBTextField.text else { return nil }
         let emoji = self.generateEmoji()
         
-        return UserModel(PIB: pib, emoji: emoji, type: "individual")
+        return try? UserModel.fromDictionary([
+            "PIB": pib,
+            "emoji": emoji,
+            "type": "individual"
+        ])
     }
     
     // MARK: - private
