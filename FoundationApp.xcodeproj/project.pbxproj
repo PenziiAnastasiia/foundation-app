@@ -73,6 +73,7 @@
 		1BB836AF2DB8C29A00C0C094 /* ReportDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */; };
 		1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */; };
 		1BD4DD422DDE4DF8002ADA77 /* PDFGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD4DD412DDE4DDC002ADA77 /* PDFGeneratorService.swift */; };
+		1BD4DD472DDF7ED8002ADA77 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD4DD462DDF7ED8002ADA77 /* EditProfileViewController.swift */; };
 		1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0E92D297C1800635A49 /* AppDelegate.swift */; };
 		1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */; };
 		1BF6C0F12D297C1800635A49 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6C0F02D297C1800635A49 /* Base */; };
@@ -149,6 +150,7 @@
 		1BB836AD2DB8C29A00C0C094 /* ReportDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportDetailsViewController.xib; sourceTree = "<group>"; };
 		1BB836B02DB8C4E500C0C094 /* ReportDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailsView.swift; sourceTree = "<group>"; };
 		1BD4DD412DDE4DDC002ADA77 /* PDFGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGeneratorService.swift; sourceTree = "<group>"; };
+		1BD4DD462DDF7ED8002ADA77 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1BF6C0E62D297C1800635A49 /* FoundationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF6C0E92D297C1800635A49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF6C0EB2D297C1800635A49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +410,14 @@
 			path = ReportDetailsViewController;
 			sourceTree = "<group>";
 		};
+		1BD4DD432DDF7E9D002ADA77 /* EditProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1BD4DD462DDF7ED8002ADA77 /* EditProfileViewController.swift */,
+			);
+			path = EditProfileViewController;
+			sourceTree = "<group>";
+		};
 		1BF6C0DD2D297C1700635A49 = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +460,7 @@
 				1BF6C0FE2D29850B00635A49 /* Models */,
 				1BABD7B52DC780CC009D8FC5 /* SignUpViewController */,
 				1BABD7BA2DC7C531009D8FC5 /* SignInViewController */,
+				1BD4DD432DDF7E9D002ADA77 /* EditProfileViewController */,
 				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
 				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
 				1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */,
@@ -692,6 +703,7 @@
 				1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */,
 				1BABD7CD2DC93736009D8FC5 /* String+Extension.swift in Sources */,
 				1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */,
+				1BD4DD472DDF7ED8002ADA77 /* EditProfileViewController.swift in Sources */,
 				1BABD7C42DC7E921009D8FC5 /* IndividualFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

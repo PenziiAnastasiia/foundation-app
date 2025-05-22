@@ -235,7 +235,7 @@
                                                         <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="didTappedSignUp" destination="KMi-Gt-cu9" eventType="touchUpInside" id="H0d-WX-oZb"/>
+                                                        <action selector="didTappedButton" destination="KMi-Gt-cu9" eventType="touchUpInside" id="7hk-of-uAU"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -299,6 +299,7 @@
                 <outlet property="PIBTextField" destination="vMx-Um-56D" id="lg7-Rx-e0c"/>
                 <outlet property="addressTextField" destination="9Y0-eI-TZv" id="lGp-1d-kYC"/>
                 <outlet property="bankTextField" destination="oHv-eh-Jiv" id="lEe-SS-qgF"/>
+                <outlet property="button" destination="0Jd-zU-x41" id="fMU-xM-XYh"/>
                 <outlet property="emailErrorLabel" destination="BJi-el-gYS" id="JrS-b6-95H"/>
                 <outlet property="emailTextField" destination="Zfr-s5-ujJ" id="dWn-WY-lRm"/>
                 <outlet property="organizationNameTextField" destination="3G9-0p-uCP" id="Nth-sI-10s"/>

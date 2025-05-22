@@ -60,9 +60,6 @@
                             <buttonConfiguration key="configuration" style="plain">
                                 <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
                             </buttonConfiguration>
-                            <connections>
-                                <action selector="logoutTapped" destination="GJs-sk-epa" eventType="touchUpInside" id="pJe-Jk-Cap"/>
-                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -91,6 +88,7 @@
                 <outlet property="emoji" destination="WgQ-6S-dYO" id="agv-zd-Kln"/>
                 <outlet property="emojiContainer" destination="Eyk-cL-vE4" id="6tY-vX-5W6"/>
                 <outlet property="name" destination="odN-Mj-m5y" id="UaC-S0-ztl"/>
+                <outlet property="settingsButton" destination="PGT-01-S5D" id="gqy-LR-reB"/>
             </connections>
             <point key="canvasLocation" x="191" y="35"/>
         </view>

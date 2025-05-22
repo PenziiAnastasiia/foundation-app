@@ -43,4 +43,17 @@ extension UIView {
             self.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
     }
+    
+    func embedInSafeArea(of container: UIView) {
+        container.subviews.forEach { $0.removeFromSuperview() }
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(self)
+        NSLayoutConstraint.activate([
+            self.leadingAnchor.constraint(equalTo: container.safeAreaLayoutGuide.leadingAnchor),
+            self.topAnchor.constraint(equalTo: container.safeAreaLayoutGuide.topAnchor, constant: 16),
+            self.trailingAnchor.constraint(equalTo: container.safeAreaLayoutGuide.trailingAnchor),
+            self.bottomAnchor.constraint(equalTo: container.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }

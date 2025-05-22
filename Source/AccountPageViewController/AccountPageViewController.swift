@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountPageViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
+class AccountPageViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate {
 
     @IBOutlet weak var donationHistoryTableView: UITableView!
     
@@ -15,6 +15,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         return self.donationHistoryTableView
     }
     
+    private var docController: UIDocumentInteractionController?
     private var searchBar: UISearchBar?
     private var donationItems: [DonationModel] = []
     
@@ -70,6 +71,11 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         }
     }
     
+    private func changeData() {
+        let editProfileVC = EditProfileViewController()
+        self.navigationController?.pushViewController(editProfileVC, animated: true)
+    }
+    
     private func logout() {
         AuthService.shared.signOut() { result in
             switch result {
@@ -106,7 +112,9 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
                             userEmoji: user.emoji,
                             userName: user.PIB.components(separatedBy: " ").object(at: 1) ?? "Unknown",
                             userHistoryIsEmpty: self.donationItems.isEmpty,
-                            logout: { [weak self] in self?.logout() })
+                            changeData: self.changeData,
+                            logout: self.logout
+                        )
                     } else {
                         $0.configureWithNotLoggedInView(onSignInTap: { [weak self] in
                             guard let self = self else { return }
@@ -133,5 +141,29 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         }
         
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 { return }
+        
+        PDFGeneratorService.generateReceipt(donation: self.donationItems[indexPath.row - 1]) { url in
+            guard let url = url else { return }
+            
+            DispatchQueue.main.async {
+                self.docController = UIDocumentInteractionController(url: url)
+                self.docController?.delegate = self
+                self.docController?.presentPreview(animated: true)
+            }
+        }
+    }
+    
+    // MARK: - UIDocumentInteractionControllerDelegate
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
+    func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
+        self.docController = nil
     }
 }

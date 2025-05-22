@@ -10,13 +10,13 @@ import UIKit
 protocol FormView: AnyObject {
     var delegate: FormViewDelegate? { get set }
 
-    func configure()
+    func configure(changingMode: Bool)
     func getScrollView() -> UIScrollView?
-    func getUser() -> UserModel?
     func updateErrorLabels(with result: AuthErrorResult)
     func resetErrorLabels()
 }
 
 protocol FormViewDelegate: AnyObject {
-    func didTapSignUp(email: String, password: String)
+    func didTapSignUp(email: String, password: String, user: UserModel)
+    func didTapSave(user: UserModel)
 }

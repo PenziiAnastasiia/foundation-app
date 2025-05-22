@@ -49,7 +49,7 @@ final class AuthService {
     func saveUserData(_ uid: String, _ user: UserModel, completion: @escaping (Result<Bool, Error>) -> Void) {
         guard let data = try? user.toDictionary() else { return }
         
-        Firestore.firestore().collection("Users").document(uid).setData(data) { error in
+        Firestore.firestore().collection("Users").document(uid).setData(data, merge: true) { error in
             if let error = error {
                 completion(.failure(error))
             } else {

@@ -30,10 +30,11 @@ class UserInfoViewCell: UITableViewCell {
         self.zeroSpacingView.isHidden = true
     }
     
-    public func configureWithLoggedInView(userEmoji: String, userName: String, userSubscribeIsEmpty: Bool = true, userHistoryIsEmpty: Bool, logout: @escaping () -> Void) {
+    public func configureWithLoggedInView(userEmoji: String, userName: String, userSubscribeIsEmpty: Bool = true, userHistoryIsEmpty: Bool, changeData: @escaping (() -> Void), logout: @escaping (() -> Void)) {
         guard let view = LoggedInView.loadFromNib() else { return }
         view.embedIn(self.loginStatusViewContainer)
         view.configure(userEmoji, userName)
+        view.changeData = changeData
         view.logout = logout
         
         self.noHistoryView.superview?.setCornerRadius()

@@ -96,7 +96,7 @@
                                         <constraint firstAttribute="height" constant="50" id="x6C-Sh-3il"/>
                                     </constraints>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="filled" title="Згенерувати рахунок-фактуру">
+                                    <buttonConfiguration key="configuration" style="filled" title="Згенерувати рахунок">
                                         <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                     </buttonConfiguration>
                                     <connections>

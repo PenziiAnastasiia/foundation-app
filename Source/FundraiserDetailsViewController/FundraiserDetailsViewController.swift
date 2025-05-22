@@ -78,13 +78,13 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
         else { return }
         
         let donation = DonationModel(fundraiserId: self.fundraiser.id, fundraiserTitle: self.fundraiser.title,
-                                     amount: donationSum, date: Date())
+                                     amount: donationSum, date: Date(), receiptNumber: Int.random(in: 100000...999999))
         
         DonateService.shared.updateFundraiserCollectedValue(donation: donation) { result in
             switch result {
             case .success(_):
                 self.saveToHistory(uid: uid, donation: donation)
-            case .failure(let error):
+            case .failure(_):
                 self.presentDonateResultViewController(success: false)
             }
         }

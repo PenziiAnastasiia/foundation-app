@@ -55,19 +55,18 @@ class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelega
     // MARK: - private
     
     private func addFormIntoContainer(formView: (UIView & FormView)) {
-        formView.configure()
+        formView.configure(changingMode: false)
         formView.delegate = self
         formView.embedIn(self.formContainer)
         self.currentFormView = formView
         self.currentFormScrollView = formView.getScrollView()
     }
     
-    private func signUp(email: String, password: String) {
+    private func signUp(email: String, password: String, user: UserModel) {
         AuthService.shared.signUp(email: email, password: password) { result in
             switch result {
             case .success(let uid):
                 self.currentFormView?.resetErrorLabels()
-                guard let user = self.currentFormView?.getUser() else { return }
                 self.saveUserData(uid, user)
 
             case .failure(let error):
@@ -94,7 +93,9 @@ class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelega
     
     // MARK: - FormViewDelegate
     
-    func didTapSignUp(email: String, password: String) {
-        self.signUp(email: email, password: password)
+    func didTapSignUp(email: String, password: String, user: UserModel) {
+        self.signUp(email: email, password: password, user: user)
     }
+    
+    func didTapSave(user: UserModel) { }
 }

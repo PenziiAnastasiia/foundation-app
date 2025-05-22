@@ -24,6 +24,9 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var button: UIButton!
+    
+    private var changingMode: Bool = false
     
     private let banks = ["ПриватБанк", "Ощадбанк", "UKRSIBBANK", "Альфа-Банк", "ПУМБ", "Універсал банк"]
     private let bankPicker = UIPickerView()
@@ -51,17 +54,29 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
         self.bankTextField.resignFirstResponder()
     }
     
-    @IBAction func didTappedSignUp() {
+    @IBAction func didTappedButton() {
         if !self.getResultOfAllChecks() { return }
-        guard let email = self.emailTextField.text, let password = self.passwordTextField.text else { return }
         
-        self.delegate?.didTapSignUp(email: email, password: password)
+        guard let user = self.getUser() else { return }
+        
+        if self.changingMode {
+            self.delegate?.didTapSave(user: user)
+        } else {
+            guard let email = self.emailTextField.text,
+                  let password = self.passwordTextField.text else { return }
+                  
+            self.delegate?.didTapSignUp(email: email, password: password, user: user)
+        }
     }
     
-    public func configure() {
+    public func configure(changingMode: Bool) {
         [self.organizationNameTextField, self.EDRPOYTextField, self.IBANTextField, self.bankTextField, self.addressTextField, self.PIBTextField, self.phoneNumberTextField, self.emailTextField, self.passwordTextField].forEach { textField in
             textField.applyStandardStyle()
         }
+        if changingMode {
+            self.configureChangingModeView()
+        }
+        self.changingMode = changingMode
     }
     
     public func updateErrorLabels(with errorResult: AuthErrorResult) {
@@ -74,22 +89,30 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
         self.passwordErrorLabel.text = ""
     }
     
-    public func getUser() -> UserModel? {
-        guard let organizationName = self.organizationNameTextField.text,
-              let EDRPOY = self.EDRPOYTextField.text,
-              let IBAN = self.IBANTextField.text,
-              let bank = self.bankTextField.text,
-              let address = self.addressTextField.text,
-              let pib = self.PIBTextField.text,
-              let phoneNumber = self.phoneNumberTextField.text
-        else { return nil }
-        let emoji = self.generateEmoji()
-        
-        return UserModel(PIB: pib, emoji: emoji, type: "legal", organizationName: organizationName, EDRPOY: EDRPOY, IBAN: IBAN,
-                    bank: bank, address: address, phoneNumber: phoneNumber)
-    }
-    
     // MARK: - private
+    
+    private func configureChangingModeView() {
+        guard let user = UserManager.shared.currentUser else { return }
+        self.organizationNameTextField.text = user.organizationName
+        self.EDRPOYTextField.isUserInteractionEnabled = false
+        self.EDRPOYTextField.backgroundColor = .container
+        self.EDRPOYTextField.textColor = .gray
+        self.EDRPOYTextField.text = user.EDRPOY
+        self.IBANTextField.text = user.IBAN
+        self.bankTextField.text = user.bank
+        self.addressTextField.text = user.address
+        self.PIBTextField.text = user.PIB
+        self.phoneNumberTextField.text = user.phoneNumber
+        self.emailTextField.superview?.isHidden = true
+        self.passwordTextField.superview?.isHidden = true
+        let attributedTitle = NSAttributedString(
+            string: "Зберегти",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 20, weight: .regular)
+            ]
+        )
+        self.button.setAttributedTitle(attributedTitle, for: .normal)
+    }
     
     private func configureBankPicker() {
         self.bankPicker.delegate = self
@@ -124,8 +147,6 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
         let checkAddressResult = self.addressTextField.isNotEmpty
         let checkPIBResult = self.PIBTextField.checkPIB()
         let checkPhoneNumberResult = self.checkTextFieldHasEnoughText(self.phoneNumberTextField, neededLength: self.phoneNumberSize)
-        let checkEmailResult = self.emailTextField.validateEmail()
-        let checkPassword = self.passwordTextField.isNotEmpty
         
         let isValid =
             checkOrganizationNameResult &&
@@ -134,17 +155,47 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
             checkBankResult &&
             checkAddressResult &&
             checkPIBResult &&
-            checkPhoneNumberResult &&
-            checkEmailResult &&
-            checkPassword
+            checkPhoneNumberResult
         
-        return isValid
+        if self.changingMode {
+            return isValid
+        }
+        
+        let checkEmailResult = self.emailTextField.validateEmail()
+        let checkPassword = self.passwordTextField.isNotEmpty
+        
+        return isValid && checkEmailResult && checkPassword
     }
     
     private func generateEmoji() -> String {
         let emojiArray = ["🏆", "🥇", "🎬", "🎨", "🧩", "🎮", "✈️", "🚁", "🚀",
                           "🛸", "⚓️", "💎", "💵", "💡", "⚖️", "✉️", "🎉"]
         return emojiArray.randomElement() ?? "😎"
+    }
+    
+    private func getUser() -> UserModel? {
+        guard let organizationName = self.organizationNameTextField.text,
+              let EDRPOY = self.EDRPOYTextField.text,
+              let IBAN = self.IBANTextField.text,
+              let bank = self.bankTextField.text,
+              let address = self.addressTextField.text,
+              let pib = self.PIBTextField.text,
+              let phoneNumber = self.phoneNumberTextField.text
+        else { return nil }
+        
+        let currentEmoji = UserManager.shared.currentUser?.emoji ?? self.generateEmoji()
+        
+        return try? UserModel.fromDictionary([
+            "PIB": pib,
+            "emoji": currentEmoji,
+            "type": "legal",
+            "organizationName": organizationName,
+            "EDRPOY": EDRPOY,
+            "IBAN": IBAN,
+            "bank": bank,
+            "address": address,
+            "phoneNumber": phoneNumber
+        ])
     }
     
     // MARK: -- addPrefixes

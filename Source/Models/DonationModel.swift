@@ -12,4 +12,5 @@ struct DonationModel: Codable {
     let fundraiserTitle: String
     let amount: Double
     let date: Date
+    let receiptNumber: Int
 }
