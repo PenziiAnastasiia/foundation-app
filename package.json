@@ -1,0 +1,16 @@
+{
+  "name": "foundation-app",
+  "version": "1.0.0",
+  "description": "Firebase testing project",
+  "scripts": {
+    "emulators": "firebase emulators:start",
+    "test-triggers": "node test-triggers.js",
+    "test-functions": "cd functions && npm test"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.4.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  }
+}

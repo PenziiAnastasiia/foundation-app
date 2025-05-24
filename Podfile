@@ -10,6 +10,7 @@ target 'FoundationApp' do
     pod 'FirebaseUI/Auth'
     pod 'Kingfisher', '~> 8'
     pod 'Firebase/Storage'
+    pod 'FirebaseMessaging'
     pod 'TPPDF', '~> 2.6'
 end
 

@@ -37,7 +37,9 @@ class PDFGeneratorService {
         let document = PDFDocument(format: .a4)
         
         self.addTitle(in: document, "Квитанція за сплату №\(donation.receiptNumber)", on: DateFormatter.shared.string(from: donation.date))
-        document.add(.contentLeft, text: "Благодійний внесок на підтримку Збору:")
+        let appointment = self.getAttributedText("Призначення: ", size: 16)
+        appointment.append(self.getAttributedText("Благодійний внесок на підтримку Збору:", size: 16, font: UIFont.systemFont(ofSize: 16)))
+        document.add(.contentLeft, attributedTextObject: PDFAttributedText(text: appointment))
         document.add(.contentLeft, text: "\"\(donation.fundraiserTitle)\"")
         self.addReceiptInfo(in: document, amount: donation.amount)
         self.addSigningFields(in: document)
@@ -118,7 +120,7 @@ class PDFGeneratorService {
             document.add(.contentLeft, text: "Номер тел.: \(user.phoneNumber ?? "")")
         }
         document.add(.contentLeft, text: " ")
-        document.add(.contentRight, attributedTextObject: PDFAttributedText(text: self.getAttributedText("Сума сплати: \(String(format: "%.2f грн", amount))", size: 24)))
+        document.add(.contentRight, attributedTextObject: PDFAttributedText(text: self.getAttributedText("Сума сплати: \(String(format: "%.2f грн", amount)) (без ПДВ)", size: 24)))
     }
     
     static private func addDescribingTable(in document: PDFDocument, amount: Double) {
@@ -149,11 +151,11 @@ class PDFGeneratorService {
         document.add(.contentRight, text: "Платник: ____________________________")
     }
    
-    static private func getAttributedText(_ text: String, size: CGFloat) -> NSAttributedString {
+    static private func getAttributedText(_ text: String, size: CGFloat, font: UIFont? = nil) -> NSMutableAttributedString {
         NSMutableAttributedString(
             string: text,
             attributes: [
-                .font: UIFont.boldSystemFont(ofSize: size)
+                .font: font != nil ? font! : UIFont.boldSystemFont(ofSize: size)
             ]
         )
     }

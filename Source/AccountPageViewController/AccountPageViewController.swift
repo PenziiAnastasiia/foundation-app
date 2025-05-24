@@ -42,6 +42,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
             Task {
                 do {
                     self.donationItems = try await self.getUserDonationHistory(uid)
+                    self.donationItems.sort { $0.date > $1.date }
                     self.donationHistoryTableView.reloadData()
                 } catch {  }
             }
