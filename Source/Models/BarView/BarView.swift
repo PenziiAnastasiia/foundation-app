@@ -20,7 +20,7 @@ class BarView: UIView {
         
         self.progressWidthConstraint.constant = barWidth
         
-        collectedLabel.text = "\(collected.formattedWithSeparator())₴, \(round((progress * 100) * 100) / 100)%"
-        goalLabel.text = "\(goal.formattedWithSeparator())"
+        self.collectedLabel.text = "\(collected.formattedWithSeparator())₴, \(round((progress * 100) * 100) / 100)%"
+        self.goalLabel.text = "\(goal.formattedWithSeparator())"
     }
 }

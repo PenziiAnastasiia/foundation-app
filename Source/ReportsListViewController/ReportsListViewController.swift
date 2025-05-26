@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 
-class ReportsListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
+class ReportsListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, FilterViewControllerDelegate {
     
     @IBOutlet weak var reportsTableView: UITableView!
     
@@ -19,6 +19,7 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
     
     private var reportsList: [ReportModel] = []
     private var filteredReportsList: [ReportModel] = []
+    private var filters = FiltersModel.createEmptyModel()
     private var updateTimer: Timer?
     private var searchBar: UISearchBar?
 
@@ -54,7 +55,10 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
     }
     
     @objc private func didTapFilter() {
-        print("Filter button tapped")
+        let controller = FilterViewController(forReports: true, filters: self.filters)
+        controller.delegate = self
+        controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true)
     }
     
     private func fillReportsList() async {
@@ -76,27 +80,31 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
     private func createReport(from document: [String: Any], with id: String) async -> ReportModel? {
         guard let title = document["title"] as? String,
               let description = document["description"] as? String,
-              let closeDate = (document["closeDate"] as? Timestamp)?.dateValue(),
-              let collected = document["collected"] as? Double
+              let publicationDate = (document["publicationDate"] as? Timestamp)?.dateValue(),
+              let collected = document["collected"] as? Double,
+              let purposeTags = document["purposeTags"] as? [String]
         else { return nil }
         
         let reportMedia = document["reportMedia"] as? [String]
         
-        let report = ReportModel(id: id, title: title, description: description, collected: collected, closeDate: closeDate, reportMedia: reportMedia)
+        let report = ReportModel(id: id, title: title, description: description, collected: collected, publicationDate: publicationDate, reportMedia: reportMedia, purposeTags: purposeTags)
         
         return report
     }
 
     private func filterList() {
-        let searchText = self.searchBar?.text?.lowercased() ?? ""
-        self.filteredReportsList = searchText.isEmpty
-            ? self.reportsList
-            : self.reportsList.filter { report in
-                    let titleMatch = report.title.lowercased().contains(searchText)
-                    let descriptionMatch = report.description.lowercased().contains(searchText)
-                    return titleMatch || descriptionMatch
-                }
-        self.filteredReportsList.sort { $0.closeDate > $1.closeDate }
+        self.filteredReportsList = self.reportsList
+            .filter { FilterEngine.matchesFilters($0, filters: self.filters) }
+            .filter { self.matchesSearch($0) }
+            .sorted { $0.publicationDate > $1.publicationDate }
+    }
+    
+    private func matchesSearch(_ report: ReportModel) -> Bool {
+        guard let searchText = self.searchBar?.text?.lowercased(), !searchText.isEmpty else {
+            return true
+        }
+        return report.title.lowercased().contains(searchText) ||
+               report.description.lowercased().contains(searchText)
     }
     
     private func startUpdateTimer() {
@@ -139,10 +147,17 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
-}
 
-extension ReportsListViewController {
+    // MARK: - UISearchBarDelegate
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.reportsTableView.reloadData()
+    }
+    
+    // MARK: - FilterViewControllerDelegate
+    
+    func filterViewControllerDidApply(_ controller: FilterViewController, filters: FiltersModel) {
+        self.filters = filters
         self.reportsTableView.reloadData()
     }
 }

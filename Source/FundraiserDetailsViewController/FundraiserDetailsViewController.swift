@@ -78,7 +78,7 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
         else { return }
         
         let donation = DonationModel(fundraiserId: self.fundraiser.id, fundraiserTitle: self.fundraiser.title,
-                                     amount: donationSum, date: Date(), receiptNumber: Int.random(in: 100000...999999))
+                                     amount: donationSum, date: Date(), receiptNumber: Int.random(in: 100000...999999), purposeTags: self.fundraiser.purposeTags)
         
         DonateService.shared.updateFundraiserCollectedValue(donation: donation) { result in
             switch result {

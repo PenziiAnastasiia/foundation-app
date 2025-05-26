@@ -50,10 +50,6 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
         return self.scrollView
     }
     
-    @objc private func donePressed() {
-        self.bankTextField.resignFirstResponder()
-    }
-    
     @IBAction func didTappedButton() {
         if !self.getResultOfAllChecks() { return }
         
@@ -90,6 +86,10 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
     }
     
     // MARK: - private
+    
+    @objc private func donePressed() {
+        self.bankTextField.resignFirstResponder()
+    }
     
     private func configureChangingModeView() {
         guard let user = UserManager.shared.currentUser else { return }

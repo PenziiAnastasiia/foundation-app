@@ -7,11 +7,17 @@
 
 import Foundation
 
-struct ReportModel {
+struct ReportModel: Filterable {
     var id: String
     let title: String
     let description: String
     let collected: Double
-    let closeDate: Date
+    let publicationDate: Date
     let reportMedia: [String]?
+    let purposeTags: [String]
+    
+    // MARK: - Filterable
+    
+    var target: Int? { return nil }
+    var date: Date { return publicationDate }
 }

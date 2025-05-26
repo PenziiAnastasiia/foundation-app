@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FundraiserModel {
+struct FundraiserModel: Filterable {
     let id: String
     let title: String
     let description: String
@@ -16,4 +16,10 @@ struct FundraiserModel {
     let collected: Double
     let openDate: Date
     let closeDate: Date?
+    let purposeTags: [String]
+    
+    // MARK: - Filterable
+    
+    var target: Int? { return self.goal }
+    var date: Date { return self.openDate }
 }

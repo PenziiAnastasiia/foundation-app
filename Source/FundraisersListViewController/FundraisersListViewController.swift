@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseFirestore
 
-class FundraisersListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate {
+class FundraisersListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, FilterViewControllerDelegate {
     
     @IBOutlet weak var fundraisersTableView: UITableView!
     
@@ -19,6 +19,7 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
     private var fundraisersList: [FundraiserModel] = []
     private var openFundraisers: [FundraiserModel] = []
     private var closedFundraisers: [FundraiserModel] = []
+    private var filters = FiltersModel.createEmptyModel()
     private var updateTimer: Timer?
     private var searchBar: UISearchBar?
     private var filterButton: UIBarButtonItem?
@@ -53,8 +54,14 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
         self.stopObservingKeyboard()
     }
     
+    
+    // MARK: - private
+    
     @objc private func didTapFilter() {
-        print("Filter button tapped")
+        let controller = FilterViewController(filters: self.filters)
+        controller.delegate = self
+        controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true)
     }
     
     private func fillFundraisersList() async {
@@ -78,26 +85,22 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
               let description = document["description"] as? String,
               let openDate = (document["openDate"] as? Timestamp)?.dateValue(),
               let goal = document["goal"] as? Int,
-              let collected = document["collected"] as? Double
+              let collected = document["collected"] as? Double,
+              let purposeTags = document["purposeTags"] as? [String]
         else { return nil }
         
         let descriptionMedia = document["descriptionMedia"] as? [String]
         let closeDate = (document["closeDate"] as? Timestamp)?.dateValue()
         
-        let fundraiser = FundraiserModel(id: id, title: title, description: description, descriptionMedia: descriptionMedia, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate)
+        let fundraiser = FundraiserModel(id: id, title: title, description: description, descriptionMedia: descriptionMedia, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate, purposeTags: purposeTags)
         
         return fundraiser
     }
 
     private func filterList() {
-        let searchText = self.searchBar?.text?.lowercased() ?? ""
-        let filtered = searchText.isEmpty
-            ? self.fundraisersList
-            : self.fundraisersList.filter { fundraiser in
-                    let titleMatch = fundraiser.title.lowercased().contains(searchText)
-                    let descriptionMatch = fundraiser.description.lowercased().contains(searchText)
-                    return titleMatch || descriptionMatch
-                }
+        let filtered = self.fundraisersList
+            .filter { FilterEngine.matchesFilters($0, filters: self.filters) }
+            .filter { self.matchesSearch($0) }
         
         self.closedFundraisers = filtered
             .filter { $0.closeDate != nil }
@@ -106,6 +109,14 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
         self.openFundraisers = filtered
             .filter { $0.closeDate == nil }
             .sorted { $0.collected / Double($0.goal) > $1.collected / Double($1.goal) }
+    }
+    
+    private func matchesSearch(_ fundraiser: FundraiserModel) -> Bool {
+        guard let searchText = self.searchBar?.text?.lowercased(), !searchText.isEmpty else {
+            return true
+        }
+        return fundraiser.title.lowercased().contains(searchText) ||
+               fundraiser.description.lowercased().contains(searchText)
     }
     
     private func startUpdateTimer() {
@@ -176,10 +187,17 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
             }
         }
     }
-}
-
-extension FundraisersListViewController {
+    
+    // MARK: - UISearchBarDelegate
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.fundraisersTableView.reloadData()
+    }
+    
+    // MARK: - FilterViewControllerDelegate
+    
+    func filterViewControllerDidApply(_ controller: FilterViewController, filters: FiltersModel) {
+        self.filters = filters
         self.fundraisersTableView.reloadData()
     }
 }

@@ -45,7 +45,7 @@ class ListElementTableViewCell: UITableViewCell {
     
     public func configure(with report: ReportModel) {
         self.titleLabel.text = report.title
-        self.fillWithoutBarView(closeDate: report.closeDate, collected: report.collected)
+        self.fillWithoutBarView(closeDate: report.publicationDate, collected: report.collected)
         self.nestedView.setCornerRadius()
     }
     

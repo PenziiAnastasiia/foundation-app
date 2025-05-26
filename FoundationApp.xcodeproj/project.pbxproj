@@ -21,6 +21,11 @@
 		1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */; };
 		1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */; };
 		1B6933AF2D327F6200D09C8F /* FundraiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */; };
+		1B81F6402DE20B57000C9659 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B81F63F2DE20B57000C9659 /* FilterViewController.xib */; };
+		1B81F6412DE20B57000C9659 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B81F63E2DE20B57000C9659 /* FilterViewController.swift */; };
+		1B81F6432DE2613A000C9659 /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B81F6422DE26133000C9659 /* FiltersModel.swift */; };
+		1B81F6472DE36831000C9659 /* TagButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B81F6452DE36831000C9659 /* TagButtonCollectionViewCell.swift */; };
+		1B81F6482DE36831000C9659 /* TagButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B81F6462DE36831000C9659 /* TagButtonCollectionViewCell.xib */; };
 		1B8A18E22DCCF875007BDC86 /* FoundationInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */; };
 		1B8A18E42DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A18E32DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib */; };
 		1B8A18E62DCD176B007BDC86 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E52DCD1762007BDC86 /* Codable+Extension.swift */; };
@@ -98,6 +103,11 @@
 		1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsView.swift; sourceTree = "<group>"; };
 		1B6933A92D31B6B300D09C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserModel.swift; sourceTree = "<group>"; };
+		1B81F63E2DE20B57000C9659 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		1B81F63F2DE20B57000C9659 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
+		1B81F6422DE26133000C9659 /* FiltersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModel.swift; sourceTree = "<group>"; };
+		1B81F6452DE36831000C9659 /* TagButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		1B81F6462DE36831000C9659 /* TagButtonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagButtonCollectionViewCell.xib; sourceTree = "<group>"; };
 		1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationInfoManager.swift; sourceTree = "<group>"; };
 		1B8A18E32DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FundraiserDetailsViewController.xib; sourceTree = "<group>"; };
 		1B8A18E52DCD1762007BDC86 /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
@@ -12475,6 +12485,24 @@
 				1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */,
 			);
 			path = FundraiserDetailsViewController;
+			sourceTree = "<group>";
+		};
+		1B81F63D2DE20B0E000C9659 /* FilterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1B81F63E2DE20B57000C9659 /* FilterViewController.swift */,
+				1B81F63F2DE20B57000C9659 /* FilterViewController.xib */,
+			);
+			path = FilterViewController;
+			sourceTree = "<group>";
+		};
+		1B81F6442DE367D6000C9659 /* TagButtonCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1B81F6452DE36831000C9659 /* TagButtonCollectionViewCell.swift */,
+				1B81F6462DE36831000C9659 /* TagButtonCollectionViewCell.xib */,
+			);
+			path = TagButtonCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		1BABD7A82DC63326009D8FC5 /* Services */ = {
@@ -38663,6 +38691,7 @@
 				1BABD7B52DC780CC009D8FC5 /* SignUpViewController */,
 				1BABD7BA2DC7C531009D8FC5 /* SignInViewController */,
 				1BD4DD432DDF7E9D002ADA77 /* EditProfileViewController */,
+				1B81F63D2DE20B0E000C9659 /* FilterViewController */,
 				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
 				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
 				1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */,
@@ -38678,6 +38707,7 @@
 		1BF6C0FE2D29850B00635A49 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1B81F6422DE26133000C9659 /* FiltersModel.swift */,
 				1B078F0F2DCB7A18002BAE57 /* UserModel.swift */,
 				1B6933AE2D327F6200D09C8F /* FundraiserModel.swift */,
 				1BB836A92DB7EFC800C0C094 /* ReportModel.swift */,
@@ -38686,6 +38716,7 @@
 				1B078F012DCA5B3B002BAE57 /* FormView.swift */,
 				1BABD7C02DC7E8F5009D8FC5 /* IndividualFormView */,
 				1BABD7C52DC7F3C6009D8FC5 /* LegalEntityForm */,
+				1B81F6442DE367D6000C9659 /* TagButtonCollectionViewCell */,
 				1BAC01272DAC2242008BCCA4 /* BarView */,
 				1BB8369F2DB280DD00C0C094 /* DonateView */,
 				1BAFC42A2DC3E17900EB6FB4 /* FundraisersSeparatorTableViewCell */,
@@ -38788,6 +38819,7 @@
 				1B078F0C2DCA8ADE002BAE57 /* NotLoggedInView.xib in Resources */,
 				1BAC013C2DAE6B78008BCCA4 /* MediaCollectionViewCell.xib in Resources */,
 				1BABD7B42DC6A55F009D8FC5 /* success.gif in Resources */,
+				1B81F6482DE36831000C9659 /* TagButtonCollectionViewCell.xib in Resources */,
 				1BABD7B32DC6A55F009D8FC5 /* failure.gif in Resources */,
 				1BAFC4282DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.xib in Resources */,
 				1BABD7C22DC7E915009D8FC5 /* IndividualFormView.xib in Resources */,
@@ -38800,6 +38832,7 @@
 				1BF6C0F12D297C1800635A49 /* Base in Resources */,
 				1BABD7BD2DC7C56D009D8FC5 /* SignInViewController.xib in Resources */,
 				1BAC012D2DAC231E008BCCA4 /* BarView.xib in Resources */,
+				1B81F6402DE20B57000C9659 /* FilterViewController.xib in Resources */,
 				1B6933AA2D31B6B400D09C8F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38837,9 +38870,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FoundationApp/Pods-FoundationApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FoundationApp/Pods-FoundationApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -38856,6 +38893,7 @@
 				1B8A18E22DCCF875007BDC86 /* FoundationInfoManager.swift in Sources */,
 				1B8A18E82DCD2328007BDC86 /* AuthService.swift in Sources */,
 				1B078F022DCA5B50002BAE57 /* FormView.swift in Sources */,
+				1B81F6412DE20B57000C9659 /* FilterViewController.swift in Sources */,
 				1BAFC4112DC13B9B00EB6FB4 /* DonationModel.swift in Sources */,
 				1BAFC4042DC0FFA300EB6FB4 /* KeyboardObservable.swift in Sources */,
 				1BAC01292DAC22D6008BCCA4 /* BarView.swift in Sources */,
@@ -38871,6 +38909,8 @@
 				1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */,
 				1BABD7B92DC7810F009D8FC5 /* SignUpViewController.swift in Sources */,
 				1BABD7CB2DC8D0C0009D8FC5 /* UITextField+Extension.swift in Sources */,
+				1B81F6432DE2613A000C9659 /* FiltersModel.swift in Sources */,
+				1B81F6472DE36831000C9659 /* TagButtonCollectionViewCell.swift in Sources */,
 				1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */,
 				1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */,
 				1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */,

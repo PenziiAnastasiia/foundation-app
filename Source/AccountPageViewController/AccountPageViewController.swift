@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountPageViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate {
+class AccountPageViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate, FilterViewControllerDelegate {
 
     @IBOutlet weak var donationHistoryTableView: UITableView!
     
@@ -15,9 +15,12 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         return self.donationHistoryTableView
     }
     
+    private var donationItems: [DonationModel] = []
+    private var filteredDonationItems: [DonationModel] = []
+    private var filters = FiltersModel.createEmptyModel()
     private var docController: UIDocumentInteractionController?
     private var searchBar: UISearchBar?
-    private var donationItems: [DonationModel] = []
+    private var filterButton: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,6 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
             Task {
                 do {
                     self.donationItems = try await self.getUserDonationHistory(uid)
-                    self.donationItems.sort { $0.date > $1.date }
                     self.donationHistoryTableView.reloadData()
                 } catch {  }
             }
@@ -53,11 +55,28 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         self.stopObservingKeyboard()
     }
     
+    // MARK: - private
+    
     @objc private func didTapFilter() {
-        print("Filter button tapped")
+        let controller = FilterViewController(forDonations: true, filters: self.filters)
+        controller.delegate = self
+        controller.modalPresentationStyle = .pageSheet
+        self.present(controller, animated: true)
     }
     
-    // MARK: - private
+    private func filterList() {
+        self.filteredDonationItems = self.donationItems
+            .filter { FilterEngine.matchesFilters($0, filters: self.filters) }
+            .filter { self.matchesSearch($0) }
+            .sorted { $0.date > $1.date }
+    }
+    
+    private func matchesSearch(_ donation: DonationModel) -> Bool {
+        guard let searchText = self.searchBar?.text?.lowercased(), !searchText.isEmpty else {
+            return true
+        }
+        return donation.fundraiserTitle.lowercased().contains(searchText)
+    }
     
     private func getUserDonationHistory(_ uid: String) async throws -> [DonationModel] {
         try await withCheckedThrowingContinuation { continuation in
@@ -94,8 +113,9 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     // MARK: - UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.filterList()
         if let _ = UserManager.shared.currentUser {
-            return self.donationItems.count + 1
+            return self.filteredDonationItems.count + 1
         } else {
             return 1
         }
@@ -112,7 +132,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
                         $0.configureWithLoggedInView(
                             userEmoji: user.emoji,
                             userName: user.PIB.components(separatedBy: " ").object(at: 1) ?? "Unknown",
-                            userHistoryIsEmpty: self.donationItems.isEmpty,
+                            userHistoryIsEmpty: self.filteredDonationItems.isEmpty,
                             changeData: self.changeData,
                             logout: self.logout
                         )
@@ -132,7 +152,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
         default:
             cell = (tableView.dequeueReusableCell(withIdentifier: "DonationCell", for: indexPath) as? DonationHistoryTableViewCell)
                 .flatMap {
-                    if let model = self.donationItems.object(at: indexPath.row - 1) {
+                    if let model = self.filteredDonationItems.object(at: indexPath.row - 1) {
                         $0.configure(with: model)
                         
                         return $0
@@ -147,7 +167,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 { return }
         
-        PDFGeneratorService.generateReceipt(donation: self.donationItems[indexPath.row - 1]) { url in
+        PDFGeneratorService.generateReceipt(donation: self.filteredDonationItems[indexPath.row - 1]) { url in
             guard let url = url else { return }
             
             DispatchQueue.main.async {
@@ -166,5 +186,18 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     
     func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
         self.docController = nil
+    }
+    
+    // MARK: - UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.donationHistoryTableView.reloadData()
+    }
+    
+    // MARK: - FilterViewControllerDelegate
+    
+    func filterViewControllerDidApply(_ controller: FilterViewController, filters: FiltersModel) {
+        self.filters = filters
+        self.donationHistoryTableView.reloadData()
     }
 }
