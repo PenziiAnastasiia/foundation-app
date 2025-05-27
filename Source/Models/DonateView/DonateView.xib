@@ -62,29 +62,8 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFP-fr-OfM">
                             <rect key="frame" x="0.0" y="128" width="500" height="82"/>
-                            <subviews>
-                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oq-vv-JMm">
-                                    <rect key="frame" x="0.0" y="16" width="500" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="TUF-Bp-akT"/>
-                                    </constraints>
-                                    <color key="tintColor" systemColor="labelColor"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="filled" image="apple.logo" catalog="system" title=" Pay">
-                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                        <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
-                                        <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="didTappedApplePay" destination="58v-Ji-FRE" eventType="touchUpInside" id="bkf-RX-hZB"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="5Oq-vv-JMm" secondAttribute="trailing" id="WgZ-bU-lZI"/>
-                                <constraint firstItem="5Oq-vv-JMm" firstAttribute="leading" secondItem="YFP-fr-OfM" secondAttribute="leading" id="cgy-nj-y87"/>
-                                <constraint firstAttribute="bottom" secondItem="5Oq-vv-JMm" secondAttribute="bottom" constant="16" id="ymj-1a-wND"/>
-                                <constraint firstItem="5Oq-vv-JMm" firstAttribute="top" secondItem="YFP-fr-OfM" secondAttribute="top" constant="16" id="yrf-5W-hft"/>
+                                <constraint firstAttribute="height" constant="82" id="A17-XJ-jzw"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAR-3j-CBO">
@@ -109,6 +88,7 @@
                                 <constraint firstItem="5oI-Kj-Wdy" firstAttribute="top" secondItem="vAR-3j-CBO" secondAttribute="top" constant="16" id="Lla-fv-ZkA"/>
                                 <constraint firstAttribute="trailing" secondItem="5oI-Kj-Wdy" secondAttribute="trailing" id="ZL7-4X-VIe"/>
                                 <constraint firstItem="5oI-Kj-Wdy" firstAttribute="leading" secondItem="vAR-3j-CBO" secondAttribute="leading" id="nxz-4b-P7H"/>
+                                <constraint firstAttribute="height" constant="82" id="zzn-d2-Flp"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -139,13 +119,9 @@
         </view>
     </objects>
     <resources>
-        <image name="apple.logo" catalog="system" width="105" height="128"/>
         <namedColor name="TextFieldColor">
             <color red="0.95294117647058818" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

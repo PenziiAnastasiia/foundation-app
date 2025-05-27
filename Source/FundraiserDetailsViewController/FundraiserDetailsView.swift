@@ -17,6 +17,8 @@ class FundraiserDetailsView: UIView {
     @IBOutlet weak var barViewContainer: UIView!
     @IBOutlet weak var donateViewContainer: UIView!
     
+    private var donateView: DonateView?
+    
     public func fillView(with fundraiser: FundraiserModel) {
         self.titleLabel.text = fundraiser.title
         self.descriptionLabel.text = fundraiser.description
@@ -43,12 +45,17 @@ class FundraiserDetailsView: UIView {
         }
     }
     
-    public func fillDonateView(donateFunc: ((Double) -> Void)? = nil, generateInvoiceFunc: ((Double) -> Void)? = nil) {
+    public func fillDonateView(with applePayButton: UIButton? = nil, generateInvoiceFunc: ((Double) -> Void)? = nil) {
         if let donateView = DonateView.loadFromNib() {
             donateView.embedIn(self.donateViewContainer)
             self.donateViewContainer.superview?.layoutIfNeeded()
-            donateView.configure(donate: donateFunc, generateInvoice: generateInvoiceFunc)
+            donateView.configure(with: applePayButton, generateInvoice: generateInvoiceFunc)
+            self.donateView = donateView
         }
+    }
+    
+    public func getDonationSum() -> Double? {
+        return self.donateView?.getDonationSum()
     }
     
     // MARK: - private

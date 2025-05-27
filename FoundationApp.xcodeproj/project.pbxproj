@@ -16,6 +16,8 @@
 		1B078F132DCB8935002BAE57 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F122DCB8934002BAE57 /* UserManager.swift */; };
 		1B1633832DDCFDC900C76B02 /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633822DDCFDB400C76B02 /* MediaService.swift */; };
 		1B1633852DDDEB0500C76B02 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633842DDDEAF700C76B02 /* KeychainManager.swift */; };
+		1B6322702DE513B400E53E4A /* FilterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B63226F2DE513A800E53E4A /* FilterEngine.swift */; };
+		1B6322722DE51A6600E53E4A /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6322712DE51A5800E53E4A /* PaymentHandler.swift */; };
 		1B69339D2D2AEF1100D09C8F /* FundraisersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69339C2D2AEF1100D09C8F /* FundraisersListViewController.swift */; };
 		1B6933A52D2C222C00D09C8F /* FundraiserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933A32D2C222C00D09C8F /* FundraiserDetailsViewController.swift */; };
 		1B6933A82D2C344A00D09C8F /* FundraiserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */; };
@@ -98,6 +100,8 @@
 		1B078F122DCB8934002BAE57 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		1B1633822DDCFDB400C76B02 /* MediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
 		1B1633842DDDEAF700C76B02 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		1B63226F2DE513A800E53E4A /* FilterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngine.swift; sourceTree = "<group>"; };
+		1B6322712DE51A5800E53E4A /* PaymentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
 		1B69339C2D2AEF1100D09C8F /* FundraisersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraisersListViewController.swift; sourceTree = "<group>"; };
 		1B6933A32D2C222C00D09C8F /* FundraiserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsViewController.swift; sourceTree = "<group>"; };
 		1B6933A72D2C344A00D09C8F /* FundraiserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundraiserDetailsView.swift; sourceTree = "<group>"; };
@@ -12508,6 +12512,8 @@
 		1BABD7A82DC63326009D8FC5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1B6322712DE51A5800E53E4A /* PaymentHandler.swift */,
+				1B63226F2DE513A800E53E4A /* FilterEngine.swift */,
 				1BD4DD412DDE4DDC002ADA77 /* PDFGeneratorService.swift */,
 				1B1633842DDDEAF700C76B02 /* KeychainManager.swift */,
 				1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */,
@@ -38906,6 +38912,7 @@
 				1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */,
 				1BAFC4292DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.swift in Sources */,
 				1BAFC4222DC283F500EB6FB4 /* UserInfoViewCell.swift in Sources */,
+				1B6322722DE51A6600E53E4A /* PaymentHandler.swift in Sources */,
 				1BB836B12DB8C4E600C0C094 /* ReportDetailsView.swift in Sources */,
 				1BABD7B92DC7810F009D8FC5 /* SignUpViewController.swift in Sources */,
 				1BABD7CB2DC8D0C0009D8FC5 /* UITextField+Extension.swift in Sources */,
@@ -38943,6 +38950,7 @@
 				1BB8369E2DB1831300C0C094 /* MediaItemModel.swift in Sources */,
 				1BD4DD472DDF7ED8002ADA77 /* EditProfileViewController.swift in Sources */,
 				1BABD7C42DC7E921009D8FC5 /* IndividualFormView.swift in Sources */,
+				1B6322702DE513B400E53E4A /* FilterEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

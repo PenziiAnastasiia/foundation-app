@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PassKit
 
 class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UIDocumentInteractionControllerDelegate {
     
@@ -17,6 +18,7 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
         return self.rootView?.scrollView
     }
     
+    private let paymentHandler = PaymentHandler()
     private var docController: UIDocumentInteractionController?
     private let fundraiser: FundraiserModel
     private var donationSum: Double?
@@ -43,7 +45,8 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
         if user?.type == "legal" {
             self.rootView?.fillDonateView(generateInvoiceFunc: self.generateInvoice)
         } else {
-            self.rootView?.fillDonateView(donateFunc: self.makeDonation)
+            let applePayButton = self.createApplePayButton()
+            self.rootView?.fillDonateView(with: applePayButton)
         }
         
         self.startObservingKeyboard()
@@ -53,9 +56,37 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
         self.stopObservingKeyboard()
     }
     
-    private func makeDonation(_ sum: Double) {
-        self.donationSum = sum
-        self.donate()
+    // MARK: - private
+    
+    private func createApplePayButton() -> UIButton {
+        let result = PaymentHandler.applePayStatus()
+        var applePayButton = UIButton()
+        if result.canMakePayments {
+            applePayButton = PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
+            applePayButton.addTarget(self, action: #selector(self.payPressed), for: .touchUpInside)
+        } else if result.canSetupCards {
+            applePayButton = PKPaymentButton(paymentButtonType: .setUp, paymentButtonStyle: .black)
+            applePayButton.addTarget(self, action: #selector(self.setupPressed), for: .touchUpInside)
+        }
+        return applePayButton
+    }
+    
+    @objc private func payPressed(sender: AnyObject) {
+        if let donationSum = self.rootView?.getDonationSum() {
+            self.donationSum = donationSum
+            self.paymentHandler.startPayment(sum: donationSum, title: self.fundraiser.title) { (success) in
+                if success {
+                    self.donate()
+                } else {
+                    self.presentDonateResultViewController(success: success)
+                }
+            }
+        }
+    }
+    
+    @objc private func setupPressed(sender: AnyObject) {
+        let passLibrary = PKPassLibrary()
+        passLibrary.openPaymentSetup()
     }
     
     private func generateInvoice(_ sum: Double) {

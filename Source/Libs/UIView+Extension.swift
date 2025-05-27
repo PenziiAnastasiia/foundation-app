@@ -32,16 +32,16 @@ extension UIView {
         self.clipsToBounds = true
     }
     
-    func embedIn(_ container: UIView) {
+    func embedIn(_ container: UIView, constant: CGFloat = 0.0) {
         container.subviews.forEach { $0.removeFromSuperview() }
         
         self.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(self)
         NSLayoutConstraint.activate([
             self.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            self.topAnchor.constraint(equalTo: container.topAnchor),
+            self.topAnchor.constraint(equalTo: container.topAnchor, constant: constant),
             self.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            self.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+            self.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -constant)
         ])
     }
     

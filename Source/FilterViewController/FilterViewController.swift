@@ -91,7 +91,6 @@ class FilterViewController: UIViewController, KeyboardObservable, UITextFieldDel
     
     @IBAction func applyAction() {
         self.getFiltersConditions()
-        print(filters.state, filters.dateFrom, filters.dateTo, filters.purposeTags, filters.amountFrom, filters.amountTo, filters.dateTag)
         if !filters.isEmpty {
             self.delegate?.filterViewControllerDidApply(self, filters: self.filters)
             self.dismiss(animated: true)
@@ -170,6 +169,7 @@ class FilterViewController: UIViewController, KeyboardObservable, UITextFieldDel
         picker.datePickerMode = .date
         picker.preferredDatePickerStyle = .inline
         picker.maximumDate = Date()
+        picker.locale = Locale(identifier: "uk_UA")
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

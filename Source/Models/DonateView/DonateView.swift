@@ -16,9 +16,8 @@ class DonateView: UIView, UITextFieldDelegate {
     @IBOutlet weak var generateInvoiceButtonContainer: UIView!
     
     private var generateInvoice: ((_ sum: Double) -> Void)?
-    private var donate: ((_ sum: Double) -> Void)?
 
-    public func configure(donate: ((Double) -> Void)? = nil, generateInvoice: ((Double) -> Void)? = nil) {
+    public func configure(with applePayButton: UIButton? = nil, generateInvoice: ((Double) -> Void)? = nil) {
         self.sumDonateTextField.applyStandardStyle()
         self.sumDonateTextField.delegate = self
         
@@ -26,11 +25,16 @@ class DonateView: UIView, UITextFieldDelegate {
             self.applePayButtonContainer.isHidden = true
             self.generateInvoiceButtonContainer.isHidden = false
             self.generateInvoice = generateInvoice
-        } else {
+        } else if let button = applePayButton {
             self.generateInvoiceButtonContainer.isHidden = true
             self.applePayButtonContainer.isHidden = false
-            self.donate = donate
+            button.embedIn(self.applePayButtonContainer, constant: 16.0)
         }
+    }
+    
+    public func getDonationSum() -> Double? {
+        self.sumDonateErrorMessage.text = ""
+        return self.checkDonateSum()
     }
     
     @IBAction func didTappedGenerate() {
@@ -39,13 +43,6 @@ class DonateView: UIView, UITextFieldDelegate {
         guard let sum = self.checkDonateSum() else { return }
         
         self.generateInvoice?(sum)
-    }
-    
-    @IBAction func didTappedApplePay() {
-        self.sumDonateErrorMessage.text = ""
-        
-        guard let sum = self.checkDonateSum() else { return }
-        self.donate?(sum)
     }
     
     // MARK: - private
