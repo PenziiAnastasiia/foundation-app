@@ -80,7 +80,7 @@ class AccountPageViewController: UIViewController, KeyboardObservable, UITableVi
     
     private func getUserDonationHistory(_ uid: String) async throws -> [DonationModel] {
         try await withCheckedThrowingContinuation { continuation in
-            DonateService.shared.getUserDonationHistory(uid: uid) { result in
+            FirestoreService.shared.getUserDonationHistory(uid: uid) { result in
                 switch result {
                 case .success(let donations):
                     continuation.resume(returning: donations)

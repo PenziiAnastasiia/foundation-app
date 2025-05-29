@@ -214,8 +214,8 @@ class FilterViewController: UIViewController, KeyboardObservable, UITextFieldDel
         if let amountFrom = self.filters.amountFrom, let amountTo = self.filters.amountTo {
             self.amountFilterSwitch.setOn(true, animated: false)
             self.filterSwitchToggled(self.amountFilterSwitch)
-            self.amountFromTextField.text = String(Int(amountFrom))
-            self.amountToTextField.text = String(Int(amountTo))
+            self.amountFromTextField.text = self.formatAmountValue(String(Int(amountFrom)))
+            self.amountToTextField.text = self.formatAmountValue(String(Int(amountTo)))
         }
         
         if let (comparisonOperator, percent) = self.filters.state {
@@ -237,6 +237,7 @@ class FilterViewController: UIViewController, KeyboardObservable, UITextFieldDel
         if let dateFrom = self.filters.dateFrom, let dateTo = self.filters.dateTo {
             self.dateFilterSwitch.setOn(true, animated: false)
             self.dateRangeFilterSwitch.setOn(true, animated: false)
+            self.filterSwitchToggled(self.dateFilterSwitch)
             self.filterSwitchToggled(self.dateRangeFilterSwitch)
             self.dateFromTextField.text = DateFormatter.shared.string(from: dateFrom)
             self.dateToTextField.text = DateFormatter.shared.string(from: dateTo)
@@ -338,7 +339,7 @@ class FilterViewController: UIViewController, KeyboardObservable, UITextFieldDel
         return nil
     }
     
-    private func formatAmountValue(_ textField: UITextField, _ newText: String) -> String {
+    private func formatAmountValue( _ newText: String) -> String {
         let reverseValue = newText.replacingOccurrences(of: " ", with: "").reversed()
         var formattedValue = ""
         for (index, char) in reverseValue.enumerated() {
@@ -362,11 +363,11 @@ class FilterViewController: UIViewController, KeyboardObservable, UITextFieldDel
         
         switch textField {
         case self.amountFromTextField:
-            self.amountFromTextField.text = self.formatAmountValue(self.amountFromTextField, newText)
+            self.amountFromTextField.text = self.formatAmountValue(newText)
             return false
             
         case self.amountToTextField:
-            self.amountToTextField.text = self.formatAmountValue(self.amountToTextField, newText)
+            self.amountToTextField.text = self.formatAmountValue(newText)
             return false
             
         case self.statePercentTextField:

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class FundraisersListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, FilterViewControllerDelegate {
     
@@ -41,7 +40,7 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
         self.fundraisersTableView.delegate = self
         
         Task {
-            await self.fillFundraisersList()
+            self.fundraisersList = await FirestoreService.shared.getFundraisersList()
             
             DispatchQueue.main.async {
                 self.fundraisersTableView.reloadData()
@@ -62,39 +61,6 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
         controller.delegate = self
         controller.modalPresentationStyle = .pageSheet
         self.present(controller, animated: true)
-    }
-    
-    private func fillFundraisersList() async {
-        do {
-            self.fundraisersList = []
-            let db = Firestore.firestore()
-            let querySnapshot = try await db.collection("Fundraisers").getDocuments()
-            
-            for document in querySnapshot.documents {
-                if let fundraiser = await self.createFundraiser(from: document.data(), with: document.documentID) {
-                    self.fundraisersList.append(fundraiser)
-                }
-            }
-        } catch {
-            print("Error fetching fundraisers data: \(error)")
-        }
-    }
-    
-    private func createFundraiser(from document: [String: Any], with id: String) async -> FundraiserModel? {
-        guard let title = document["title"] as? String,
-              let description = document["description"] as? String,
-              let openDate = (document["openDate"] as? Timestamp)?.dateValue(),
-              let goal = document["goal"] as? Int,
-              let collected = document["collected"] as? Double,
-              let purposeTags = document["purposeTags"] as? [String]
-        else { return nil }
-        
-        let descriptionMedia = document["descriptionMedia"] as? [String]
-        let closeDate = (document["closeDate"] as? Timestamp)?.dateValue()
-        
-        let fundraiser = FundraiserModel(id: id, title: title, description: description, descriptionMedia: descriptionMedia, goal: goal, collected: collected, openDate: openDate, closeDate: closeDate, purposeTags: purposeTags)
-        
-        return fundraiser
     }
 
     private func filterList() {
@@ -126,7 +92,7 @@ class FundraisersListViewController: UIViewController, KeyboardObservable, UITab
 
     @objc private func updateFundraisersData() {
         Task {
-            await self.fillFundraisersList()
+            self.fundraisersList = await FirestoreService.shared.getFundraisersList()
 
             DispatchQueue.main.async {
                 self.fundraisersTableView.reloadData()

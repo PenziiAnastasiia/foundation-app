@@ -61,16 +61,8 @@ extension PaymentHandler: PKPaymentAuthorizationControllerDelegate {
     func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         
         // Perform basic validation on the provided contact information.
-        let amount = payment.token.paymentData.count
-
-        if amount % 2 == 0 {
-            self.paymentStatus = .success
-            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-        } else {
-            let error = PKPaymentRequest.paymentContactInvalidError(withContactField: .postalAddress, localizedDescription: "Невірна адреса")
-            self.paymentStatus = .failure
-            completion(PKPaymentAuthorizationResult(status: .failure, errors: [error]))
-        }
+        self.paymentStatus = .success
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
     
     func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {

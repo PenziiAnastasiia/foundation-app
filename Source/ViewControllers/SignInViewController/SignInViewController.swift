@@ -67,7 +67,7 @@ class SignInViewController: UIViewController {
     
     private func getUserData(_ uid: String) async {
         do {
-            let data = try await AuthService.shared.getUserData(uid)
+            let data = try await FirestoreService.shared.getUserData(uid)
             UserManager.shared.saveUserData(try UserModel.fromDictionary(data), uid: uid)
         } catch {
             AuthService.shared.signOut { _ in }

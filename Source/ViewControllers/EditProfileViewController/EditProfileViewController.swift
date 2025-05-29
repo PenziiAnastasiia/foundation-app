@@ -50,7 +50,7 @@ class EditProfileViewController: UIViewController, KeyboardObservable, FormViewD
     
     func didTapSave(user: UserModel) {
         guard let uid = UserManager.shared.currentUID else { return }
-        AuthService.shared.saveUserData(uid, user) { result in
+        FirestoreService.shared.saveUserData(uid, user) { result in
             switch result {
             case .success:
                 UserManager.shared.saveUserData(user, uid: uid)

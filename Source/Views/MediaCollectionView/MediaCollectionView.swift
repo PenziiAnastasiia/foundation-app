@@ -46,7 +46,7 @@ class MediaCollectionView: UIView {
         for (index, item) in self.mediaItems.enumerated() {
             group.enter()
             
-            MediaService.shared.fetchMediaPreview(for: item.name) { result in
+            StorageService.shared.fetchMediaPreview(for: item.name) { result in
                 switch result {
                 case .success(let (image, isVideo)):
                     self.mediaItems[index].image = image

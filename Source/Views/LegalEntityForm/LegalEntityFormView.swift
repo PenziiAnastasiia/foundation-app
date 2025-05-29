@@ -34,7 +34,7 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
     private var hasAddedPhonePrefix = false
     
     private let EDRPOYSize = 8
-    private let IBANSize = 34
+    private let IBANSize = 29
     private let phoneNumberSize = 13
     
     override func awakeFromNib() {
@@ -139,10 +139,49 @@ class LegalEntityFormView: UIView, FormView, UIPickerViewDelegate, UIPickerViewD
         return true
     }
     
+    private func isValidIBAN() -> Bool {
+        guard self.checkTextFieldHasEnoughText(self.IBANTextField, neededLength: self.IBANSize),
+              let iban = self.IBANTextField.text
+        else { return false }
+
+        print("im here")
+        let rearranged = iban.dropFirst(4) + iban.prefix(4)
+        var numericIBAN = ""
+        for char in rearranged {
+            if let digit = char.wholeNumberValue {
+                numericIBAN.append(String(digit))
+            } else if let ascii = char.asciiValue {
+                let value = Int(ascii) - 55
+                guard value >= 10 && value <= 35 else { return false }
+                numericIBAN.append(String(value))
+            } else {
+                return false
+            }
+        }
+        print("im here1", numericIBAN)
+    
+        var remainder = 0
+        for char in numericIBAN {
+            if let digit = Int(String(char)) {
+                remainder = (remainder * 10 + digit) % 97
+            } else {
+                return false
+            }
+        }
+        print("im here2", remainder)
+        
+        if !(remainder == 1) {
+            self.IBANTextField.layer.borderColor = UIColor.red.cgColor
+            return false
+        }
+        self.IBANTextField.layer.borderColor = UIColor.gray.cgColor
+        return true
+    }
+    
     private func getResultOfAllChecks() -> Bool {
         let checkOrganizationNameResult = self.organizationNameTextField.isNotEmpty
         let checkEDRPOYResult = self.checkTextFieldHasEnoughText(self.EDRPOYTextField, neededLength: self.EDRPOYSize)
-        let checkIBANResult = self.checkTextFieldHasEnoughText(self.IBANTextField, neededLength: self.IBANSize)
+        let checkIBANResult = self.isValidIBAN()
         let checkBankResult = self.bankTextField.isNotEmpty
         let checkAddressResult = self.addressTextField.isNotEmpty
         let checkPIBResult = self.PIBTextField.checkPIB()

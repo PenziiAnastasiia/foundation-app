@@ -23,7 +23,7 @@ class LoggedInView: UIView {
         self.emojiContainer.layer.cornerRadius = self.emojiContainer.frame.width / 2
         self.emojiContainer.layer.masksToBounds = true
         
-        let action1 = UIAction(title: "Змінити інформацію про себе", image: nil) { _ in
+        let action1 = UIAction(title: "Змінити особисту інформацію", image: nil) { _ in
             self.changeData?()
         }
         

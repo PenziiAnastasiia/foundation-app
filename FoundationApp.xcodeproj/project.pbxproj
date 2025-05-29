@@ -14,7 +14,7 @@
 		1B078F0E2DCA8AE5002BAE57 /* NotLoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F0D2DCA8AE2002BAE57 /* NotLoggedInView.swift */; };
 		1B078F102DCB7A1B002BAE57 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F0F2DCB7A18002BAE57 /* UserModel.swift */; };
 		1B078F132DCB8935002BAE57 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B078F122DCB8934002BAE57 /* UserManager.swift */; };
-		1B1633832DDCFDC900C76B02 /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633822DDCFDB400C76B02 /* MediaService.swift */; };
+		1B1633832DDCFDC900C76B02 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633822DDCFDB400C76B02 /* StorageService.swift */; };
 		1B1633852DDDEB0500C76B02 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1633842DDDEAF700C76B02 /* KeychainManager.swift */; };
 		1B6322702DE513B400E53E4A /* FilterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B63226F2DE513A800E53E4A /* FilterEngine.swift */; };
 		1B6322722DE51A6600E53E4A /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6322712DE51A5800E53E4A /* PaymentHandler.swift */; };
@@ -32,8 +32,8 @@
 		1B8A18E42DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A18E32DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib */; };
 		1B8A18E62DCD176B007BDC86 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E52DCD1762007BDC86 /* Codable+Extension.swift */; };
 		1B8A18E82DCD2328007BDC86 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A18E72DCD2324007BDC86 /* AuthService.swift */; };
+		1B8F7CC42DE60F4700C588E1 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F7CC32DE60F3D00C588E1 /* FirestoreService.swift */; };
 		1B9336882D3AB4F100E18231 /* ListElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B9336872D3AB4F100E18231 /* ListElementTableViewCell.xib */; };
-		1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7A92DC6333B009D8FC5 /* DonateService.swift */; };
 		1BABD7AE2DC696F4009D8FC5 /* DonateResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7AD2DC696F4009D8FC5 /* DonateResultViewController.xib */; };
 		1BABD7AF2DC696F4009D8FC5 /* DonateResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABD7AC2DC696F4009D8FC5 /* DonateResultViewController.swift */; };
 		1BABD7B32DC6A55F009D8FC5 /* failure.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1BABD7B12DC6A55E009D8FC5 /* failure.gif */; };
@@ -98,7 +98,7 @@
 		1B078F0D2DCA8AE2002BAE57 /* NotLoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoggedInView.swift; sourceTree = "<group>"; };
 		1B078F0F2DCB7A18002BAE57 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1B078F122DCB8934002BAE57 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		1B1633822DDCFDB400C76B02 /* MediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
+		1B1633822DDCFDB400C76B02 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		1B1633842DDDEAF700C76B02 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		1B63226F2DE513A800E53E4A /* FilterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngine.swift; sourceTree = "<group>"; };
 		1B6322712DE51A5800E53E4A /* PaymentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 		1B8A18E32DCCFFAB007BDC86 /* FundraiserDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FundraiserDetailsViewController.xib; sourceTree = "<group>"; };
 		1B8A18E52DCD1762007BDC86 /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		1B8A18E72DCD2324007BDC86 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		1B8F7CC32DE60F3D00C588E1 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		1B9336872D3AB4F100E18231 /* ListElementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListElementTableViewCell.xib; sourceTree = "<group>"; };
-		1BABD7A92DC6333B009D8FC5 /* DonateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateService.swift; sourceTree = "<group>"; };
 		1BABD7AC2DC696F4009D8FC5 /* DonateResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateResultViewController.swift; sourceTree = "<group>"; };
 		1BABD7AD2DC696F4009D8FC5 /* DonateResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonateResultViewController.xib; sourceTree = "<group>"; };
 		1BABD7B12DC6A55E009D8FC5 /* failure.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = failure.gif; sourceTree = "<group>"; };
@@ -12509,6 +12509,45 @@
 			path = TagButtonCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		1B8F7CC02DE6035800C588E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1BABD7C02DC7E8F5009D8FC5 /* IndividualFormView */,
+				1BABD7C52DC7F3C6009D8FC5 /* LegalEntityForm */,
+				1B81F6442DE367D6000C9659 /* TagButtonCollectionViewCell */,
+				1BAC01272DAC2242008BCCA4 /* BarView */,
+				1BB8369F2DB280DD00C0C094 /* DonateView */,
+				1BAFC42A2DC3E17900EB6FB4 /* FundraisersSeparatorTableViewCell */,
+				1BF6C0FF2D29852A00635A49 /* ListElementTableViewCell */,
+				1BAC01312DAE4DD5008BCCA4 /* MediaCollectionView */,
+				1BAC01382DAE6B42008BCCA4 /* MediaCollectionViewCell */,
+				1B078F032DCA8913002BAE57 /* LoggedInView */,
+				1B078F042DCA8932002BAE57 /* NotLoggedInView */,
+				1BAFC41E2DC283C300EB6FB4 /* UserInfoViewCell */,
+				1BAFC40D2DC13A0100EB6FB4 /* DonationHistoryTableViewCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1B8F7CC12DE603F300C588E1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1BABD7B52DC780CC009D8FC5 /* SignUpViewController */,
+				1BABD7BA2DC7C531009D8FC5 /* SignInViewController */,
+				1BD4DD432DDF7E9D002ADA77 /* EditProfileViewController */,
+				1B81F63D2DE20B0E000C9659 /* FilterViewController */,
+				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
+				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
+				1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */,
+				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
+				1BB836AB2DB8C26800C0C094 /* ReportDetailsViewController */,
+				1BABD7AB2DC6968F009D8FC5 /* DonateResultViewController */,
+				1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */,
+				1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		1BABD7A82DC63326009D8FC5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -12518,9 +12557,9 @@
 				1B1633842DDDEAF700C76B02 /* KeychainManager.swift */,
 				1B8A18E12DCCF873007BDC86 /* FoundationInfoManager.swift */,
 				1B078F122DCB8934002BAE57 /* UserManager.swift */,
+				1B8F7CC32DE60F3D00C588E1 /* FirestoreService.swift */,
 				1B8A18E72DCD2324007BDC86 /* AuthService.swift */,
-				1B1633822DDCFDB400C76B02 /* MediaService.swift */,
-				1BABD7A92DC6333B009D8FC5 /* DonateService.swift */,
+				1B1633822DDCFDB400C76B02 /* StorageService.swift */,
 				1BABD7CE2DCA0D74009D8FC5 /* AuthErrorService.swift */,
 			);
 			path = Services;
@@ -38694,18 +38733,8 @@
 				1BAC012E2DAD8475008BCCA4 /* Libs */,
 				1BABD7A82DC63326009D8FC5 /* Services */,
 				1BF6C0FE2D29850B00635A49 /* Models */,
-				1BABD7B52DC780CC009D8FC5 /* SignUpViewController */,
-				1BABD7BA2DC7C531009D8FC5 /* SignInViewController */,
-				1BD4DD432DDF7E9D002ADA77 /* EditProfileViewController */,
-				1B81F63D2DE20B0E000C9659 /* FilterViewController */,
-				1B6933952D29E62C00D09C8F /* FundraisersListViewController */,
-				1BB836A62DB7CEDD00C0C094 /* ReportsListViewController */,
-				1BAFC4072DC1284C00EB6FB4 /* AccountPageViewController */,
-				1B69339E2D2C1B5100D09C8F /* FundraiserDetailsViewController */,
-				1BB836AB2DB8C26800C0C094 /* ReportDetailsViewController */,
-				1BABD7AB2DC6968F009D8FC5 /* DonateResultViewController */,
-				1BAC01402DB04D66008BCCA4 /* ImageFullscreenViewController */,
-				1BB8369A2DB12D7D00C0C094 /* VideoFullscreenViewController */,
+				1B8F7CC02DE6035800C588E1 /* Views */,
+				1B8F7CC12DE603F300C588E1 /* ViewControllers */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -38720,19 +38749,6 @@
 				1BB8369D2DB1831300C0C094 /* MediaItemModel.swift */,
 				1BAFC4102DC13B9B00EB6FB4 /* DonationModel.swift */,
 				1B078F012DCA5B3B002BAE57 /* FormView.swift */,
-				1BABD7C02DC7E8F5009D8FC5 /* IndividualFormView */,
-				1BABD7C52DC7F3C6009D8FC5 /* LegalEntityForm */,
-				1B81F6442DE367D6000C9659 /* TagButtonCollectionViewCell */,
-				1BAC01272DAC2242008BCCA4 /* BarView */,
-				1BB8369F2DB280DD00C0C094 /* DonateView */,
-				1BAFC42A2DC3E17900EB6FB4 /* FundraisersSeparatorTableViewCell */,
-				1BF6C0FF2D29852A00635A49 /* ListElementTableViewCell */,
-				1BAC01312DAE4DD5008BCCA4 /* MediaCollectionView */,
-				1BAC01382DAE6B42008BCCA4 /* MediaCollectionViewCell */,
-				1B078F032DCA8913002BAE57 /* LoggedInView */,
-				1B078F042DCA8932002BAE57 /* NotLoggedInView */,
-				1BAFC41E2DC283C300EB6FB4 /* UserInfoViewCell */,
-				1BAFC40D2DC13A0100EB6FB4 /* DonationHistoryTableViewCell */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -38909,7 +38925,6 @@
 				1BAFC41C2DC25C7D00EB6FB4 /* DonationHistoryTableViewCell.swift in Sources */,
 				1BAC01302DAD8601008BCCA4 /* Numeric+Extension.swift in Sources */,
 				1BD4DD422DDE4DF8002ADA77 /* PDFGeneratorService.swift in Sources */,
-				1BABD7AA2DC6333B009D8FC5 /* DonateService.swift in Sources */,
 				1BAFC4292DC3E16D00EB6FB4 /* FundraisersSeparatorTableViewCell.swift in Sources */,
 				1BAFC4222DC283F500EB6FB4 /* UserInfoViewCell.swift in Sources */,
 				1B6322722DE51A6600E53E4A /* PaymentHandler.swift in Sources */,
@@ -38917,6 +38932,7 @@
 				1BABD7B92DC7810F009D8FC5 /* SignUpViewController.swift in Sources */,
 				1BABD7CB2DC8D0C0009D8FC5 /* UITextField+Extension.swift in Sources */,
 				1B81F6432DE2613A000C9659 /* FiltersModel.swift in Sources */,
+				1B8F7CC42DE60F4700C588E1 /* FirestoreService.swift in Sources */,
 				1B81F6472DE36831000C9659 /* TagButtonCollectionViewCell.swift in Sources */,
 				1BB8369C2DB12DC400C0C094 /* VideoFullscreenViewController.swift in Sources */,
 				1BF6C0EA2D297C1800635A49 /* AppDelegate.swift in Sources */,
@@ -38928,7 +38944,7 @@
 				1B078F102DCB7A1B002BAE57 /* UserModel.swift in Sources */,
 				1BB836A82DB7CF1100C0C094 /* ReportsListViewController.swift in Sources */,
 				1BF6C0EC2D297C1800635A49 /* SceneDelegate.swift in Sources */,
-				1B1633832DDCFDC900C76B02 /* MediaService.swift in Sources */,
+				1B1633832DDCFDC900C76B02 /* StorageService.swift in Sources */,
 				1BAFC4152DC144F600EB6FB4 /* DateFormatter+Extension.swift in Sources */,
 				1BAC013B2DAE6B78008BCCA4 /* MediaCollectionViewCell.swift in Sources */,
 				1BABD7BE2DC7C56D009D8FC5 /* SignInViewController.swift in Sources */,

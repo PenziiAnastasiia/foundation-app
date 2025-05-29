@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FirebaseFirestore
 
 class ReportsListViewController: UIViewController, KeyboardObservable, UITableViewDataSource, UITableViewDelegate, FilterViewControllerDelegate {
     
@@ -40,7 +39,7 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
         self.reportsTableView.delegate = self
         
         Task {
-            await self.fillReportsList()
+            self.reportsList = await FirestoreService.shared.getReportsList()
             
             DispatchQueue.main.async {
                 self.reportsTableView.reloadData()
@@ -59,37 +58,6 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
         controller.delegate = self
         controller.modalPresentationStyle = .pageSheet
         self.present(controller, animated: true)
-    }
-    
-    private func fillReportsList() async {
-        do {
-            self.reportsList = []
-            let db = Firestore.firestore()
-            let querySnapshot = try await db.collection("Reports").getDocuments()
-            
-            for document in querySnapshot.documents {
-                if let report = await self.createReport(from: document.data(), with: document.documentID) {
-                    self.reportsList.append(report)
-                }
-            }
-        } catch {
-            print("Error fetching reports data: \(error)")
-        }
-    }
-    
-    private func createReport(from document: [String: Any], with id: String) async -> ReportModel? {
-        guard let title = document["title"] as? String,
-              let description = document["description"] as? String,
-              let publicationDate = (document["publicationDate"] as? Timestamp)?.dateValue(),
-              let collected = document["collected"] as? Double,
-              let purposeTags = document["purposeTags"] as? [String]
-        else { return nil }
-        
-        let reportMedia = document["reportMedia"] as? [String]
-        
-        let report = ReportModel(id: id, title: title, description: description, collected: collected, publicationDate: publicationDate, reportMedia: reportMedia, purposeTags: purposeTags)
-        
-        return report
     }
 
     private func filterList() {
@@ -114,7 +82,7 @@ class ReportsListViewController: UIViewController, KeyboardObservable, UITableVi
 
     @objc private func updateFundraisersData() {
         Task {
-            await self.fillReportsList()
+            self.reportsList = await FirestoreService.shared.getReportsList()
 
             DispatchQueue.main.async {
                 self.reportsTableView.reloadData()

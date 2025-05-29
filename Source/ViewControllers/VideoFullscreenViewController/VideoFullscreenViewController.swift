@@ -20,8 +20,9 @@ class VideoFullscreenViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setActive(true)
         
         if let videoName = videoName {
-            Storage.storage().reference(withPath: videoName).downloadURL { url, error in
-                if let url = url {
+            StorageService.shared.getMediaURL(from: videoName) { result in
+                switch result {
+                case .success(let url):
                     let player = AVPlayer(url: url)
                     let playerViewController = AVPlayerViewController()
                     playerViewController.player = player
@@ -32,8 +33,8 @@ class VideoFullscreenViewController: UIViewController {
                     playerViewController.didMove(toParent: self)
                     
                     player.play()
-                } else if let error = error {
-                    print(error)
+                case .failure(let error):
+                    debugPrint(error)
                     self.dismiss(animated: true)
                 }
             }

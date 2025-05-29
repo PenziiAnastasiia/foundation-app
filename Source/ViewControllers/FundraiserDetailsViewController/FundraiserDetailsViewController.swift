@@ -104,17 +104,19 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
     }
     
     private func donate() {
-        guard let uid = UserManager.shared.currentUID,
-              let donationSum = self.donationSum
-        else { return }
+        guard let donationSum = self.donationSum else { return }
         
         let donation = DonationModel(fundraiserId: self.fundraiser.id, fundraiserTitle: self.fundraiser.title,
                                      amount: donationSum, date: Date(), receiptNumber: Int.random(in: 100000...999999), purposeTags: self.fundraiser.purposeTags)
         
-        DonateService.shared.updateFundraiserCollectedValue(donation: donation) { result in
+        FirestoreService.shared.updateFundraiserCollectedValue(donation: donation) { result in
             switch result {
             case .success(_):
-                self.saveToHistory(uid: uid, donation: donation)
+                if let uid = UserManager.shared.currentUID {
+                    self.saveToHistory(uid: uid, donation: donation)
+                } else {
+                    self.presentDonateResultViewController(success: true)
+                }
             case .failure(_):
                 self.presentDonateResultViewController(success: false)
             }
@@ -122,7 +124,7 @@ class FundraiserDetailsViewController: UIViewController, KeyboardObservable, UID
     }
     
     private func saveToHistory(uid: String, donation: DonationModel) {
-        DonateService.shared.saveDonateToUserHistory(uid: uid, donation: donation) { result in
+        FirestoreService.shared.saveDonateToUserHistory(uid: uid, donation: donation) { result in
             switch result {
             case .success:
                 self.presentDonateResultViewController(success: true)

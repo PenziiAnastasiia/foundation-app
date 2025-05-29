@@ -78,7 +78,7 @@ class SignUpViewController: UIViewController, KeyboardObservable, FormViewDelega
     }
     
     private func saveUserData(_ uid: String, _ user: UserModel) {
-        AuthService.shared.saveUserData(uid, user) { result in
+        FirestoreService.shared.saveUserData(uid, user) { result in
             switch result {
             case .success:
                 UserManager.shared.saveUserData(user, uid: uid)
